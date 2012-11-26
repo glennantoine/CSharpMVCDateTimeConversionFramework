@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Custom Model Binder</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/themes/base/css", "~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        
+        <!--Javascript files for SyntaxHighlighter -->
+<script type="text/javascript" src="~/Scripts/SyntaxHighlighter/XRegExp.js"></script>
+<script type="text/javascript" src="~/Scripts/SyntaxHighlighter/shCore.js"></script>
+<script type="text/javascript" src="~/Scripts/SyntaxHighlighter/shBrushCSharp.js"></script>
+
+        <!--Default Core CSS for SyntaxHighlighter -->
+<link type="text/css" rel="stylesheet" href="~/Content/SyntaxHighlighter/shCore.css"/>
+<!--MidNight Theme CSS for SyntaxHighlighter -->
+<link type="text/css" rel="Stylesheet" href="~/Content/SyntaxHighlighter/shCoreMidnight.css" />
+        
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("Custom Model Binder", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("UiDateTimeModel", "UiDateTimeModel", "Home")</li>
+                            <li>@Html.ActionLink("DateAndTimeModelBinder", "DateAndTimeModelBinder", "Home")</li>
+                            <li>@Html.ActionLink("Example Usage", "Usage", "Home")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - Custom Model Binder MVC Application</p>
+                </div>
+                <div class="float-right">
+@*                    <ul id="social">
+                        <li><a href="http://facebook.com" class="facebook">Facebook</a></li>
+                        <li><a href="http://twitter.com" class="twitter">Twitter</a></li>
+                    </ul>*@
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @RenderSection("scripts", required: false)
+        <script type="text/javascript">
+            $(function () {
+                $(".datepicker").datepicker();
+                $('.timepicker').timepicker({
+                                                timeFormat: "hh:mm tt"
+                                            });
+            });
+        </script>
+    </body>
+</html>

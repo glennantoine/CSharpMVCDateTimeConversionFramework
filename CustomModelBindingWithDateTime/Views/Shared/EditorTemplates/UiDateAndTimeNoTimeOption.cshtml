@@ -1,0 +1,14 @@
+﻿@model CustomModelBindingWithDateTime.Models.UiDateTimeModel
+
+<li>
+    <label>Date</label>
+    @Html.TextBoxFor(model => model.LocalDate, new { @class = "datepicker"})
+</li>
+<li>
+    <label>Time</label>
+    @Html.TextBoxFor(model => model.LocalTime, new { @class = "timepicker" }) 
+    
+    <label>No Set Time</label>
+    @Html.CheckBoxFor(model => model.NoSetTime)
+</li>
+@Html.HiddenFor(model => model.TimeZoneName)

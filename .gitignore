@@ -1,0 +1,49 @@
+CustomModelBindingWithDateTime/obj/*
+CustomModelBindingWithDateTime/bin/*
+
+CustomModelBindingWithDateTime.Tests/obj/*
+CustomModelBindingWithDateTime.Tests/bin/*
+
+# Ignore thumbnails created by Windows
+Thumbs.db
+
+# Ignore Visual Studio build folders and ReSharper
+_ReSharper*/
+[Pp]ackages/
+
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+obj/
+[Tt]est[Rr]esult*
+
+#ignore thumbnails created by windows
+Thumbs.db
+#Ignore files built by Visual Studio
+*.obj*.exe
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.REMOTE
+*.BASE
+*.LOCAL
+*.lib
+*.sbr
+obj/
+*.db
+[Rr]elease*/
+_ReSharper*/
+[Tt]est[Rr]esult*
+*.orig
+.project

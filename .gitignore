@@ -10,6 +10,7 @@ Thumbs.db
 # Ignore Visual Studio build folders and ReSharper
 _ReSharper*/
 [Pp]ackages/
+![Pp]ackages/repositories.config
 
 [Bb]in
 [Dd]ebug*/

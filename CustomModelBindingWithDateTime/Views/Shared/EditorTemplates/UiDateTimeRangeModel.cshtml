@@ -2,17 +2,15 @@
 @Html.ValidationMessageFor(m => m, "One or more errors occured with the date range. Please see summary of errors at top of page for details.")
 <li>
     <label>Date</label>
-    @*@Html.TextBoxFor(m => m.StartDateTime.LocalDate, new { @class = "datepicker"})*@
-    @Html.UiDateTimeBoxFor(m => m.StartDateTime.LocalDate)
+    @Html.TextBoxFor(m => m.StartDateTime.LocalDate, new { @class = "datepicker"})
+@*    @Html.UiDateTimeBoxFor(m => m.StartDateTime.LocalDate)*@
 </li>
 <li>
     <label>Start Time</label>
-    @*@Html.TextBoxFor(m => m.StartDateTime.LocalTime, new { @class = "timepicker" })*@
-    @Html.UiDateTimeBoxFor(m => m.StartDateTime.LocalTime)
+    @Html.TextBoxFor(m => m.StartDateTime.LocalTime, new { @class = "timepicker" })
 </li>
 <li>
     <label>End Time</label>
-    @*@Html.TextBoxFor(m => m.EndDateTime.LocalTime, new { @class = "timepicker" })*@
-    @Html.UiDateTimeBoxFor(m => m.EndDateTime.LocalTime)
+    @Html.TextBoxFor(m => m.EndDateTime.LocalTime, new { @class = "timepicker" })
 </li>
 @Html.HiddenFor(m => m.TimeZoneName)

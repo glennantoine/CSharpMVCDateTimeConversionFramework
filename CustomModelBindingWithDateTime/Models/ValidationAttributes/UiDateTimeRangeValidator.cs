@@ -2,24 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using CustomModelBindingWithDateTime.Enumerations;
 
 namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
 {
     public class UiDateTimeRangeValidator : ValidationAttribute, IClientValidatable
     {
-        private readonly bool _startDateNotInFuture;
-        private readonly bool _startDateNotInPast;
-        private readonly bool _endDateNotInFuture;
-        private readonly bool _endDateNotInPast;
         private const string DefaultErrorMessage = "'{0}' does not exist or is improperly formated: MM/DD/YYYY.";
+        private readonly List<UiDateTimeRangeValidationMode> _valadators = new List<UiDateTimeRangeValidationMode>();
 
-        public UiDateTimeRangeValidator(bool startDateNotInFuture, bool startDateNotInPast, bool endDateNotInFuture, bool endDateNotInPast)
+        public UiDateTimeRangeValidator(UiDateTimeRangeValidationMode[] valadators = null)
             : base(DefaultErrorMessage)
         {
-            _startDateNotInFuture = startDateNotInFuture;
-            _startDateNotInPast = startDateNotInPast;
-            _endDateNotInFuture = endDateNotInFuture;
-            _endDateNotInPast = endDateNotInPast;
+            if(valadators != null) _valadators.AddRange(valadators);
         }
    
         //Override IsValid  
@@ -36,44 +31,41 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
                 return new ValidationResult("Invalid UiDateTimeRangeModel object.");
             }
 
-            if (_startDateNotInFuture) 
-            {
-                if (valueDateTimeRange.StartDateTime.DateTimeUtcValue > DateTime.UtcNow) 
-                {
-                    return new ValidationResult("Start Date cannot be in the future");
-                }
-            }
-
-            if (_startDateNotInPast) 
-            {
-                if (valueDateTimeRange.StartDateTime.DateTimeUtcValue < DateTime.UtcNow) 
-                {
-                    return new ValidationResult("Start Date cannot be in the past");
-                }
-            }
-
-            if (_endDateNotInFuture) 
-            {
-                if (valueDateTimeRange.EndDateTime.DateTimeUtcValue > DateTime.UtcNow)
-                {
-                    return new ValidationResult("End Date cannot be in the future");
-                }
-            }
-
-            if (_endDateNotInPast) 
-            {
-                if (valueDateTimeRange.EndDateTime.DateTimeUtcValue < DateTime.UtcNow)
-                {
-                    return new ValidationResult("End Date cannot be in the past");
-                }
-            }
-
             //Validate start date is not greater than the end date
             {
-                if (valueDateTimeRange.StartDateTime.DateTimeUtcValue > valueDateTimeRange.EndDateTime.DateTimeUtcValue) 
-                {
+                if (valueDateTimeRange.StartDateTime.DateTimeUtcValue > valueDateTimeRange.EndDateTime.DateTimeUtcValue) {
                     return new ValidationResult("Start Date cannot be further in time than the End Date");
                 }
+            }
+
+            if (_valadators.Count > 0)
+            {
+                foreach (UiDateTimeRangeValidationMode valadator in _valadators)
+                {
+                    switch (valadator)
+                    {
+                            case UiDateTimeRangeValidationMode.StartDateNotInFuture:
+                                if (valueDateTimeRange.StartDateTime.DateTimeUtcValue > DateTime.UtcNow)
+                                        return new ValidationResult("Start Date cannot be in the future");
+                            break;
+
+                            case UiDateTimeRangeValidationMode.StartDateNotInPast:
+                                if (valueDateTimeRange.StartDateTime.DateTimeUtcValue < DateTime.UtcNow)
+                                    return new ValidationResult("Start Date cannot be in the past");
+                            break;
+
+                            case UiDateTimeRangeValidationMode.EndDateNotInFuture:
+                                if (valueDateTimeRange.EndDateTime.DateTimeUtcValue > DateTime.UtcNow)
+                                    return new ValidationResult("End Date cannot be in the future");
+                            break;
+
+                            case UiDateTimeRangeValidationMode.EndDateNotInPast:
+                                if (valueDateTimeRange.EndDateTime.DateTimeUtcValue < DateTime.UtcNow)
+                                    return new ValidationResult("End Date cannot be in the past");
+                            break;
+                    }
+                }
+
             }
 
             return ValidationResult.Success;

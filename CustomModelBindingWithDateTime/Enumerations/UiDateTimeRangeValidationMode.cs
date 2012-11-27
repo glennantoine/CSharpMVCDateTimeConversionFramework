@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace CustomModelBindingWithDateTime.Enumerations 
 {
@@ -12,5 +10,17 @@ namespace CustomModelBindingWithDateTime.Enumerations
         EndDateNotInFuture,
         EndDateNotInPast,
         StartDateNotGreaterThanEndDate
+    }
+
+    [AttributeUsage(AttributeTargets.Property)]
+    public class UiDateTimeRangeValidationModeAttribute : Attribute 
+    {
+        public ICollection<UiDateTimeRangeValidationMode> UiDateTimeRangeValidationMode { get; private set; }
+
+        public UiDateTimeRangeValidationModeAttribute(params UiDateTimeRangeValidationMode[] uiDateTimeRangeValidation) 
+        {
+            UiDateTimeRangeValidationMode = uiDateTimeRangeValidation;
+        }
+
     }
 }

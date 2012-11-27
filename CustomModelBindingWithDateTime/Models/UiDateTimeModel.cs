@@ -16,7 +16,7 @@ namespace CustomModelBindingWithDateTime.Models
             TimeZoneName = timeZoneName;
         }
 
-//        [Required]
+        [Display(Name = "UTC Date Time")]
         public DateTime DateTimeUtcValue
         {
             get
@@ -38,12 +38,14 @@ namespace CustomModelBindingWithDateTime.Models
             }
         }
 
-//        [Required]
+        [Display(Name = "Date Time")]
         public DateTime DateTimeLocalValue 
         {
             get 
             {
                 var dateResult = DateTime.MinValue;
+                LocalDate = string.IsNullOrWhiteSpace(LocalDate) ? DateTime.MinValue.ToShortDateString() : LocalDate;
+                LocalTime = string.IsNullOrWhiteSpace(LocalTime) ? DateTime.MinValue.ToShortTimeString() : LocalTime;
                 if (!string.IsNullOrWhiteSpace(LocalDate) && !string.IsNullOrWhiteSpace(LocalTime))
                 {
                     DateTime.TryParse(LocalDate + " " + LocalTime, out dateResult);
@@ -57,14 +59,13 @@ namespace CustomModelBindingWithDateTime.Models
             }
         }
 
-//        [Required]
+        [Display(Name = "Date")]
         public string LocalDate { get; set; }
 
-//        [Required]
+        [Display(Name = "Time")]
         public string LocalTime { get; set; }
 
-
-//        [Required]
+        [Display(Name = "TimeZone")]
         public string TimeZoneName { get; set; }
 
         public bool NoSetTime { get; set; }

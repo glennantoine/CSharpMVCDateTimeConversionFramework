@@ -14,7 +14,6 @@ namespace CustomModelBindingWithDateTime.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required]
         [Display(Name = "Phone")]
         public string Phone { get; set; }
 

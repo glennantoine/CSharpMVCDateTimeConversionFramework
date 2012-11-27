@@ -25,11 +25,16 @@
                 @Html.TextBoxFor(m => m.Phone)
                 @Html.ValidationMessageFor(m => m.Phone)
             </li>
+            <li>
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email)
+                @Html.ValidationMessageFor(m => m.Email)
+            </li>
             @Html.EditorFor(m => m.UiDateTimeRange)
         </ul>
         <input type="submit" value="Submit" />
     </fieldset>
 }
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+                    @Scripts.Render("~/bundles/jqueryval")
+                }

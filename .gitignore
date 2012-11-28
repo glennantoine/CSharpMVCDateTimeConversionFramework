@@ -5,6 +5,8 @@ CustomModelBindingWithDateTime/bin/*
 CustomModelBindingWithDateTime.Tests/obj/*
 CustomModelBindingWithDateTime.Tests/bin/*
 
+.nuget/
+
 # Ignore thumbnails created by Windows
 Thumbs.db
 
@@ -44,6 +46,7 @@ Thumbs.db
 *.sbr
 obj/
 *.db
+
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*

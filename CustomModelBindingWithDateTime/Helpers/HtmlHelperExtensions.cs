@@ -31,8 +31,11 @@ namespace System.Web.Mvc.Html
 
         public static MvcHtmlString UiDateTimeBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, object htmlAttributes) 
         {
+            RouteValueDictionary routeValues = new RouteValueDictionary(htmlAttributes);
+            routeValues.Add("readonly", "read-only");
+
             MvcHtmlString html = default(MvcHtmlString);
-            html = Html.InputExtensions.TextBoxFor(htmlHelper, expression, htmlAttributes);
+            html = Html.InputExtensions.TextBoxFor(htmlHelper, expression, routeValues);
 
             return html;
         }
@@ -112,7 +115,8 @@ namespace System.Web.Mvc.Html
         //    return selectedText;
         //}
 
-        //public static MvcHtmlString TextBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, object htmlAttributes, bool editable) 
+        //public static MvcHtmlString TextBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, 
+        //                                                       object htmlAttributes, bool editable) 
         //{
         //    MvcHtmlString html = default(MvcHtmlString);
 
@@ -132,27 +136,27 @@ namespace System.Web.Mvc.Html
     }
 }
 
-//        //public static MvcHtmlString UiDateTimeFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression) 
-//        //{
-//        //    var html = htmlHelper
-//        //                htmlHelper.LabelFor(expression).ToString() +
-//        //                htmlHelper.EditorFor(expression).ToString() +
-//        //                htmlHelper.ValidationMessageFor(expression).ToString();
+//public static MvcHtmlString UiDateTimeFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression) 
+//{
+//    var html = htmlHelper
+//                htmlHelper.LabelFor(expression).ToString() +
+//                htmlHelper.EditorFor(expression).ToString() +
+//                htmlHelper.ValidationMessageFor(expression).ToString();
 
-//        //    return MvcHtmlString.Create(html);
-//        //}
+//    return MvcHtmlString.Create(html);
+//}
 
-//        public static MvcHtmlString TextBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, object htmlAttributes) 
-//        {
-//            MvcHtmlString html = default(MvcHtmlString);
-////            if (editable) {
-//                html = Html.InputExtensions.TextBoxFor(htmlHelper, expression, htmlAttributes);
-//            //} else {
-//            //    RouteValueDictionary routeValues = new RouteValueDictionary(htmlAttributes);
-//            //    routeValues.Add("class", "readOnly");
-//            //    routeValues.Add("readonly", "read-only");
+//public static MvcHtmlString TextBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, object htmlAttributes) 
+//{
+//    MvcHtmlString html = default(MvcHtmlString);
+//    if (editable) {
+//        html = Html.InputExtensions.TextBoxFor(htmlHelper, expression, htmlAttributes);
+//    } else {
+//        RouteValueDictionary routeValues = new RouteValueDictionary(htmlAttributes);
+//        routeValues.Add("class", "readOnly");
+//        routeValues.Add("readonly", "read-only");
 
-//            //    html = Html.InputExtensions.TextBoxFor(htmlHelper, expression, routeValues);
-//            //}
-//            return html;
-//        }
+//        html = Html.InputExtensions.TextBoxFor(htmlHelper, expression, routeValues);
+//    }
+//    return html;
+//}

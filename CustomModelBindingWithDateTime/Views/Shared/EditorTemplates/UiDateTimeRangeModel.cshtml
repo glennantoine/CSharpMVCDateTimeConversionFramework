@@ -4,15 +4,37 @@
 @Html.ValidationMessageFor(m => m, "One or more errors occured with the date range. Please see summary of errors at top of page for details.")
 <li>
     <label>Date</label>
-    @Html.UiDateTimeBoxFor(m => m.StartDateTime.LocalDate, new { @class = "datepicker" })
-    @*@Html.TextBoxFor(m => m.StartDateTime.LocalDate, new { @class = "datepicker"})*@
+    @Html.UiDateTimeBoxFor(m => m.StartDateTime.LocalDate, new { @class = "datepicker" }, "testing")
 </li>
 <li>
     <label>Start Time</label>
-    @Html.TextBoxFor(m => m.StartDateTime.LocalTime, new { @class = "timepicker" })
+    @Html.UiDateTimeBoxFor(m => m.StartDateTime.LocalTime, new { @class = "timepicker" })
 </li>
 <li>
     <label>End Time</label>
-    @Html.TextBoxFor(m => m.EndDateTime.LocalTime, new { @class = "timepicker" })
+    @Html.UiDateTimeBoxFor(m => m.EndDateTime.LocalTime, new { @class = "timepicker" })
 </li>
 @Html.HiddenFor(m => m.TimeZoneName)
+
+@*<div class="formrow">
+    <div class="formitem">
+        <label for="Date" class="req top">Start Date</label>
+        <input type="text" value="11/28/2012" name="Date" id="ScheduledAction_Date" 
+               data-val-required="Start Date is required." data-val-datenotinpast="Start Date must be in the future." 
+               data-val-date="Start Date is improperly formated: MM/DD/YYYY." data-val="true" class="datepicker w75 hasDatepicker">
+         <img class="ui-datepicker-trigger" src="/Areas/Crm/Content/images/calendar.png" alt="choose a date..." title="choose a date...">                        
+    </div>
+    <div class="formitem" id="startTime">
+        <label for="StartTime" class="req top">Start Time</label>
+        <input type="text" value="" name="StartTime" id="StartTime" data-val-time="Start Time must be a time format: HH:MM AM|PM." data-val-required="Start Time is required." data-val="true" class="timepicker w65">
+    <div class="pointer ib icon16 clock16 middleUnit"></div>
+    </div>
+    <div class="formitem" id="endTime">
+        <label for="EndTime" class="req top">End Time</label>
+        <input type="text" value="" name="EndTime" id="EndTime" 
+               data-val-timegreaterthanattributeornull-other="StartTime" 
+               data-val-timegreaterthanattributeornull="End Time must be after Start Time." 
+               data-val-time="End Time must be a time format: HH:MM AM|PM." data-val-required="End Time is required." data-val="true" class="timepicker w65">
+    <div class="pointer ib icon16 clock16 middleUnit"></div>
+    </div>
+</div>*@

@@ -152,6 +152,14 @@
     <Compile Include="Models\UiDateTimeRangeModel.cs" />
     <Compile Include="Models\UiDateTimeRangeTestModel.cs" />
     <Compile Include="Models\UiDateTimeTestModel.cs" />
+    <Compile Include="Models\ValidationAttributes\DateGreaterThanAttributeValidation.cs" />
+    <Compile Include="Models\ValidationAttributes\DateNotInFutureValidation.cs" />
+    <Compile Include="Models\ValidationAttributes\DateNotInPastValidation.cs" />
+    <Compile Include="Models\ValidationAttributes\DateValidation.cs" />
+    <Compile Include="Models\ValidationAttributes\GreaterThanValidation.cs" />
+    <Compile Include="Models\ValidationAttributes\TimeGreaterThanAttributeValidation.cs" />
+    <Compile Include="Models\ValidationAttributes\TimeGreaterThanEqualAttributeValidation.cs" />
+    <Compile Include="Models\ValidationAttributes\TimeValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeRangeValidator.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

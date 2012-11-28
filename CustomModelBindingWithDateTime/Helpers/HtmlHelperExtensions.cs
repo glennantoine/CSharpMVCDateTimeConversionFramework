@@ -28,6 +28,14 @@ namespace System.Web.Mvc.Html
 
             return markup;
         }
+
+        public static MvcHtmlString UiDateTimeBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, object htmlAttributes) 
+        {
+            MvcHtmlString html = default(MvcHtmlString);
+            html = Html.InputExtensions.TextBoxFor(htmlHelper, expression, htmlAttributes);
+
+            return html;
+        }
         
         //public static MvcHtmlString TextBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, bool editable) 
         //{

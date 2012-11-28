@@ -144,7 +144,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Helpers\UiDateTimeHelper.cs" />
     <Compile Include="Models\Binders\UiDateTimeRangeModelBinder.cs" />
     <Compile Include="Models\Binders\UiDateTimeModelAttribute.cs" />

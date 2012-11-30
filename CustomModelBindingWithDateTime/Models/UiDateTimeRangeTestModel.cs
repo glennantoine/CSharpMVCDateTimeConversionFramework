@@ -23,6 +23,7 @@ namespace CustomModelBindingWithDateTime.Models
         [Display(Name = "Email address")]
         public string Email { get; set; }
 
+        [TimeValidation(ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.Validation))]
         [UiDateTimeRangeValidator(new[] { UiDateTimeRangeValidationMode.StartDateNotInFuture }, ErrorMessageResourceName = "DateFormatValid", ErrorMessageResourceType = typeof(UiDateTimeRangeModel))]
         public UiDateTimeRangeModel UiDateTimeRange { get; set; }
     }

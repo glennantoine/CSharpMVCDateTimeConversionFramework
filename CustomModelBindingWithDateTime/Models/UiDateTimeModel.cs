@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using CustomModelBindingWithDateTime.Utils;
+using CustomModelBindingWithDateTime.Models.ValidationAttributes;
 
 namespace CustomModelBindingWithDateTime.Models 
 {
@@ -63,6 +64,7 @@ namespace CustomModelBindingWithDateTime.Models
         public string LocalDate { get; set; }
 
         [Display(Name = "Time")]
+        [TimeValidation(ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.Validation))]
         public string LocalTime { get; set; }
 
         [Display(Name = "TimeZone")]

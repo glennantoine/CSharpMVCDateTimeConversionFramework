@@ -137,6 +137,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Models\ValidationAttributes\EnforceTrueAttribute.cs" />
+    <Compile Include="Models\ValidationAttributes\GreaterThanZeroAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UiDateTimeController.cs" />
     <Compile Include="Enumerations\UiDateTimeRangeValidationMode.cs" />
@@ -145,6 +147,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\UiDateTimeHelper.cs" />
+    <Compile Include="Models\Managers\UiDateTimeModelValidatorProvider.cs" />
+    <Compile Include="Models\Managers\ValidationManager.cs" />
     <Compile Include="Models\Binders\UiDateTimeRangeModelBinder.cs" />
     <Compile Include="Models\Binders\UiDateTimeModelAttribute.cs" />
     <Compile Include="Models\Binders\UiDateTimeModelBinder.cs" />
@@ -162,8 +166,10 @@
     <Compile Include="Models\ValidationAttributes\TimeValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeRangeValidator.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeValidator.cs" />
+    <Compile Include="Models\Validators.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\DateTime.cs" />
+    <Compile Include="Views\Shared\xsd\validators.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\EventStore.license.txt" />
@@ -227,6 +233,7 @@
     <Content Include="Scripts\SyntaxHighlighter\shBrushSql.js" />
     <Content Include="Scripts\SyntaxHighlighter\shCore.js" />
     <Content Include="Scripts\SyntaxHighlighter\XRegExp.js" />
+    <Content Include="Views\Shared\EditorTemplates\uiDateTimeModelValidators.xml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -265,6 +272,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Validators\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -302,6 +310,13 @@
   <ItemGroup>
     <None Include="App_Readme\EventStore - Architectural Overview.docx" />
     <None Include="App_Readme\EventStore - Transactional Integrity.docx" />
+    <None Include="Views\Shared\xsd\validators.xsc">
+      <DependentUpon>validators.xsd</DependentUpon>
+    </None>
+    <None Include="Views\Shared\xsd\validators.xsd" />
+    <None Include="Views\Shared\xsd\validators.xss">
+      <DependentUpon>validators.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

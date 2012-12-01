@@ -6,7 +6,8 @@ using CustomModelBindingWithDateTime.Enumerations;
 
 namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
 {
-    public class UiDateTimeRangeValidator : ValidationAttribute, IClientValidatable
+    //public class UiDateTimeRangeValidator : ValidationAttribute, IClientValidatable
+    public class UiDateTimeRangeValidator : ValidationAttribute
     {
         private const string DefaultErrorMessage = "'{0}' does not exist or is improperly formated: MM/DD/YYYY.";
         private readonly List<UiDateTimeRangeValidationMode> _valadators = new List<UiDateTimeRangeValidationMode>();
@@ -77,15 +78,15 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
             return string.Format(ErrorMessageString, name);
         }  
 
-        public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
-        {
-            var rule = new ModelClientValidationRule();
-            rule.ErrorMessage = FormatErrorMessage(metadata.GetDisplayName());
+        //public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
+        //{
+        //    var rule = new ModelClientValidationRule();
+        //    rule.ErrorMessage = FormatErrorMessage(metadata.GetDisplayName());
 
-            //This string identifies which Javascript function to be executed to validate this   
-            rule.ValidationType = "date";
-            yield return rule;
-        }  
+        //    //This string identifies which Javascript function to be executed to validate this   
+        //    rule.ValidationType = "date";
+        //    yield return rule;
+        //}  
 
     }
 }

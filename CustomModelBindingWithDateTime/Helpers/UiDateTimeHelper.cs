@@ -37,9 +37,9 @@ namespace CustomModelBindingWithDateTime.Helpers
         public static MvcHtmlString UiDateTimeBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, object htmlAttributes, string validation)
         {
             var attributes = new RouteValueDictionary(htmlAttributes);
-            attributes.Add("data-val-required", "Start Date is required.");
-            attributes.Add("data-val-datenotinpast", "Start Date must be in the future.");
-            attributes.Add("data-val-date", "Start Date is improperly formated: MM/DD/YYYY.");
+            //attributes.Add("data-val-required", "Start Date is required.");
+            //attributes.Add("data-val-datenotinpast", "Start Date must be in the future.");
+            //attributes.Add("data-val-date", "Start Date is improperly formated: MM/DD/YYYY.");
 
             MvcHtmlString html = default(MvcHtmlString);
             html = System.Web.Mvc.Html.InputExtensions.TextBoxFor(htmlHelper, expression, attributes);

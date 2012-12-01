@@ -64,12 +64,12 @@ namespace CustomModelBindingWithDateTime.Models
         public string LocalDate { get; set; }
 
         [Display(Name = "Time")]
-        [TimeValidation(ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.Validation))]
         public string LocalTime { get; set; }
 
         [Display(Name = "TimeZone")]
         public string TimeZoneName { get; set; }
 
+        [Display(Name = "No Set Time")]
         public bool NoSetTime { get; set; }
 
         private void SetLocalDateTimeFields(DateTime localDateTime)
@@ -89,3 +89,15 @@ namespace CustomModelBindingWithDateTime.Models
 
     }
 }
+
+//[TimeValidation(ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.Validation))]
+//[TimeGreaterThanEqualAttributeValidation("ServiceDeptOpen")]
+//[TimeGreaterThanAttributeOrNullValidation("StartTime", ErrorMessageResourceName = "DateMustBeBeforeDateValid", ErrorMessageResourceType = typeof(Resources.Validation))]
+
+//[DateValidation(ErrorMessageResourceName = "DateInvalid", ErrorMessageResourceType = typeof(Resources.Validation))]
+//[DateNotInPastValidation(ErrorMessageResourceName = "DateNotInPastValid", ErrorMessageResourceType = typeof(Resources.Validation))]
+//[DateNotInFutureValidation(ErrorMessageResourceName = "DateMustBeInThePastValid", ErrorMessageResourceType = typeof(Resources.Validation))]
+//[DateGreaterThanAttributeOrNullValidation("StartDate", false, ErrorMessageResourceName = "DateMustBeAfterDateValid", ErrorMessageResourceType = typeof(Resources.Validation))]
+
+//[RequiredIfNotAttributeValidation("IsAllDay", ErrorMessageResourceName = "LeadRoutingRuleCompleteTimeRange", ErrorMessageResourceType = typeof(Resources.Validation))]
+//[RequiredIfAttributeValidation("StartTime", ErrorMessageResourceName = "LeadRoutingRuleCompleteTimeRange", ErrorMessageResourceType = typeof(Resources.Validation))]

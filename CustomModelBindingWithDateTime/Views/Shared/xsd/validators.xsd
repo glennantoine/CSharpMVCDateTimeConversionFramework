@@ -14,6 +14,13 @@
                   <xs:attribute name="ErrorMessage" type="xs:string" />
                   <xs:attribute name="RegularExpression" type="xs:string" />
                   <xs:attribute name="Compare" type="xs:string" />
+				  <xs:attribute name="DateValidation" type="xs:boolean" default="0" />
+				  <xs:attribute name="DateNotInPastValidation" type="xs:boolean" default="0" />
+				  <xs:attribute name="DateNotInFutureValidation" type="xs:boolean" default="0" />
+				  <xs:attribute name="DateGreaterThanAttributeOrNullValidation" type="xs:boolean" default="0" />
+				  <xs:attribute name="TimeValidation" type="xs:boolean" default="0" />
+				  <xs:attribute name="TimeGreaterThanEqualAttributeValidation" type="xs:boolean" default="0" />
+				  <xs:attribute name="TimeGreaterThanAttributeOrNullValidation" type="xs:boolean" default="0" />				  
                 </xs:complexType>
               </xs:element>
             </xs:sequence>

@@ -22,7 +22,6 @@ namespace CustomModelBindingWithDateTime.Models
         [Display(Name = "Email address")]
         public string Email { get; set; }
 
-
         [UiDateTimeValidator(true, false, ErrorMessageResourceName = "DateFormatValid", ErrorMessageResourceType = typeof(UiDateTimeRangeModel))]
         public UiDateTimeModel UiDateTime { get; set; }
     }

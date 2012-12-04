@@ -137,6 +137,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Enumerations\UiDateClientValidationModel.cs" />
     <Compile Include="Models\ValidationAttributes\EnforceTrueAttribute.cs" />
     <Compile Include="Models\ValidationAttributes\GreaterThanZeroAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />

@@ -1,10 +1,11 @@
-﻿@using CustomModelBindingWithDateTime.Helpers
+﻿@using CustomModelBindingWithDateTime.Enumerations
+@using CustomModelBindingWithDateTime.Helpers
 @model CustomModelBindingWithDateTime.Models.UiDateTimeRangeModel
 
 @Html.ValidationMessageFor(m => m, "One or more errors occured with the date range. Please see summary of errors at top of page for details.")
 <li>
     <label>Date</label>
-    @Html.UiDateTimeBoxFor(m => m.StartDateTime.LocalDate, new { @class = "datepicker" }, "testing")
+    @Html.UiDateTimeBoxFor(m => m.StartDateTime.LocalDate, new { @class = "datepicker" }, new[] { UiDateClientValidationModes.DateValidation, UiDateClientValidationModes.DateRequired})
 </li>
 <li>
     <label>Start Time</label>

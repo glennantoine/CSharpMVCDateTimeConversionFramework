@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Validators>
-  <Validator Type="UiDateTimeTestModel">
-    <Property Name="DateTimeLocalValue" Required="0" Visible="1" ErrorMessage="Please enter a Date and Time." DateValidation="0" />
-    <Property Name="LocalDate" Required="1" Visible="1" ErrorMessage="Please enter a date formated: MM/DD/YYYY." DateValidation="1" />
-    <Property Name="LocalTime" Required="1" Visible="1" ErrorMessage="Please enter the time formated: HH:MM AM|PM." TimeValidation="1" />
-    <Property Name="TimeZoneName" Required="1" Visible="0" ErrorMessage="The TimeZone is a required field." />
-  </Validator>
-</Validators>

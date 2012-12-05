@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using CustomModelBindingWithDateTime.Enumerations;
 using CustomModelBindingWithDateTime.Models.ValidationAttributes;
 
 namespace CustomModelBindingWithDateTime.Models 
@@ -22,7 +23,7 @@ namespace CustomModelBindingWithDateTime.Models
         [Display(Name = "Email address")]
         public string Email { get; set; }
 
-        [UiDateTimeValidator(true, false, ErrorMessageResourceName = "DateFormatValid", ErrorMessageResourceType = typeof(UiDateTimeRangeModel))]
+        [UiDateTimeValidator(new[] { UiDateTimeValidationMode.DateNotInPast }, ErrorMessageResourceName = "DateFormatValid", ErrorMessageResourceType = typeof(UiDateTimeRangeModel))]
         public UiDateTimeModel UiDateTime { get; set; }
     }
 }

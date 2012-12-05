@@ -1,71 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
+using CustomModelBindingWithDateTime.Enumerations;
 
-namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
-{
-    public class UiDateTimeValidator : ValidationAttribute, IClientValidatable
-    {
-        private readonly bool _dateNotInFuture;
-        private readonly bool _dateNotInPast;
+namespace CustomModelBindingWithDateTime.Models.ValidationAttributes {
+    public class UiDateTimeValidator : ValidationAttribute {
+        private readonly List<UiDateTimeValidationMode> _valadators = new List<UiDateTimeValidationMode>();
         private const string DefaultErrorMessage = "'{0}' does not exist or is improperly formated: MM/DD/YYYY.";
 
-        public UiDateTimeValidator(bool dateNotInFuture, bool dateNotInPast)
-            : base(DefaultErrorMessage)
-        {
-            _dateNotInFuture = dateNotInFuture;
-            _dateNotInPast = dateNotInPast;
+        public UiDateTimeValidator(UiDateTimeValidationMode[] valadators = null)
+            : base(DefaultErrorMessage) {
+            if (valadators != null) _valadators.AddRange(valadators);
         }
-   
+
         //Override IsValid  
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)  
-        {  
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
             // Validate object value is UiDateTimeModel
-            UiDateTimeModel valueDateTimeRange;
-            if (value is UiDateTimeModel)
-            {
-                valueDateTimeRange = value as UiDateTimeModel;
-            }
-            else 
-            {
+            UiDateTimeModel valueDateTime;
+            if (value is UiDateTimeModel) {
+                valueDateTime = value as UiDateTimeModel;
+            } else {
                 return new ValidationResult("Invalid UiDateTimeModel object");
             }
 
-            if (_dateNotInFuture) 
-            {
-                if (valueDateTimeRange.DateTimeUtcValue > DateTime.UtcNow) 
-                {
-                    return new ValidationResult("Start Date cannot be in the future");
-                }
-            }
 
-            if (_dateNotInPast) 
-            {
-                if (valueDateTimeRange.DateTimeUtcValue < DateTime.UtcNow) 
-                {
-                    return new ValidationResult("Start Date cannot be in the past");
+            if (_valadators.Count > 0) {
+                foreach (UiDateTimeValidationMode valadator in _valadators) {
+                    switch (valadator) {
+                        case UiDateTimeValidationMode.DateNotInFuture:
+                            if (valueDateTime.DateTimeUtcValue > DateTime.UtcNow)
+                                return new ValidationResult("Start Date cannot be in the future");
+                            break;
+
+                        case UiDateTimeValidationMode.DateNotInPast:
+                            if (valueDateTime.DateTimeUtcValue < DateTime.UtcNow)
+                                return new ValidationResult("Start Date cannot be in the past");
+                            break;
+                        default:
+                            throw new Exception("Invalid UiDateTimeValidationMode");
+                    }
                 }
+
             }
 
             return ValidationResult.Success;
         }
 
         //Override default FormatErrorMessage Method  
-        public override string FormatErrorMessage(string name) 
-        {
+        public override string FormatErrorMessage(string name) {
             return string.Format(ErrorMessageString, name);
-        }  
-
-        public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
-        {
-            var rule = new ModelClientValidationRule();
-            rule.ErrorMessage = FormatErrorMessage(metadata.GetDisplayName());
-
-            //This string identifies which Javascript function to be executed to validate this   
-            rule.ValidationType = "date";
-            yield return rule;
-        }  
+        }
 
     }
 }

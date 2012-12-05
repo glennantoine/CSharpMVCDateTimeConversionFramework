@@ -3,7 +3,6 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using CustomModelBindingWithDateTime.Models;
 using CustomModelBindingWithDateTime.Models.Binders;
-using CustomModelBindingWithDateTime.Models.Managers;
 
 namespace CustomModelBindingWithDateTime 
 {
@@ -28,8 +27,6 @@ namespace CustomModelBindingWithDateTime
                                                                                         };
             ModelBinders.Binders.Add(typeof(UiDateTimeRangeModel), new UiDateTimeRangeModelBinder());
 
-            // Add our custom model validator provider.
-            ModelValidatorProviders.Providers.Add(new UiDateTimeModelValidatorProvider());
         }
     }
 }

@@ -138,6 +138,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Enumerations\UiDateClientValidationModel.cs" />
+    <Compile Include="Helpers\UiTimeHelper.cs" />
     <Compile Include="Models\ValidationAttributes\EnforceTrueAttribute.cs" />
     <Compile Include="Models\ValidationAttributes\GreaterThanZeroAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -147,7 +148,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\UiDateTimeHelper.cs" />
+    <Compile Include="Helpers\UiDateHelper.cs" />
     <Compile Include="Models\Binders\UiDateTimeRangeModelBinder.cs" />
     <Compile Include="Models\Binders\UiDateTimeModelAttribute.cs" />
     <Compile Include="Models\Binders\UiDateTimeModelBinder.cs" />

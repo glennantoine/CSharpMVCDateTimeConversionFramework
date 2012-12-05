@@ -42,7 +42,7 @@ namespace CustomModelBindingWithDateTime.Models.Binders
             }
 
             DateTime? dateAttempt = null;
-            if (bindingContext.ModelMetadata.ContainerType.Name == "UiDateTimeRangeModel" &&
+            if (bindingContext.ModelMetadata != null && bindingContext.ModelMetadata.ContainerType.Name == "UiDateTimeRangeModel" &&
                 bindingContext.ModelMetadata.PropertyName == "EndDateTime" && 
                 !bindingContext.ValueProvider.ContainsPrefix(bindingContext.ModelName + "." + "LocalDate")) 
             {

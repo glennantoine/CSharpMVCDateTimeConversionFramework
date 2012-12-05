@@ -1,12 +1,14 @@
-﻿@model CustomModelBindingWithDateTime.Models.UiDateTimeModel
+﻿@using CustomModelBindingWithDateTime.Enumerations
+@using CustomModelBindingWithDateTime.Helpers
+@model CustomModelBindingWithDateTime.Models.UiDateTimeModel
 
 <li>
     <label>Date</label>
-    @Html.TextBoxFor(model => model.LocalDate, new { @class = "datepicker"})
+    @Html.UiDateBoxFor(m => m.LocalDate, new { @class = "datepicker" }, new[] { UiDateClientValidationModes.DateValidation, UiDateClientValidationModes.DateRequired})
 </li>
 <li>
     <label>Time</label>
-    @Html.TextBoxFor(model => model.LocalTime, new { @class = "timepicker" })
+    @Html.UiTimeBoxFor(m => m.LocalTime, new { @class = "timepicker" }, new[] { UiTimeClientValidationModes.TimeValidation, UiTimeClientValidationModes.TimeRequired })
 </li>
 @Html.HiddenFor(model => model.TimeZoneName)
 

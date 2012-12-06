@@ -150,4 +150,7 @@
   <data name="TimeRequired" xml:space="preserve">
     <value>Time is required</value>
   </data>
+  <data name="UiDateTimeModelTimeZoneRequired" xml:space="preserve">
+    <value>must be set to use the UiDateTimeModel</value>
+  </data>
 </root>

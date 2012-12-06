@@ -28,9 +28,9 @@ namespace CustomModelBindingWithDateTime.Models
         public UiDateTimeRangeModel UiDateTimeRange { get; set; }
 
         [UiDateTimeNotInPastValidation("StartDateTime.LocalDate", ErrorMessageResourceName = "DateNotInPast", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [UiDateTimeDisplayAttribute(DisplayName = "From-Dyanmic", PropertyPath = "StartDateTime.LocalDate")]
+        [UiDateTimeDisplayAttribute(DisplayName = "From", PropertyPath = "StartDateTime.LocalDate")]
         [UiDateTimeNotInPastValidation("EndDateTime.LocalDate", ErrorMessageResourceName = "DateNotInPast", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [UiDateTimeDisplayAttribute(DisplayName = "To-Dynamic", PropertyPath = "EndDateTime.LocalDate")]
+        [UiDateTimeDisplayAttribute(DisplayName = "To", PropertyPath = "EndDateTime.LocalDate")]
         public UiDateTimeRangeModel BasicDateRange { get; set; }
     }
 }

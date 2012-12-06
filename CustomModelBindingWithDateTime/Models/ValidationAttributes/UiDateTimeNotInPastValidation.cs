@@ -37,7 +37,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
 
                 //Actual comparision 
                 var dateObj = new DateTime();
-                if (propValue != null)
+                if (propValue != null && propValue.ToString().Length > 0)
                 {
                     dateObj = DateTime.Parse(propValue.ToString());
                 }

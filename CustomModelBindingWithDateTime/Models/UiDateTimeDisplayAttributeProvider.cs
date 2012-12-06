@@ -8,13 +8,15 @@ namespace CustomModelBindingWithDateTime.Models
 {
     public class UiDateTimeDisplayAttributeProvider : DataAnnotationsModelMetadataProvider
     {
+        public const string UiDateTimeDisplayAttributeKey = "UiDateTimeDisplayAttribute";
+        
         protected override ModelMetadata CreateMetadata(IEnumerable<Attribute> attributes, Type containerType, Func<object> modelAccessor, Type modelType, string propertyName)
         {
             var metadata = base.CreateMetadata(attributes, containerType, modelAccessor, modelType, propertyName);
             var additionalValues = attributes.OfType<UiDateTimeDisplayAttribute>().ToList();
             if(additionalValues.Any())
             {
-                metadata.AdditionalValues.Add("UiDateTimeDisplayAttribute", additionalValues);
+                metadata.AdditionalValues.Add(UiDateTimeDisplayAttributeKey, additionalValues);
             }
             return metadata;
         }

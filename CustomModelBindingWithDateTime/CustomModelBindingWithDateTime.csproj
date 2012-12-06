@@ -132,6 +132,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Enumerations\UiDateClientValidationModes.cs" />
+    <Compile Include="Helpers\LabelForHelper.cs" />
     <Compile Include="Helpers\UiTimeHelper.cs" />
     <Compile Include="Models\UiDateTimeDisplayAttributeProvider.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeNotInPastValidation.cs" />

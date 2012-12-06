@@ -31,9 +31,9 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
             var metadata = ModelMetadataProviders.Current.GetMetadataForProperty(null, validationContext.ObjectType, validationContext.DisplayName);
 
             //Attempt to query the UIDateTimeDisplayAttribute
-            if (metadata != null && metadata.AdditionalValues.Any(q => q.Key == "UiDateTimeDisplayAttribute" && ((IList<UiDateTimeDisplayAttribute>)q.Value).Any(s => s.PropertyPath == propertyPath)))
+            if (metadata != null && metadata.AdditionalValues.Any(q => q.Key == UiDateTimeDisplayAttributeProvider.UiDateTimeDisplayAttributeKey && ((IList<UiDateTimeDisplayAttribute>)q.Value).Any(s => s.PropertyPath == propertyPath)))
             {
-                var additionalValues = metadata.AdditionalValues.First(q => q.Key == "UiDateTimeDisplayAttribute");
+                var additionalValues = metadata.AdditionalValues.First(q => q.Key == UiDateTimeDisplayAttributeProvider.UiDateTimeDisplayAttributeKey);
                 var displayName = ((IList<UiDateTimeDisplayAttribute>) additionalValues.Value).First(q => q.PropertyPath == propertyPath).DisplayName;
                 return displayName;
             }

@@ -4,9 +4,10 @@ namespace CustomModelBindingWithDateTime.Controllers
 {
     public class HomeController : Controller 
     {
-        public ActionResult Index() 
+        public ActionResult Index()
         {
-            ViewBag.Message = "Custom Model Binder MVC application.";
+            ViewBag.PageTitle = "Custom Model Binder w/ Date Time Conversion";
+            ViewBag.Message = "Custom Model Binder for Date Time Conversion Test MVC Application.";
             return View();
         }
 

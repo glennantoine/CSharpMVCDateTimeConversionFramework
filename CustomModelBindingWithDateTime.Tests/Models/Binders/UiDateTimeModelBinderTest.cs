@@ -8,9 +8,8 @@ using CustomModelBindingWithDateTime.Utilities;
 namespace CustomModelBindingWithDateTime.Tests.Models.Binders 
 {
     [TestClass]
-    public class UiDateTimeModelBinderTest 
+    public class UiDateTimeModelBinderTest
     {
-
         [TestMethod]
         public void DateTimeUtcValueIsSetCorrectlyFromDateTimeLocalValue()
         {

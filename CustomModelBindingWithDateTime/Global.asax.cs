@@ -28,6 +28,8 @@ namespace CustomModelBindingWithDateTime
                                                                                         };
             ModelBinders.Binders.Add(typeof(UiDateTimeRangeModel), new UiDateTimeRangeModelBinder());
 
+            ModelMetadataProviders.Current = new UiDateTimeDisplayAttributeProvider();
+
         }
     }
 }

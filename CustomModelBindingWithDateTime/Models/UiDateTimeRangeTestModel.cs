@@ -26,5 +26,11 @@ namespace CustomModelBindingWithDateTime.Models
         [TimeValidation(ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [UiDateTimeRangeValidator(new[] { UiDateTimeRangeValidationMode.StartDateNotInFuture }, ErrorMessageResourceName = "DateFormatValid", ErrorMessageResourceType = typeof(UiDateTimeRangeModel))]
         public UiDateTimeRangeModel UiDateTimeRange { get; set; }
+
+        [UiDateTimeNotInPastValidation("StartDateTime.LocalDate", ErrorMessageResourceName = "DateNotInPast", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [UiDateTimeDisplayAttribute(DisplayName = "From-Dyanmic", PropertyPath = "StartDateTime.LocalDate")]
+        [UiDateTimeNotInPastValidation("EndDateTime.LocalDate", ErrorMessageResourceName = "DateNotInPast", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [UiDateTimeDisplayAttribute(DisplayName = "To-Dynamic", PropertyPath = "EndDateTime.LocalDate")]
+        public UiDateTimeRangeModel BasicDateRange { get; set; }
     }
 }

@@ -97,11 +97,20 @@ namespace CustomModelBindingWithDateTime.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date cannot be in the past.
+        ///   Looks up a localized string similar to Date cannot be in the past {0}.
         /// </summary>
         internal static string DateNotInPast {
             get {
                 return ResourceManager.GetString("DateNotInPast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DateNotInPastValid.
+        /// </summary>
+        internal static string DateNotInPastValid {
+            get {
+                return ResourceManager.GetString("DateNotInPastValid", resourceCulture);
             }
         }
         

@@ -1,0 +1,26 @@
+﻿@using CustomModelBindingWithDateTime.Enumerations
+@using CustomModelBindingWithDateTime.Helpers
+@model CustomModelBindingWithDateTime.Models.UiDateTimeRangeModel
+
+@{
+    var fromLabel = "From";
+    if(!String.IsNullOrEmpty(ViewBag.fromLabel))
+    {
+        fromLabel = ViewBag.fromLabel;
+    }
+    var toLabel = "To";
+    if (!String.IsNullOrEmpty(ViewBag.toLabel))
+    {
+        toLabel = ViewBag.toLabel;
+    }
+}
+
+<div class="formitem">
+    @Html.HiddenFor(m => m.TimeZoneName)
+    <label class="top">@fromLabel</label>
+    @Html.UiDateBoxFor(m => m.StartDateTime.LocalDate, new { @class = "small datepicker" }, new[] { UiDateClientValidationModes.DateValidation, UiDateClientValidationModes.DateRequired })
+</div>
+<div class="formitem">
+    <label class="top">@toLabel</label>
+    @Html.UiDateBoxFor(m => m.EndDateTime.LocalDate, new { @class = "small datepicker" }, new[] { UiDateClientValidationModes.DateValidation, UiDateClientValidationModes.DateRequired })
+</div>

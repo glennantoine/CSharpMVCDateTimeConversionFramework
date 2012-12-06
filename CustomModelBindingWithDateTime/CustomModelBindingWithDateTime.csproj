@@ -43,12 +43,6 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EventStore">
-      <HintPath>..\packages\EventStore.3.0.11326.44\lib\net40\EventStore.dll</HintPath>
-    </Reference>
-    <Reference Include="EventStore.Serialization.Json">
-      <HintPath>..\packages\EventStore.Serialization.Json.3.0.11326.44\lib\net40\EventStore.Serialization.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Optimization">
       <HintPath>..\packages\Microsoft.Web.Optimization.0.1\lib\net40\Microsoft.Web.Optimization.dll</HintPath>
@@ -139,6 +133,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Enumerations\UiDateClientValidationModes.cs" />
     <Compile Include="Helpers\UiTimeHelper.cs" />
+    <Compile Include="Models\UiDateTimeDisplayAttributeProvider.cs" />
+    <Compile Include="Models\ValidationAttributes\UiDateTimeNotInPastValidation.cs" />
+    <Compile Include="Models\ValidationAttributes\UiDateTimeValidation.cs" />
     <Compile Include="Models\ValidationAttributes\EnforceTrueAttribute.cs" />
     <Compile Include="Models\ValidationAttributes\GreaterThanZeroAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -320,6 +317,7 @@
   <ItemGroup>
     <None Include="App_Readme\EventStore - Architectural Overview.docx" />
     <None Include="App_Readme\EventStore - Transactional Integrity.docx" />
+    <Content Include="Views\Shared\EditorTemplates\DateRange.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\UiDateTimeResouce.resx">
@@ -345,17 +343,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49397</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

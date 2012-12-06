@@ -130,7 +130,10 @@
     <value>Date connot be in the future</value>
   </data>
   <data name="DateNotInPast" xml:space="preserve">
-    <value>Date cannot be in the past</value>
+    <value>Date cannot be in the past {0}</value>
+  </data>
+  <data name="DateNotInPastValid" xml:space="preserve">
+    <value>DateNotInPastValid</value>
   </data>
   <data name="DateRangeSummary" xml:space="preserve">
     <value>One or more errors occured with the date range. Please see summary of errors at top of page for details.</value>

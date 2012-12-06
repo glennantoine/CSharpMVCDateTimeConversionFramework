@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
 using CustomModelBindingWithDateTime.Enumerations;
+using CustomModelBindingWithDateTime.Resources;
 
 namespace CustomModelBindingWithDateTime.Helpers 
 {
@@ -75,35 +76,35 @@ namespace CustomModelBindingWithDateTime.Helpers
         {
 
             _uiTimeValidationModes.Add(UiTimeClientValidationModes.TimeRequired, new Dictionary<string, string>{
-                                                                                                                {"data-val-required", "Time is required"},
+                                                                                                                {"data-val-required", ValidationResource.TimeRequired},
                                                                                                             });
             _uiTimeValidationModes.Add(UiTimeClientValidationModes.TimeValidation, new Dictionary<string, string>{
-                                                                                                                {"data-val-time", "Date is improperly formated: MM/DD/YYYY."},
+                                                                                                                {"data-val-time", ValidationResource.DateFormat},
                                                                                                             });
             _uiTimeValidationModes.Add(UiTimeClientValidationModes.TimeGreaterThanAttributeValidation, new Dictionary<string, string>{
-                                                                                                                {"data-val-timenotinpast", "Time cannot be in the future"},
+                                                                                                                {"data-val-timenotinpast", ValidationResource.TimeNotFuture},
                                                                                                             });
             _uiTimeValidationModes.Add(UiTimeClientValidationModes.TimeGreaterThanEqualAttributeValidation, new Dictionary<string, string>{
-                                                                                                                {"data-val-timenotinfuture", "Time must be greater than or equal to:"},
+                                                                                                                {"data-val-timenotinfuture", ValidationResource.TimeMustBeGreaterThanEqualTo},
                                                                                                             });
         }
 
         public static void UiDateValidationModes() 
         {
             _uiDateValidationModes.Add(UiDateClientValidationModes.DateRequired, new Dictionary<string, string>{
-                                                                                                                {"data-val-required", "Date is required"},
+                                                                                                                {"data-val-required", ValidationResource.DateRequired},
                                                                                                             });
             _uiDateValidationModes.Add(UiDateClientValidationModes.DateValidation, new Dictionary<string, string>{
-                                                                                                                {"data-val-date", "Date is improperly formated: MM/DD/YYYY."},
+                                                                                                                {"data-val-date", ValidationResource.DateFormat},
                                                                                                             });
             _uiDateValidationModes.Add(UiDateClientValidationModes.DateNotInPastValidation, new Dictionary<string, string>{
-                                                                                                                {"data-val-datenotinpast", "Date is required"},
+                                                                                                                {"data-val-datenotinpast", ValidationResource.DateNotInPast},
                                                                                                             });
             _uiDateValidationModes.Add(UiDateClientValidationModes.DateNotInFutureValidation, new Dictionary<string, string>{
-                                                                                                                {"data-val-datenotinfuture", "Date is required"},
+                                                                                                                {"data-val-datenotinfuture", ValidationResource.DateNotInFuture},
                                                                                                             });
             _uiDateValidationModes.Add(UiDateClientValidationModes.DateGreaterThanAttributeValidation, new Dictionary<string, string>{
-                                                                                                                {"data-val-notgreaterthan", "Date Must be Greater Than"},
+                                                                                                                {"data-val-notgreaterthan", ValidationResource.DateMustBeGreaterThanEqualTo},
                                                                                                             });
         }
 

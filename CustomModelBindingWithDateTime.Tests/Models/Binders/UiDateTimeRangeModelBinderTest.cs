@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CustomModelBindingWithDateTime.Models;
 using CustomModelBindingWithDateTime.Models.Binders;
-using CustomModelBindingWithDateTime.Utils;
+using CustomModelBindingWithDateTime.Utilities;
 
 namespace CustomModelBindingWithDateTime.Tests.Models.Binders 
 {
@@ -15,7 +15,7 @@ namespace CustomModelBindingWithDateTime.Tests.Models.Binders
         [Ignore]
         public void DateTimeUtcValueIsSetCorrectlyFromDateTimeLocalValue()
         {
-            const string timeZoneId = "Eastern Standard Time";
+            var timeZoneId = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName;
             var form = new FormCollection
                                         {
                                             { "StartDateTime.LocalDate","01/16/2012"},
@@ -26,10 +26,10 @@ namespace CustomModelBindingWithDateTime.Tests.Models.Binders
             var bindingContext = new ModelBindingContext() { ModelName = "test", ValueProvider = form.ToValueProvider() };
 
             var b = new UiDateTimeRangeModelBinder() {
-                                                        StartLocalDate = "StartDateTime.LocalDate",
-                                                        StartLocalTime = "StartDateTime.LocalTime",
-                                                        EndLocalTime = "EndDateTime.LocalTime",
-                                                        TimeZoneName = "TimeZoneName"
+                                                        StartLocalDate = StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.StartDateTime.LocalDate),
+                                                        StartLocalTime = StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.StartDateTime.LocalTime),
+                                                        EndLocalTime = StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.EndDateTime.LocalTime),
+                                                        TimeZoneName = StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.TimeZoneName)
                                                     };
 
             var result = (UiDateTimeRangeModel)b.BindModel(null, bindingContext);

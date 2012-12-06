@@ -3,6 +3,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using CustomModelBindingWithDateTime.Models;
 using CustomModelBindingWithDateTime.Models.Binders;
+using CustomModelBindingWithDateTime.Utilities;
 
 namespace CustomModelBindingWithDateTime 
 {
@@ -21,9 +22,9 @@ namespace CustomModelBindingWithDateTime
 
             //Setup Default Model Binder for UiDateTimeModel 
             ModelBinders.Binders[typeof(UiDateTimeModel)] = new UiDateTimeModelBinder() {
-                                                                                            DateFieldName = "LocalDate",
-                                                                                            TimeFieldName = "LocalTime",
-                                                                                            TimeZoneFieldName = "TimeZoneName"
+                                                                                            DateFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.LocalDate),
+                                                                                            TimeFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.LocalTime),
+                                                                                            TimeZoneFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.TimeZoneName)
                                                                                         };
             ModelBinders.Binders.Add(typeof(UiDateTimeRangeModel), new UiDateTimeRangeModelBinder());
 

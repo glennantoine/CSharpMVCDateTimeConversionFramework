@@ -137,7 +137,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Enumerations\UiDateClientValidationModel.cs" />
+    <Compile Include="Enumerations\UiDateClientValidationModes.cs" />
     <Compile Include="Helpers\UiTimeHelper.cs" />
     <Compile Include="Models\ValidationAttributes\EnforceTrueAttribute.cs" />
     <Compile Include="Models\ValidationAttributes\GreaterThanZeroAttribute.cs" />
@@ -167,12 +167,18 @@
     <Compile Include="Models\ValidationAttributes\UiDateTimeRangeValidator.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Validation.Designer.cs">
+    <Compile Include="Resources\UiDateTimeResouce.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Validation.resx</DependentUpon>
+      <DependentUpon>UiDateTimeResouce.resx</DependentUpon>
     </Compile>
-    <Compile Include="Utils\DateTime.cs" />
+    <Compile Include="Resources\ValidationResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\DateTime.cs" />
+    <Compile Include="Utilities\StaticReflection.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\EventStore.license.txt" />
@@ -316,9 +322,13 @@
     <None Include="App_Readme\EventStore - Transactional Integrity.docx" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Validation.resx">
+    <EmbeddedResource Include="Resources\UiDateTimeResouce.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Validation.Designer.cs</LastGenOutput>
+      <LastGenOutput>UiDateTimeResouce.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ValidationResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValidationResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

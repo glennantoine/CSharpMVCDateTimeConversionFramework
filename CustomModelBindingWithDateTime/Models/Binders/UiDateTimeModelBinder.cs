@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
+using CustomModelBindingWithDateTime.Utilities;
+using CustomModelBindingWithDateTime.Resources;
 
 namespace CustomModelBindingWithDateTime.Models.Binders 
 {
@@ -11,11 +13,11 @@ namespace CustomModelBindingWithDateTime.Models.Binders
         {
             if (bindingContext == null) 
             {
-                throw new ArgumentNullException("bindingContext");
+                throw new ArgumentNullException(ValidationResource.BindingContext);
             }
 
             //Maybe we're lucky and they just want a DateTime the regular way.
-            DateTime? dateTimeAttempt = GetA<DateTime>(bindingContext, "DateTime");
+            DateTime? dateTimeAttempt = GetA<DateTime>(bindingContext, StaticReflection.GetMemberName<UiDateTimeModel>(x => x.DateTimeLocalValue));
             
             if (dateTimeAttempt != null) 
             {
@@ -27,24 +29,24 @@ namespace CustomModelBindingWithDateTime.Models.Binders
             //If they haven't set Month,Day,Year OR Date, set "date" and get ready for an attempt
             if (!this.MonthDayYearFieldNameSet && !this.DateFieldNameSet) 
             {
-                this.DateFieldName = "LocalDate";
+                this.DateFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.LocalDate);
             }
 
             //If they haven't set Hour, Minute, Second OR Time, set "time" and get ready for an attempt
             if (!this.HourMinuteSecondFieldNameSet && !this.TimeFieldNameSet) 
             {
-                this.TimeFieldName = "LocalTime";
+                this.TimeFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.LocalTime);
             }
 
             if (!this.TimeZoneFieldNameSet)
             {
-                this.TimeZoneFieldName = "TimeZoneName";
+                this.TimeZoneFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.TimeZoneName);
             }
 
             DateTime? dateAttempt = null;
-            if (bindingContext.ModelMetadata != null && bindingContext.ModelMetadata.ContainerType.Name == "UiDateTimeRangeModel" &&
-                bindingContext.ModelMetadata.PropertyName == "EndDateTime" && 
-                !bindingContext.ValueProvider.ContainsPrefix(bindingContext.ModelName + "." + "LocalDate")) 
+            if (bindingContext.ModelMetadata != null && bindingContext.ModelMetadata.ContainerType.Name == typeof(UiDateTimeRangeModel).Name &&
+                bindingContext.ModelMetadata.PropertyName == StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.EndDateTime) &&
+                !bindingContext.ValueProvider.ContainsPrefix(bindingContext.ModelName + "." + StaticReflection.GetMemberName<UiDateTimeModel>(x => x.LocalDate))) 
             {
                 var valueResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
                 dateAttempt = DateTime.Now;
@@ -63,7 +65,7 @@ namespace CustomModelBindingWithDateTime.Models.Binders
             var tzAttempt = bindingContext.ValueProvider.GetValue(bindingContext.ModelName + "." + this.TimeZoneFieldName);
             if (tzAttempt == null)
             {
-                throw new ApplicationException(this.TimeZoneFieldName + " must be set to use UiDateTimeModel.");
+                throw new ApplicationException(this.TimeZoneFieldName + ValidationResource.UiDateTimeModelTimeZoneRequired);
             }
             timeZoneAttempt = (string)tzAttempt.ConvertTo(typeof(string));
 

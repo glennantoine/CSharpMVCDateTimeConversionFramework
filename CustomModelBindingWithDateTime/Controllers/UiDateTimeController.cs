@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
@@ -19,7 +20,7 @@ namespace CustomModelBindingWithDateTime.Controllers
         {
             UiDateTimeTestModel model = null;
             model = new UiDateTimeTestModel {
-                                                UiDateTime = new UiDateTimeModel("Eastern Standard Time") { }
+                                                UiDateTime = new UiDateTimeModel(TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName) { }
                                             };
             return View(model);
         }
@@ -47,7 +48,7 @@ namespace CustomModelBindingWithDateTime.Controllers
             UiDateTimeRangeTestModel model = null;
             model = new UiDateTimeRangeTestModel 
                                                 {
-                                                    UiDateTimeRange = new UiDateTimeRangeModel("Eastern Standard Time") { }
+                                                    UiDateTimeRange = new UiDateTimeRangeModel(TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName) { }
                                                 };
             return View(model);
         }

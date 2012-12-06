@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using CustomModelBindingWithDateTime.Utilities;
 
 namespace CustomModelBindingWithDateTime.Models.Binders 
 {
@@ -9,13 +10,13 @@ namespace CustomModelBindingWithDateTime.Models.Binders
         public UiDateTimeRangeModelBinder(){}
 
         //public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext) 
-        public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext) 
+        public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            this.TimeZoneName = getValues(bindingContext, "TimeZoneName");
+            this.TimeZoneName = getValues(bindingContext, StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.TimeZoneName));
 
-            this.StartLocalDate = getValues(bindingContext, "StartDateTime.LocalDate");
-            this.StartLocalTime = getValues(bindingContext, "StartDateTime.LocalTime");
-            this.StartLocalDateTime = getValues(bindingContext, "StartDateTime.DateTimeLocalValue");
+            this.StartLocalDate = getValues(bindingContext, StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.StartDateTime.LocalDate));
+            this.StartLocalTime = getValues(bindingContext, StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.StartDateTime.LocalTime));
+            this.StartLocalDateTime = getValues(bindingContext, StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.StartDateTime.DateTimeLocalValue));
 
             if (String.IsNullOrEmpty(this.StartLocalDateTime)) 
             {
@@ -25,9 +26,9 @@ namespace CustomModelBindingWithDateTime.Models.Binders
                 this.StartDateTime = new UiDateTimeModel(this.TimeZoneName) { DateTimeLocalValue = DateTime.Parse(this.StartLocalDateTime) };
             }
 
-            this.EndLocalDate = getValues(bindingContext, "EndDateTime.LocalDate");
-            this.EndLocalTime = getValues(bindingContext, "EndDateTime.LocalTime");
-            this.EndLocalDateTime = getValues(bindingContext, "EndDateTime.DateTimeLocalValue");
+            this.EndLocalDate = getValues(bindingContext, StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.EndDateTime.LocalDate));
+            this.EndLocalTime = getValues(bindingContext, StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.EndDateTime.LocalTime));
+            this.EndLocalDateTime = getValues(bindingContext, StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.EndDateTime.DateTimeLocalValue));
 
             if (String.IsNullOrEmpty(this.EndLocalDate) && String.IsNullOrEmpty(this.EndLocalDateTime)) 
             {

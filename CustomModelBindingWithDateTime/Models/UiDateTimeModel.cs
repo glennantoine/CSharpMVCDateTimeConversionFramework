@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using CustomModelBindingWithDateTime.Utils;
-using CustomModelBindingWithDateTime.Models.ValidationAttributes;
+using CustomModelBindingWithDateTime.Utilities;
 
 namespace CustomModelBindingWithDateTime.Models 
 {

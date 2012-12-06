@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CustomModelBindingWithDateTime.Models;
 using CustomModelBindingWithDateTime.Models.Binders;
-using CustomModelBindingWithDateTime.Utils;
+using CustomModelBindingWithDateTime.Utilities;
 
 namespace CustomModelBindingWithDateTime.Tests.Models.Binders 
 {
@@ -14,7 +14,7 @@ namespace CustomModelBindingWithDateTime.Tests.Models.Binders
         [TestMethod]
         public void DateTimeUtcValueIsSetCorrectlyFromDateTimeLocalValue()
         {
-            const string timeZoneId = "Eastern Standard Time";
+            var timeZoneId = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName;
             var form = new FormCollection
                                         {
                                             { "test.LocalDate","01/16/2012"},
@@ -24,9 +24,9 @@ namespace CustomModelBindingWithDateTime.Tests.Models.Binders
             var bindingContext = new ModelBindingContext() { ModelName = "test", ValueProvider = form.ToValueProvider() };
 
             var b = new UiDateTimeModelBinder() {
-                                                    DateFieldName = "LocalDate",
-                                                    TimeFieldName = "LocalTime",
-                                                    TimeZoneFieldName = "TimeZoneName"
+                                                    DateFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.LocalDate),
+                                                    TimeFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.LocalTime),
+                                                    TimeZoneFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.TimeZoneName)
                                                 };
 
             var result = (UiDateTimeModel)b.BindModel(null, bindingContext);
@@ -36,7 +36,7 @@ namespace CustomModelBindingWithDateTime.Tests.Models.Binders
         [TestMethod]
         public void DateTimeUtcValueAndDateTimeLocalValueSetCorrectlyFromLocalDate() 
         {
-            const string timeZoneId = "Eastern Standard Time";
+            var timeZoneId = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName;
             var form = new FormCollection
                                         {
                                             { "test.LocalDate","01/16/2012"},
@@ -45,9 +45,9 @@ namespace CustomModelBindingWithDateTime.Tests.Models.Binders
             var bindingContext = new ModelBindingContext() { ModelName = "test", ValueProvider = form.ToValueProvider() };
 
             var b = new UiDateTimeModelBinder() {
-                                                    DateFieldName = "LocalDate",
-                                                    TimeFieldName = "LocalTime",
-                                                    TimeZoneFieldName = "TimeZoneName"
+                                                    DateFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.LocalDate),
+                                                    TimeFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.LocalTime),
+                                                    TimeZoneFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.TimeZoneName)
                                                 };
 
             var result = (UiDateTimeModel)b.BindModel(null, bindingContext);
@@ -58,7 +58,7 @@ namespace CustomModelBindingWithDateTime.Tests.Models.Binders
         [TestMethod]
         public void DateTimeUtcValueAndDateTimeLocalValueSetCorrectlyFromLocalTime() 
         {
-            const string timeZoneId = "Eastern Standard Time";
+            var timeZoneId = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName;
             var form = new FormCollection
                                         {
                                             { "test.LocalTime", "1:00"},
@@ -67,9 +67,9 @@ namespace CustomModelBindingWithDateTime.Tests.Models.Binders
             var bindingContext = new ModelBindingContext() { ModelName = "test", ValueProvider = form.ToValueProvider() };
 
             var b = new UiDateTimeModelBinder() {
-                                                    DateFieldName = "LocalDate",
-                                                    TimeFieldName = "LocalTime",
-                                                    TimeZoneFieldName = "TimeZoneName"
+                                                    DateFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.LocalDate),
+                                                    TimeFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.LocalTime),
+                                                    TimeZoneFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.TimeZoneName)
                                                 };
 
             var result = (UiDateTimeModel)b.BindModel(null, bindingContext);
@@ -86,7 +86,7 @@ namespace CustomModelBindingWithDateTime.Tests.Models.Binders
         [Ignore]
         public void DateCanBePulledViaProvidedMonthDayYear() 
         {
-            const string timeZoneId = "Eastern Standard Time";
+            var timeZoneId = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName;
             var form = new FormCollection
                                         {
                                             { "test.month","2"},

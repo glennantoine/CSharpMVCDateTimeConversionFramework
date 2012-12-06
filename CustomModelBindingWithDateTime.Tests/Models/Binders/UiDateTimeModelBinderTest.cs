@@ -10,8 +10,31 @@ namespace CustomModelBindingWithDateTime.Tests.Models.Binders
     [TestClass]
     public class UiDateTimeModelBinderTest
     {
+
         [TestMethod]
-        public void DateTimeUtcValueIsSetCorrectlyFromDateTimeLocalValue()
+        public void DateTimeUtcValueIsSetCorrectlyFromDateTimeLocalValue() 
+        {
+            var timeZoneId = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName;
+            var form = new FormCollection
+                                        {
+                                            { "test.DateTimeLocalValue","01/16/2012 1:00 PM"},
+                                            { "test.TimeZoneName", "Eastern Standard Time"}
+                                        };
+            var bindingContext = new ModelBindingContext() { ModelName = "test", ValueProvider = form.ToValueProvider() };
+
+            var b = new UiDateTimeModelBinder() {
+                                                    DateFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.LocalDate),
+                                                    TimeFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.LocalTime),
+                                                    TimeZoneFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.TimeZoneName)
+                                                };
+
+            var result = (UiDateTimeModel)b.BindModel(null, bindingContext);
+            Assert.AreEqual(DateTime.Parse("01/16/2012 01:00 PM").ToUniversalTime(timeZoneId), result.DateTimeUtcValue);
+        }
+
+
+        [TestMethod]
+        public void DateTimeUtcValueIsSetCorrectlyFromLocalDateAndLocalTime()
         {
             var timeZoneId = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName;
             var form = new FormCollection

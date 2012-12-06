@@ -19,12 +19,19 @@ namespace CustomModelBindingWithDateTime.Models.Binders
             //Maybe we're lucky and they just want a DateTime the regular way.
             DateTime? dateTimeAttempt = GetA<DateTime>(bindingContext, StaticReflection.GetMemberName<UiDateTimeModel>(x => x.DateTimeLocalValue));
             
-            if (dateTimeAttempt != null) 
-            {
-                return dateTimeAttempt.Value;
+            string timeZoneAttempt = string.Empty;
+            var tzAttempt = bindingContext.ValueProvider.GetValue(bindingContext.ModelName + "." + this.TimeZoneFieldName);
+            if (tzAttempt == null) {
+                throw new ApplicationException(this.TimeZoneFieldName + ValidationResource.UiDateTimeModelTimeZoneRequired);
+            }
+            timeZoneAttempt = (string)tzAttempt.ConvertTo(typeof(string));
+
+            if (dateTimeAttempt != null) {
+                         return new UiDateTimeModel(timeZoneAttempt) {
+                                                                        DateTimeLocalValue = DateTime.Parse(dateTimeAttempt.Value.ToString())
+                                                                    };
             }
 
-            string timeZoneAttempt = string.Empty;
 
             //If they haven't set Month,Day,Year OR Date, set "date" and get ready for an attempt
             if (!this.MonthDayYearFieldNameSet && !this.DateFieldNameSet) 
@@ -61,13 +68,6 @@ namespace CustomModelBindingWithDateTime.Models.Binders
 
             dateAttempt = dateAttempt ?? DateTime.MinValue;
             timeAttempt = timeAttempt ?? DateTime.MinValue;
-
-            var tzAttempt = bindingContext.ValueProvider.GetValue(bindingContext.ModelName + "." + this.TimeZoneFieldName);
-            if (tzAttempt == null)
-            {
-                throw new ApplicationException(this.TimeZoneFieldName + ValidationResource.UiDateTimeModelTimeZoneRequired);
-            }
-            timeZoneAttempt = (string)tzAttempt.ConvertTo(typeof(string));
 
             //Time in parts
             if (this.HourMinuteSecondFieldNameSet && !this.MonthDayYearFieldNameSet) 

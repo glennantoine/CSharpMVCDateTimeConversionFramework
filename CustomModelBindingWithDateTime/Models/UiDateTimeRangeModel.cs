@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace CustomModelBindingWithDateTime.Models 
 {
     public class UiDateTimeRangeModel

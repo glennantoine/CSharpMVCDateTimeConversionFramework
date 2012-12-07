@@ -99,6 +99,7 @@
     <Compile Include="Models\Binders\UiDateTimeRangeModelBinderTest.cs" />
     <Compile Include="Models\Binders\UiDateTimeModelBinderTest.cs" />
     <Compile Include="Models\UiDateTimeModelTest.cs" />
+    <Compile Include="Models\UiDateTimeRangeModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>

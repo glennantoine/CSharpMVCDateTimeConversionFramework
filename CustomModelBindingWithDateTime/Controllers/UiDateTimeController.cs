@@ -96,6 +96,42 @@ namespace CustomModelBindingWithDateTime.Controllers
             return View("UiDateTimeRangeTestResults", model);
         }
 
+
+        [HttpGet]
+        public ActionResult UiDateTimeEditorTemplatesTest()
+        {
+            UiDateTimeEditorTemplatesTestModel model = null;
+            try
+            {
+                var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName;
+                model = new UiDateTimeEditorTemplatesTestModel
+                {
+                    RangeDateToDate = new UiDateTimeRangeModel(timeZone) { },
+                    RangeTimeToTime = new UiDateTimeRangeModel(timeZone) { },
+                    RangeDateTimeToTime = new UiDateTimeRangeModel(timeZone) { },
+                    RangeDateTimeToDateTime = new UiDateTimeRangeModel(timeZone) { }
+                };
+            }
+            catch (Exception e)
+            {
+                throw new Exception("UiDateTimeRangeModel Error: " + e.Message);
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult UiDateTimeEditorTemplatesTest(UiDateTimeEditorTemplatesTestModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            return View(model);
+        }
+
+
         private IEnumerable<string> GetErrorsFromModelState() 
         {
             return ModelState.SelectMany(x => x.Value.Errors.Select(error => error.ErrorMessage));

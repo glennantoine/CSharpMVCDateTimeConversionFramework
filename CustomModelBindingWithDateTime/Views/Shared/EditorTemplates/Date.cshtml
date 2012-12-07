@@ -1,0 +1,6 @@
+﻿@model CustomModelBindingWithDateTime.Models.UiDateTimeModel
+<div class="formitem">
+    @Html.HiddenFor(m => m.TimeZoneName)
+    @Html.MyLabelFor(m => m.LocalDate, new { @class = "top" })
+    @Html.UiDateBoxFor(m => m.LocalDate, new { @class = "small datepicker" })
+</div>

@@ -133,6 +133,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Helpers\LabelForHelper.cs" />
     <Compile Include="Helpers\UiTimeHelper.cs" />
+    <Compile Include="Models\UiDateTimeEditorTemplatesTestModel.cs" />
     <Compile Include="Models\UiDateTimeDisplayAttributeProvider.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeFormatTimeValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeFormatDateValidation.cs" />
@@ -315,7 +316,15 @@
   <ItemGroup>
     <None Include="App_Readme\EventStore - Architectural Overview.docx" />
     <None Include="App_Readme\EventStore - Transactional Integrity.docx" />
-    <Content Include="Views\Shared\EditorTemplates\DateRange.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\RangeDateToDate.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\RangeDateTimeToDateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\RangeDateTimeToTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\RangeTimeToTime.cshtml" />
+    <Content Include="Views\UiDateTime\UiDateTimeEditorTemplatesTest.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTimeNoSetTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\UiDateTimeResouce.resx">

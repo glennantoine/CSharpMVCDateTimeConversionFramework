@@ -1,0 +1,46 @@
+﻿@model CustomModelBindingWithDateTime.Models.UiDateTimeEditorTemplatesTestModel
+
+<hgroup class="title">
+    <h1>Ui Date Time Range Test</h1><br />
+    <h2>Use this form to test the UiDateTime Editor Templates</h2>
+</hgroup>
+
+@using (Html.BeginForm((string)ViewBag.FormAction, "UiDateTime")) {
+    @Html.ValidationSummary()
+    <div>
+        <h3>RangeDateToDate</h3>
+        @Html.EditorFor(m => m.RangeDateToDate, "RangeDateToDate")
+    </div>
+    <div>
+        <h3>RangeTimeToTime</h3>
+        @Html.EditorFor(m => m.RangeTimeToTime, "RangeTimeToTime")
+    </div>
+    <div>
+        <h3>RangeDateTimeToTime</h3>
+         @Html.EditorFor(m => m.RangeDateTimeToTime, "RangeDateTimeToTime")
+    </div>
+    <div>
+        <h3>RangeDateTimeToDateTime</h3>
+        @Html.EditorFor(m => m.RangeDateTimeToDateTime, "RangeDateTimeToDateTime")
+    </div>
+    <div>
+        <h3>Date</h3>
+        @Html.EditorFor(m => m.Date, "Date")
+    </div>
+    <div>
+        <h3>Time</h3>
+        @Html.EditorFor(m => m.Time, "Time")
+    </div>
+    <div>
+        <h3>DateTime</h3>
+        @Html.EditorFor(m => m.DateTime, "DateTime")
+    </div>
+    <div>
+        <h3>DateTimeNoSetTime</h3>
+        @Html.EditorFor(m => m.DateTimeNoSetTime, "DateTimeNoSetTime")
+    </div>
+    <input type="submit" value="Submit" />
+}
+@section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }

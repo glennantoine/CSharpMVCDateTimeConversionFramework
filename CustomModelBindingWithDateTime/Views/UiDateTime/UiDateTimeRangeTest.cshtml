@@ -9,7 +9,7 @@
     @Html.ValidationSummary()
     <fieldset>
         <legend>Registration Form</legend>
-        <ul>
+@*        <ul>
             <li>
                 @Html.LabelFor(m => m.FirstName)
                 @Html.TextBoxFor(m => m.FirstName)
@@ -31,7 +31,7 @@
                 @Html.ValidationMessageFor(m => m.Email)
             </li>
             @Html.EditorFor(m => m.UiDateTimeRange)
-        </ul>
+        </ul>*@
         @Html.EditorFor(m => m.BasicDateRange, "DateRange")
         <input type="submit" value="Submit" />
     </fieldset>

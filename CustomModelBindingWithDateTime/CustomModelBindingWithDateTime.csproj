@@ -136,7 +136,7 @@
     <Compile Include="Helpers\UiTimeHelper.cs" />
     <Compile Include="Models\UiDateTimeDisplayAttributeProvider.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeNotInPastValidation.cs" />
-    <Compile Include="Models\ValidationAttributes\UiDateTimeValidation.cs" />
+    <Compile Include="Utilities\UiDateTimeUtilities.cs" />
     <Compile Include="Models\ValidationAttributes\EnforceTrueAttribute.cs" />
     <Compile Include="Models\ValidationAttributes\GreaterThanZeroAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -162,8 +162,6 @@
     <Compile Include="Models\ValidationAttributes\TimeGreaterThanAttributeValidation.cs" />
     <Compile Include="Models\ValidationAttributes\TimeGreaterThanEqualAttributeValidation.cs" />
     <Compile Include="Models\ValidationAttributes\TimeValidation.cs" />
-    <Compile Include="Models\ValidationAttributes\UiDateTimeRangeValidator.cs" />
-    <Compile Include="Models\ValidationAttributes\UiDateTimeValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\UiDateTimeResouce.Designer.cs">
       <AutoGen>True</AutoGen>

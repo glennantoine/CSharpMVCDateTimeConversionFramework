@@ -12,7 +12,6 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         private const string DefaultErrorMessage = "'{0}' must be in the future.'";
         private readonly object _typeId = new object();
         private readonly string _basePropertyPath;
-        private string _basePropertyDisplayName;
 
         public UiDateTimeNotInPastValidation(string basePropertyPath)
             : base(DefaultErrorMessage)
@@ -23,7 +22,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         //Override default FormatErrorMessage Method  
         public override string FormatErrorMessage(string name)
         {
-            return string.Format(ErrorMessageString, _basePropertyDisplayName);
+            return string.Format(ErrorMessageString, name);
         }
 
         //Override IsValid  
@@ -31,9 +30,9 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         {
             if (value != null)
             {
-                var propValue = UiDateTimeValidation.ChildObjectFromValidationContext(_basePropertyPath, validationContext);
+                var propValue = UiDateTimeUtilities.ChildObjectFromValidationContext(_basePropertyPath, validationContext);
 
-                _basePropertyDisplayName = UiDateTimeValidation.GetPropertyDisplayNameFromValidationContext(_basePropertyPath, validationContext);
+                var displayName = UiDateTimeUtilities.GetPropertyDisplayNameFromValidationContext(_basePropertyPath, validationContext);
 
                 //Actual comparision 
                 var dateObj = new DateTime();
@@ -45,7 +44,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
                 //Actual comparision  
                 if (DateTime.UtcNow.Date > dateObj.Date)
                 {
-                    var message = FormatErrorMessage(validationContext.DisplayName);
+                    var message = FormatErrorMessage(displayName);
                     return new ValidationResult(message);
                 }
             }
@@ -58,8 +57,8 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         {
             var rule = new ModelClientValidationRule
                            {
-                               ErrorMessage = FormatErrorMessage(metadata.GetDisplayName()),
-                               ValidationType = "datenotinpast"
+                               ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath, metadata)),
+                               ValidationType = "datenotinpast" + _basePropertyPath.ToLower().Replace(".","")
                            };
 
             //This string identifies which Javascript function to be executed to validate this   

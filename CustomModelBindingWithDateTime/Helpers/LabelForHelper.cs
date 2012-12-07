@@ -29,7 +29,7 @@ namespace CustomModelBindingWithDateTime.Helpers
             }
 
             //If the display value is specified in the additional values, use that instead
-            var propertyPath = PropertiesFromExpression(expression);
+            var propertyPath = ExpressionHelper.GetExpressionText(expression);
             var displayAttributes = html.ViewData.ModelMetadata.AdditionalValues.Where(q => q.Key == UiDateTimeDisplayAttributeProvider.UiDateTimeDisplayAttributeKey)
                 .SelectMany(q => (List<UiDateTimeDisplayAttribute>)q.Value, (source, value) => new { source, value })
                 .Select(q => q.value).ToList();
@@ -53,35 +53,6 @@ namespace CustomModelBindingWithDateTime.Helpers
             tag.SetInnerText(labelText);
 
             return MvcHtmlString.Create(tag.ToString(TagRenderMode.Normal));
-        }
-
-        private static string PropertiesFromExpression<T, P>(Expression<Func<T, P>> expr)
-        {
-            var properties = new List<string>();
-
-            MemberExpression me;
-            switch (expr.Body.NodeType)
-            {
-                case ExpressionType.Convert:
-                case ExpressionType.ConvertChecked:
-                    var ue = expr.Body as UnaryExpression;
-                    me = ((ue != null) ? ue.Operand : null) as MemberExpression;
-                    break;
-                default:
-                    me = expr.Body as MemberExpression;
-                    break;
-            }
-
-            while (me != null)
-            {
-                string propertyName = me.Member.Name;
-                Type propertyType = me.Type;
-
-                properties.Insert(0,propertyName);
-
-                me = me.Expression as MemberExpression;
-            }
-            return String.Join(".", properties);
         }
     }
 }

@@ -3,9 +3,9 @@
 <div class="formitem">
     @Html.HiddenFor(m => m.TimeZoneName)
     @Html.MyLabelFor(m => m.StartDateTime.LocalDate, new { @class = "top" })
-    @Html.UiDateBoxFor(m => m.StartDateTime.LocalDate, new { @class = "small datepicker" }, new[] { UiDateClientValidationModes.DateValidation, UiDateClientValidationModes.DateRequired })
+    @Html.UiDateBoxFor(m => m.StartDateTime.LocalDate, new { @class = "small datepicker" })
 </div>
 <div class="formitem">
     @Html.MyLabelFor(m => m.EndDateTime.LocalDate, new { @class = "top" })
-    @Html.UiDateBoxFor(m => m.EndDateTime.LocalDate, new { @class = "small datepicker" }, new[] { UiDateClientValidationModes.DateValidation, UiDateClientValidationModes.DateRequired })
+    @Html.UiDateBoxFor(m => m.EndDateTime.LocalDate, new { @class = "small datepicker" })
 </div>

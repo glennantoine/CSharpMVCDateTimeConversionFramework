@@ -4,12 +4,44 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.UI;
+using CustomModelBindingWithDateTime.Models;
 
-namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
+namespace CustomModelBindingWithDateTime.Utilities
 {
+    public class UiDateHelperValidationAttribute
+    {
+        public string PropertyName { get; set; }
+        public ModelMetadata Metadata { get; set; }
+        public IDictionary<string, object> Attributes { get; set; }
+    }
+
     public static class UiDateTimeUtilities
     {
-        public const string DateNotInPastDefaultErrorMessage = "'{0}' must be in the future.";
+        private static readonly IList<UiDateHelperValidationAttribute> StoredValidationAttributes = new List<UiDateHelperValidationAttribute>();
+
+        public static IList<KeyValuePair<string, object>> ChildValidationAttributes(HtmlHelper htmlHelper, string basePropertyName, string targetPropertyName, ModelMetadata metadata)
+        {
+            var attributeKeyPropertyPath = targetPropertyName.ToLower().Replace(".", "");
+
+            IDictionary<string, object> validationAttributes;
+            if (StoredValidationAttributes.Any(q => q.PropertyName == basePropertyName && q.Metadata == metadata))
+            {
+                validationAttributes = StoredValidationAttributes.First(q => q.PropertyName == basePropertyName && q.Metadata == metadata).Attributes;
+            }
+            else
+            {
+                validationAttributes = htmlHelper.GetUnobtrusiveValidationAttributes(basePropertyName, metadata);
+                StoredValidationAttributes.Add(new UiDateHelperValidationAttribute { PropertyName = basePropertyName, Metadata = metadata, Attributes = validationAttributes });
+            }
+            var associatedValidationAttributes = validationAttributes.Where(attr => attr.Key.EndsWith(attributeKeyPropertyPath) || attr.Key.Contains(attributeKeyPropertyPath + "-")).ToList();
+            if (associatedValidationAttributes.Any())
+            {
+                var dataValAttribute = validationAttributes.FirstOrDefault(attr => attr.Key == "data-val");
+                associatedValidationAttributes.Add(dataValAttribute);
+            }
+
+            return associatedValidationAttributes;
+        }
 
         public static Object ChildObjectFromValidationContext(string propertyPath, ValidationContext validationContext)
         {

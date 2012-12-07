@@ -5,20 +5,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
+using CustomModelBindingWithDateTime.Utilities;
 
 namespace CustomModelBindingWithDateTime.Helpers 
 {
-    public class UiDateHelperValidationAttribute
-    {
-        public string PropertyName { get; set; }
-        public ModelMetadata Metadata { get; set; }
-        public IDictionary<string, object> Attributes { get; set; }
-    }
-
     public static class UiDateHelper
     {
-        private static readonly IList<UiDateHelperValidationAttribute> StoredValidationAttributes = new List<UiDateHelperValidationAttribute>();
-
         public static MvcHtmlString UiDateBox(this HtmlHelper htmlHelper, string name, string value) 
         {
             var builder = new TagBuilder("input");
@@ -41,25 +33,9 @@ namespace CustomModelBindingWithDateTime.Helpers
             var attributeKeyPropertyPath = propertyPath.ToLower().Replace(".", "");
             var meta = htmlHelper.ViewData.ModelMetadata;
 
-            IDictionary<string, object> validationAttributes;
-            if (StoredValidationAttributes.Any(q => q.PropertyName == meta.PropertyName && q.Metadata == meta))
-            {
-                validationAttributes = StoredValidationAttributes.First(q => q.PropertyName == meta.PropertyName && q.Metadata == meta).Attributes;
-            }
-            else
-            {
-                validationAttributes = htmlHelper.GetUnobtrusiveValidationAttributes(meta.PropertyName, meta);
-                StoredValidationAttributes.Add(new UiDateHelperValidationAttribute{ PropertyName = meta.PropertyName, Metadata = meta, Attributes = validationAttributes});
-            }
-            //Add in the associated validation attributes
-            var associatedValidationAttributes = validationAttributes.Where(attr => attr.Key.EndsWith(attributeKeyPropertyPath)).ToList();
-            if(associatedValidationAttributes.Any())
-            {
-                var dataValAttribute = validationAttributes.FirstOrDefault(attr => attr.Key == "data-val");
-                attributes.Add(dataValAttribute.Key, dataValAttribute.Value);
-            }
+            var validationAttributes = UiDateTimeUtilities.ChildValidationAttributes(htmlHelper, meta.PropertyName, propertyPath, meta);
 
-            foreach (var attr in associatedValidationAttributes)
+            foreach (var attr in validationAttributes)
             {
                 attributes.Add(attr.Key.Replace(attributeKeyPropertyPath, ""), attr.Value);
             }

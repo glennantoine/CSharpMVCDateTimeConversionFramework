@@ -19,9 +19,17 @@ namespace CustomModelBindingWithDateTime.Controllers
         public ActionResult UiDateTimeTest() 
         {
             UiDateTimeTestModel model = null;
-            model = new UiDateTimeTestModel {
-                                                UiDateTime = new UiDateTimeModel(TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName) { }
-                                            };
+            try {
+                var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName;
+                model = new UiDateTimeTestModel {
+                                                    UiDateTime = new UiDateTimeModel(timeZone) { }
+                                                };
+            } 
+            catch (Exception e) 
+            {
+                throw new Exception("UiDateTimeTestModel Error: " + e.Message);
+            }
+
             return View(model);
         }
 
@@ -43,14 +51,23 @@ namespace CustomModelBindingWithDateTime.Controllers
 
 
         [HttpGet]
-        public ActionResult UiDateTimeRangeTest() 
+        public ActionResult UiDateTimeRangeTest()
         {
             UiDateTimeRangeTestModel model = null;
-            model = new UiDateTimeRangeTestModel 
-                                                {
-                                                    UiDateTimeRange = new UiDateTimeRangeModel(TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName) { },
-                                                    BasicDateRange = new UiDateTimeRangeModel("Eastern Standard Time") { }
-                                                };
+            try
+            {
+                var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName;
+                model= new UiDateTimeRangeTestModel 
+                                                    {
+                                                        UiDateTimeRange = new UiDateTimeRangeModel(timeZone) { },
+                                                        BasicDateRange = new UiDateTimeRangeModel(timeZone) { }
+                                                    };
+            }
+            catch (Exception e)
+            {
+                throw new Exception("UiDateTimeRangeModel Error: " + e.Message);
+            }
+            
             return View(model);
         }
 

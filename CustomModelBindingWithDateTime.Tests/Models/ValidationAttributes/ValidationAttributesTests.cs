@@ -35,8 +35,8 @@ namespace CustomModelBindingWithDateTime.Tests.Models.ValidationAttributes
                                                                 LocalDate = "1/14/2100"
                                                             }
                                     };
-            var testContext = new ValidationContext(model, null, null) { };
-            var attribute = new DateValidation();
+            var testContext = new ValidationContext(model, null, null) { DisplayName = "BasicDateTime" };
+            var attribute = new UiDateTimeFormatDateValidation("LocalDate");
 
             try 
             {
@@ -59,8 +59,8 @@ namespace CustomModelBindingWithDateTime.Tests.Models.ValidationAttributes
                                                                             LocalDate = "1/15/"
                                                                         }
                                         };
-            var testContext = new ValidationContext(model, null, null) {};
-            var attribute = new DateValidation();
+            var testContext = new ValidationContext(model, null, null) { DisplayName = "BasicDateTime" };
+            var attribute = new UiDateTimeFormatDateValidation("LocalDate");
 
             try 
             {
@@ -69,7 +69,7 @@ namespace CustomModelBindingWithDateTime.Tests.Models.ValidationAttributes
             } 
             catch (ValidationException ex) 
             {
-                Assert.AreEqual("'ValidationTestUiDateTimeModel' does not exist or is improperly formated: MM/DD/YYYY.", ex.Message);
+                Assert.AreEqual("'Date' does not exist or is improperly formated: MM/DD/YYYY.", ex.Message);
             } 
             catch (Exception) 
             {

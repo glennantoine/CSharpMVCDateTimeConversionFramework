@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using System.Web.UI;
 using CustomModelBindingWithDateTime.Utilities;
 
 namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
@@ -10,7 +9,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
     public class UiDateTimeNotInPastValidation : ValidationAttribute, IClientValidatable
     {
-        private const string DefaultErrorMessage = "'{0}' must be in the future.'";
+        private const string DefaultErrorMessage = "'{0}' must be in the future.";
         private readonly object _typeId = new object();
         private readonly string _basePropertyPath;
 

@@ -141,6 +141,9 @@
   <data name="DateRequired" xml:space="preserve">
     <value>Date is required</value>
   </data>
+  <data name="IsRequiredValid" xml:space="preserve">
+    <value>{0} is required</value>
+  </data>
   <data name="TimeFormatValid" xml:space="preserve">
     <value>Time Format is Invalid</value>
   </data>

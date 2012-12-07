@@ -51,7 +51,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
             var rule = new ModelClientValidationRule
                            {
                                ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath, metadata)),
-                               ValidationType = "datenotinfuture" + _basePropertyPath.ToLower().Replace(".", "")
+                               ValidationType = "uidatetimenotinfuture" + _basePropertyPath.ToLower().Replace(".", "")
                            };
 
             //This string identifies which Javascript function to be executed to validate this   

@@ -133,6 +133,15 @@ namespace CustomModelBindingWithDateTime.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is required.
+        /// </summary>
+        internal static string IsRequiredValid {
+            get {
+                return ResourceManager.GetString("IsRequiredValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time Format is Invalid.
         /// </summary>
         internal static string TimeFormatValid {

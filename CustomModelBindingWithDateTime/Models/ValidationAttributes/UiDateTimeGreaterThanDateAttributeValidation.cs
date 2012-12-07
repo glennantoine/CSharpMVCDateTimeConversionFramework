@@ -73,7 +73,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
             var rule = new ModelClientValidationRule
                            {
                                ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath,metadata)),
-                               ValidationType ="dategreaterthanattributeornull" + _basePropertyPath.ToLower().Replace(".", "")
+                               ValidationType = "uidatetimegreaterthandateattributeornull" + _basePropertyPath.ToLower().Replace(".", "")
                            };
             rule.ValidationParameters.Add("other", _comparisonPropertyPath);
             rule.ValidationParameters.Add("allowequal", _allowEqual);

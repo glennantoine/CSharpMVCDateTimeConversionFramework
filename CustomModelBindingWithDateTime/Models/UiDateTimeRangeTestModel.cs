@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using CustomModelBindingWithDateTime.Models.ValidationAttributes;
+using sCRM.Presentation.Web.Areas.Crm.Models.ValidationAttributes;
 
 namespace CustomModelBindingWithDateTime.Models 
 {
@@ -25,14 +26,17 @@ namespace CustomModelBindingWithDateTime.Models
         [UiDateTimeDisplayAttribute(DisplayName = "Special Start Date", PropertyPath = "StartDateTime.LocalDate")]
         [UiDateTimeDisplayAttribute(DisplayName = "Start Time", PropertyPath = "StartDateTime.LocalTime")]
         [UiDateTimeDisplayAttribute(DisplayName = "End Time", PropertyPath = "EndDateTime.LocalTime")]
+        [UiDateTimeRequiredValidation("StartDateTime.LocalDate", ErrorMessageResourceName = "IsRequiredValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [UiDateTimeRequiredValidation("StartDateTime.LocalTime", ErrorMessageResourceName = "IsRequiredValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         //[UiDateTimeGreaterThanTimeAttributeOrNullValidation("EndDateTime.LocalTime", "StartDateTime.LocalTime", ErrorMessageResourceName = "TimeMustBeGreaterThanEqualTo", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public UiDateTimeRangeModel UiDateTimeRange { get; set; }
 
-        [UiDateTimeNotInPastValidation("StartDateTime.LocalDate", ErrorMessageResourceName = "DateNotInPast", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [UiDateTimeDisplayAttribute(DisplayName = "From", PropertyPath = "StartDateTime.LocalDate")]
+        [UiDateTimeDisplayAttribute(DisplayName = "To", PropertyPath = "EndDateTime.LocalDate")]
+        [UiDateTimeNotInPastValidation("StartDateTime.LocalDate", ErrorMessageResourceName = "DateNotInPast", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [UiDateTimeRequiredIfAttributeValueNotEqualsValidation("EndDateTime.LocalDate", "StartDateTime.LocalDate", "12/04/2012", ErrorMessageResourceName = "IsRequiredValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [UiDateTimeGreaterThanDateAttributeOrNullValidation("EndDateTime.LocalDate", "StartDateTime.LocalDate", ErrorMessageResourceName = "DateMustBeGreaterThanEqualTo", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [UiDateTimeNotInPastValidation("EndDateTime.LocalDate", ErrorMessageResourceName = "DateNotInPast", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [UiDateTimeDisplayAttribute(DisplayName = "To", PropertyPath = "EndDateTime.LocalDate")]
         public UiDateTimeRangeModel BasicDateRange { get; set; }
     }
 }

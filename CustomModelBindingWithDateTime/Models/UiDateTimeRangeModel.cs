@@ -7,6 +7,8 @@ namespace CustomModelBindingWithDateTime.Models
     [UiDateTimeFormatDateValidation("EndDateTime.LocalDate", ErrorMessageResourceName = "DateFormat", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
     [UiDateTimeFormatTimeValidation("StartDateTime.LocalTime", ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
     [UiDateTimeFormatTimeValidation("EndDateTime.LocalTime", ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+    [UiDateTimeMaxLimitDateValidation("StartDateTime.LocalDate", 50, ErrorMessageResourceName = "DateMustBeLessThanYearsInFuture", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+    [UiDateTimeMaxLimitDateValidation("EndDateTime.LocalDate", 50, ErrorMessageResourceName = "DateMustBeLessThanYearsInFuture", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
     public class UiDateTimeRangeModel
     {
         private string _timeZoneName;

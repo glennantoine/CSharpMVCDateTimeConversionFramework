@@ -135,6 +135,7 @@
     <Compile Include="Helpers\UiTimeHelper.cs" />
     <Compile Include="Models\UiDateTimeEditorTemplatesTestModel.cs" />
     <Compile Include="Models\UiDateTimeDisplayAttributeProvider.cs" />
+    <Compile Include="Models\ValidationAttributes\UiDateTimeMaxLimitDateValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeFormatTimeValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeFormatDateValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeRequiredIfAttributeValueNotEqualsValidation.cs" />

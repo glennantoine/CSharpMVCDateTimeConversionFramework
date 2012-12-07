@@ -601,7 +601,15 @@
 
     jQuery.validator.unobtrusive.adapters.addBool("uidatetimeformattime");
 
+    //Equals Attribute
+    jQuery.validator.addMethod("uidatetimemaxlimitdate", function (value, element, maxyears) {
+        var futureDate = new Date();
+        futureDate.setFullYear(futureDate.getFullYear() + parseInt(maxyears,10));
 
+        return value === '' || Date.parse(value) < futureDate;
+    });
+
+    jQuery.validator.unobtrusive.adapters.addSingleVal("uidatetimemaxlimitdate", "maxyears");
 
 } ());
 

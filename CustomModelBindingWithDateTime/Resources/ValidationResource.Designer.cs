@@ -88,6 +88,15 @@ namespace CustomModelBindingWithDateTime.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} must be less than {1} years in the future.
+        /// </summary>
+        internal static string DateMustBeLessThanYearsInFuture {
+            get {
+                return ResourceManager.GetString("DateMustBeLessThanYearsInFuture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} cannot be in the future.
         /// </summary>
         internal static string DateNotInFuture {

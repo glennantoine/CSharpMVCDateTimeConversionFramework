@@ -9,7 +9,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
     public class UiDateTimeNotInFutureValidation : ValidationAttribute, IClientValidatable
     {
-        private const string DefaultErrorMessage = "'{0}' must be in the future.'";
+        private const string DefaultErrorMessage = "'{0}' must be in the past.";
         private readonly object _typeId = new object();
         private readonly string _basePropertyPath;
 

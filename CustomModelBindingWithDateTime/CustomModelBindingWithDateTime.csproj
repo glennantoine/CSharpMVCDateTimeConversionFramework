@@ -139,7 +139,6 @@
     <Compile Include="Models\ValidationAttributes\UiDateTimeRequiredIfNotAttributeValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeRequiredIfAttributeValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeRequiredValidation.cs" />
-    <Compile Include="Models\ValidationAttributes\RequiredIfAttributeValueNotEqualsValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeGreaterThanTimeAttributeValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeGreaterThanDateAttributeValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeNotInFutureValidation.cs" />

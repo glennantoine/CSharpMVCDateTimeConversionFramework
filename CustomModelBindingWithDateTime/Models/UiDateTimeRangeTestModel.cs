@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using CustomModelBindingWithDateTime.Enumerations;
 using CustomModelBindingWithDateTime.Models.ValidationAttributes;
 
 namespace CustomModelBindingWithDateTime.Models 

@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using CustomModelBindingWithDateTime.Enumerations;
-using CustomModelBindingWithDateTime.Models.ValidationAttributes;
 
 namespace CustomModelBindingWithDateTime.Models 
 {

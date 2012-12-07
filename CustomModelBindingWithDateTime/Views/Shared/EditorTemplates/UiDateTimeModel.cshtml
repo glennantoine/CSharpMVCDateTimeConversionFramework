@@ -2,11 +2,11 @@
 @model CustomModelBindingWithDateTime.Models.UiDateTimeModel
 
 <li>
-    <label>Date</label>
+    @Html.MyLabelFor(m => m.LocalDate, new { @class = "top" })
     @Html.UiDateBoxFor(m => m.LocalDate, new { @class = "datepicker" })
 </li>
 <li>
-    <label>Time</label>
+    @Html.MyLabelFor(m => m.LocalTime, new{@class="top"})
     @Html.UiTimeBoxFor(m => m.LocalTime, new { @class = "timepicker" })
 </li>
 @Html.HiddenFor(model => model.TimeZoneName)

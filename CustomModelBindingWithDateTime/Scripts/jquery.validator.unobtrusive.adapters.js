@@ -578,6 +578,30 @@
         options.messages.uidatetimerequiredifattributevaluenotequals = options.message;
     });
 
+    //Date Format
+    jQuery.validator.addMethod("uidatetimeformatdate", function (value, element) {
+        if (value === '') {
+            return true;
+        }
+        var split = value.split('/');
+        if (split === null || split.length !== 3) {
+            return false;
+        }
+        var dt = new Date(Date.parse(value));
+        return value === '' || (dt.getMonth() + 1 === parseInt(split[0], 10) && dt.getDate() === parseInt(split[1], 10) && dt.getFullYear() === parseInt(split[2], 10));
+    });
+
+    jQuery.validator.unobtrusive.adapters.addBool("uidatetimeformatdate");
+
+    //Time Format
+    jQuery.validator.addMethod("uidatetimeformattime", function (value, element) {
+        var matches = value.match(/^(0?[1-9]|1[012])(:[0-5]\d) [APap][mM]$/);
+        return value === '' || (matches !== null && matches.length > 0);
+    });
+
+    jQuery.validator.unobtrusive.adapters.addBool("uidatetimeformattime");
+
+
 
 } ());
 

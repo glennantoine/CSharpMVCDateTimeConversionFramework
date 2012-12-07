@@ -1,6 +1,12 @@
 ﻿
+using CustomModelBindingWithDateTime.Models.ValidationAttributes;
+
 namespace CustomModelBindingWithDateTime.Models 
 {
+    [UiDateTimeFormatDateValidation("StartDateTime.LocalDate", ErrorMessageResourceName = "DateFormat", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+    [UiDateTimeFormatDateValidation("EndDateTime.LocalDate", ErrorMessageResourceName = "DateFormat", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+    [UiDateTimeFormatTimeValidation("StartDateTime.LocalTime", ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+    [UiDateTimeFormatTimeValidation("EndDateTime.LocalTime", ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
     public class UiDateTimeRangeModel
     {
         private string _timeZoneName;

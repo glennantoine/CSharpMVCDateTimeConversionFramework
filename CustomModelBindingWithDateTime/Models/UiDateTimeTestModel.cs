@@ -21,6 +21,8 @@ namespace CustomModelBindingWithDateTime.Models
         [Display(Name = "Email address")]
         public string Email { get; set; }
 
+        [UiDateTimeDisplayAttribute(DisplayName = "Begin Date", PropertyPath = "LocalDate")]
+        [UiDateTimeDisplayAttribute(DisplayName = "Begin Time", PropertyPath = "LocalTime")]
         public UiDateTimeModel UiDateTime { get; set; }
     }
 }

@@ -134,6 +134,8 @@
     <Compile Include="Helpers\LabelForHelper.cs" />
     <Compile Include="Helpers\UiTimeHelper.cs" />
     <Compile Include="Models\UiDateTimeDisplayAttributeProvider.cs" />
+    <Compile Include="Models\ValidationAttributes\UiDateTimeFormatTimeValidation.cs" />
+    <Compile Include="Models\ValidationAttributes\UiDateTimeFormatDateValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeRequiredIfAttributeValueNotEqualsValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeRequiredIfAttributeValueEqualsValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeRequiredIfNotAttributeValidation.cs" />
@@ -157,8 +159,6 @@
     <Compile Include="Models\UiDateTimeRangeModel.cs" />
     <Compile Include="Models\UiDateTimeRangeTestModel.cs" />
     <Compile Include="Models\UiDateTimeTestModel.cs" />
-    <Compile Include="Models\ValidationAttributes\DateValidation.cs" />
-    <Compile Include="Models\ValidationAttributes\TimeValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\UiDateTimeResouce.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -5,6 +5,8 @@ using CustomModelBindingWithDateTime.Utilities;
 
 namespace CustomModelBindingWithDateTime.Models 
 {
+    [UiDateTimeFormatDateValidation("LocalDate", ErrorMessageResourceName = "DateFormat", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+    [UiDateTimeFormatTimeValidation("LocalTime", ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
     public class UiDateTimeModel
     {
 
@@ -61,11 +63,9 @@ namespace CustomModelBindingWithDateTime.Models
         }
 
         [Display(Name = "Date")]
-        [DateValidation(ErrorMessageResourceName = "DateFormat", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public string LocalDate { get; set; }
 
         [Display(Name = "Time")]
-        [TimeValidation(ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public string LocalTime { get; set; }
 
         [Display(Name = "TimeZone")]

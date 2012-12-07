@@ -6,22 +6,17 @@ using CustomModelBindingWithDateTime.Utilities;
 
 namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
 {
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
-    public class UiDateTimeRequiredIfAttributeValueEqualsValidation : ValidationAttribute, IClientValidatable
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
+    public class UiDateTimeFormatTimeValidation : ValidationAttribute, IClientValidatable
     {
-        private const string DefaultErrorMessage = "'{0}' is a required field.";
+        private const string DefaultErrorMessage = "'{0}' must be a time format: HH:MM AM|PM.";
         private readonly object _typeId = new object();
         private readonly string _basePropertyPath;
-        private readonly string _comparisonPropertyPath;
-        private readonly string _attributeValue;
-        private string _comparisonPropertyDisplayName;
 
-        public UiDateTimeRequiredIfAttributeValueEqualsValidation(string basePropertyPath, string comparisonPropertyPath, string attributeValue)
+        public UiDateTimeFormatTimeValidation(string basePropertyPath)
             : base(DefaultErrorMessage)  
         {
             _basePropertyPath = basePropertyPath;
-            _comparisonPropertyPath = comparisonPropertyPath;
-            _attributeValue = attributeValue;
         }  
    
         //Override default FormatErrorMessage Method  
@@ -32,15 +27,15 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
    
         //Override IsValid  
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)  
-        {
+        {  
             var propValue = UiDateTimeUtilities.ChildObjectFromValidationContext(_basePropertyPath, validationContext);
-            var comparisonValue = UiDateTimeUtilities.ChildObjectFromValidationContext(_comparisonPropertyPath, validationContext);
 
             var displayName = UiDateTimeUtilities.GetPropertyDisplayNameFromValidationContext(_basePropertyPath, validationContext);
-            _comparisonPropertyDisplayName = UiDateTimeUtilities.GetPropertyDisplayNameFromValidationContext(_comparisonPropertyPath, validationContext);
-
-
-            if(comparisonValue.ToString() == _attributeValue && (propValue == null || propValue.ToString().Length == 0))
+            try
+            {
+                var temp = DateTime.Parse(propValue.ToString());
+            }
+            catch (FormatException)
             {
                 var message = FormatErrorMessage(displayName);
                 return new ValidationResult(message);
@@ -52,20 +47,14 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
 
         public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
         {
-            _comparisonPropertyDisplayName = UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_comparisonPropertyPath, metadata);
-
             var rule = new ModelClientValidationRule
             {
                 ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath, metadata)),
-                ValidationType = "uidatetimerequiredifattributevalueequals" + _basePropertyPath.ToLower().Replace(".", "")
+                ValidationType = "uidatetimeformattime" + _basePropertyPath.ToLower().Replace(".", "")
             };
-            rule.ValidationParameters.Add("other", _comparisonPropertyPath);
-            rule.ValidationParameters.Add("othervalue", _attributeValue);
-            rule.ValidationParameters.Add("basepropertyname", metadata.PropertyName);
-
             yield return rule;
         }
-
+        
         public override object TypeId
         {
             get

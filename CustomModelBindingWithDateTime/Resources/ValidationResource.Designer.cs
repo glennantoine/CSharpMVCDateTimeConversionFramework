@@ -70,7 +70,7 @@ namespace CustomModelBindingWithDateTime.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date is improperly formated: MM/DD/YYYY..
+        ///   Looks up a localized string similar to {0} is improperly formated: MM/DD/YYYY..
         /// </summary>
         internal static string DateFormat {
             get {
@@ -142,7 +142,7 @@ namespace CustomModelBindingWithDateTime.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time Format is Invalid.
+        ///   Looks up a localized string similar to {0} is improperly formatted: HH:MM AM/PM..
         /// </summary>
         internal static string TimeFormatValid {
             get {

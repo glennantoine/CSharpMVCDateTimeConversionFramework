@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using CustomModelBindingWithDateTime.Models.ValidationAttributes;
 using CustomModelBindingWithDateTime.Utilities;
 
 namespace CustomModelBindingWithDateTime.Models 
@@ -60,9 +61,11 @@ namespace CustomModelBindingWithDateTime.Models
         }
 
         [Display(Name = "Date")]
+        [DateValidation(ErrorMessageResourceName = "DateFormat", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public string LocalDate { get; set; }
 
         [Display(Name = "Time")]
+        [TimeValidation(ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public string LocalTime { get; set; }
 
         [Display(Name = "TimeZone")]

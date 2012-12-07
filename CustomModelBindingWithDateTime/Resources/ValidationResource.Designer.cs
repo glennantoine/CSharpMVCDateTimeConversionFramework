@@ -79,7 +79,7 @@ namespace CustomModelBindingWithDateTime.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date must be greater than or equal to:.
+        ///   Looks up a localized string similar to {0} must be greater than or equal to {1}.
         /// </summary>
         internal static string DateMustBeGreaterThanEqualTo {
             get {
@@ -88,7 +88,7 @@ namespace CustomModelBindingWithDateTime.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date connot be in the future.
+        ///   Looks up a localized string similar to {0} cannot be in the future.
         /// </summary>
         internal static string DateNotInFuture {
             get {
@@ -97,7 +97,7 @@ namespace CustomModelBindingWithDateTime.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date cannot be in the past {0}.
+        ///   Looks up a localized string similar to {0} cannot be in the past.
         /// </summary>
         internal static string DateNotInPast {
             get {
@@ -142,7 +142,7 @@ namespace CustomModelBindingWithDateTime.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time must be greater than or equal to:.
+        ///   Looks up a localized string similar to {0} must be greater than or equal to {1}.
         /// </summary>
         internal static string TimeMustBeGreaterThanEqualTo {
             get {

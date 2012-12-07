@@ -68,6 +68,9 @@
     //Date Greater Than Attribute or Null
     jQuery.validator.addMethod("dategreaterthanattributeornull", function (value, element, params) {
         var modelPrefix = element.name.substr(0, element.name.lastIndexOf(".") + 1);
+        if (typeof params.basepropertyname !== 'undefined') {
+            modelPrefix = modelPrefix.substr(0, modelPrefix.indexOf(params.basepropertyname) + params.basepropertyname.length + 1);
+        }
         var otherVal = $('[name="' + modelPrefix + params.other + '"]').val();
         if (params.allowequal === 'True') {
             return value === '' || Date.parse(value) >= Date.parse(otherVal);
@@ -76,24 +79,39 @@
         }
     });
 
-    jQuery.validator.unobtrusive.adapters.add('dategreaterthanattributeornull', ['other', 'allowequal'], function (options) {
+    jQuery.validator.unobtrusive.adapters.add('dategreaterthanattributeornull', ['other', 'allowequal', 'basepropertyname'], function (options) {
         options.rules.dategreaterthanattributeornull = {
             other: options.params.other,
-            allowequal: options.params.allowequal
+            allowequal: options.params.allowequal,
+            basepropertyname: options.params.basepropertyname
         };
         options.messages.dategreaterthanattributeornull = options.message;
     });
 
     //Time Greater Than Attribute or Null
-    jQuery.validator.addMethod("timegreaterthanattributeornull", function (value, element, other) {
+    jQuery.validator.addMethod("timegreaterthanattributeornull", function (value, element, params) {
         var modelPrefix = element.name.substr(0, element.name.lastIndexOf(".") + 1);
-        var otherVal = $('[name="' + modelPrefix + other + '"]').val();
+        if (typeof params.basepropertyname !== 'undefined') {
+            modelPrefix = modelPrefix.substr(0, modelPrefix.indexOf(params.basepropertyname) + params.basepropertyname.length + 1);
+        }
+        var otherVal = $('[name="' + modelPrefix + params.other + '"]').val();
         var otherMinutes = AB.util.timeStringToMinutes(otherVal);
         var minutes = AB.util.timeStringToMinutes(value);
-        return minutes === -1 || minutes > otherMinutes;
+        if (params.allowequal === 'True') {
+            return minutes === -1 || minutes >= otherMinutes;
+        } else {
+            return minutes === -1 || minutes > otherMinutes;
+        }
     });
 
-    jQuery.validator.unobtrusive.adapters.addSingleVal("timegreaterthanattributeornull", "other");
+    jQuery.validator.unobtrusive.adapters.add('timegreaterthanattributeornull', ['other', 'allowequal', 'basepropertyname'], function (options) {
+        options.rules.timegreaterthanattributeornull = {
+            other: options.params.other,
+            allowequal: options.params.allowequal,
+            basepropertyname: options.params.basepropertyname
+        };
+        options.messages.timegreaterthanattributeornull = options.message;
+    });
 
     //Time Greater Than or equal attribute
     jQuery.validator.addMethod("timegreaterthanequal", function (value, element, other) {

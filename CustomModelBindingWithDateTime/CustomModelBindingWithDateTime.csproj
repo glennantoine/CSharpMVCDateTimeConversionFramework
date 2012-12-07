@@ -134,6 +134,10 @@
     <Compile Include="Helpers\LabelForHelper.cs" />
     <Compile Include="Helpers\UiTimeHelper.cs" />
     <Compile Include="Models\UiDateTimeDisplayAttributeProvider.cs" />
+    <Compile Include="Models\ValidationAttributes\UiDateTimeGreaterThanTimeAttributeValidation.cs" />
+    <Compile Include="Models\ValidationAttributes\UiDateTimeTimeGreaterThanAttributeValidation.cs" />
+    <Compile Include="Models\ValidationAttributes\UiDateTimeGreaterThanDateAttributeValidation.cs" />
+    <Compile Include="Models\ValidationAttributes\UiDateTimeNotInFutureValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeNotInPastValidation.cs" />
     <Compile Include="Utilities\UiDateTimeUtilities.cs" />
     <Compile Include="Models\ValidationAttributes\EnforceTrueAttribute.cs" />
@@ -151,9 +155,6 @@
     <Compile Include="Models\UiDateTimeRangeModel.cs" />
     <Compile Include="Models\UiDateTimeRangeTestModel.cs" />
     <Compile Include="Models\UiDateTimeTestModel.cs" />
-    <Compile Include="Models\ValidationAttributes\DateGreaterThanAttributeValidation.cs" />
-    <Compile Include="Models\ValidationAttributes\DateNotInFutureValidation.cs" />
-    <Compile Include="Models\ValidationAttributes\DateNotInPastValidation.cs" />
     <Compile Include="Models\ValidationAttributes\DateValidation.cs" />
     <Compile Include="Models\ValidationAttributes\GreaterThanValidation.cs" />
     <Compile Include="Models\ValidationAttributes\TimeGreaterThanAttributeValidation.cs" />

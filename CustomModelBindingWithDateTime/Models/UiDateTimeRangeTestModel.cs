@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using CustomModelBindingWithDateTime.Enumerations;
 using CustomModelBindingWithDateTime.Models.ValidationAttributes;
 
 namespace CustomModelBindingWithDateTime.Models 
@@ -24,7 +23,6 @@ namespace CustomModelBindingWithDateTime.Models
         public string Email { get; set; }
 
         [TimeValidation(ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [UiDateTimeRangeValidator(new[] { UiDateTimeRangeValidationMode.StartDateNotInFuture }, ErrorMessageResourceName = "DateFormatValid", ErrorMessageResourceType = typeof(UiDateTimeRangeModel))]
         public UiDateTimeRangeModel UiDateTimeRange { get; set; }
 
         [UiDateTimeNotInPastValidation("StartDateTime.LocalDate", ErrorMessageResourceName = "DateNotInPast", ErrorMessageResourceType = typeof(Resources.ValidationResource))]

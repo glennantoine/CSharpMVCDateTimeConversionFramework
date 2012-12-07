@@ -7,7 +7,7 @@ using System.Web.UI;
 
 namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
 {
-    public static class UiDateTimeValidation
+    public static class UiDateTimeUtilities
     {
         public const string DateNotInPastDefaultErrorMessage = "'{0}' must be in the future.'";
 
@@ -21,7 +21,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
             //Get Value of the property
             var propValue = basePropertyInfo.GetValue(validationContext.ObjectInstance, null);
 
-            return properties.Aggregate(propValue, (current, t) => DataBinder.Eval(current, t));
+            return properties.Aggregate(propValue, DataBinder.Eval);
         }
 
         public static string GetPropertyDisplayNameFromValidationContext(string propertyPath, ValidationContext validationContext)
@@ -49,6 +49,31 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
                 }
             }
             return metadata != null ? metadata.GetDisplayName() : properties.LastOrDefault();
+        }
+
+        public static string GetPropertyDisplayNameFromModelMetadata(string propertyPath, ModelMetadata metadata)
+        {
+            var properties = propertyPath.Split('.');
+
+            //Attempt to query the UIDateTimeDisplayAttribute
+            if (metadata != null && metadata.AdditionalValues.Any(q => q.Key == UiDateTimeDisplayAttributeProvider.UiDateTimeDisplayAttributeKey && ((IList<UiDateTimeDisplayAttribute>)q.Value).Any(s => s.PropertyPath == propertyPath)))
+            {
+                var additionalValues = metadata.AdditionalValues.First(q => q.Key == UiDateTimeDisplayAttributeProvider.UiDateTimeDisplayAttributeKey);
+                var displayName = ((IList<UiDateTimeDisplayAttribute>)additionalValues.Value).First(q => q.PropertyPath == propertyPath).DisplayName;
+                return displayName;
+            }
+
+            //Find the display name on the property
+            var metadataList = ModelMetadataProviders.Current.GetMetadataForProperties(null, metadata.ModelType).ToList();
+            foreach (var prop in properties)
+            {
+                if (metadataList.Any(q => q.PropertyName == prop))
+                {
+                    metadata = ModelMetadataProviders.Current.GetMetadataForProperty(null, metadata.ModelType, prop);
+                    metadataList = ModelMetadataProviders.Current.GetMetadataForProperties(null, metadata.ModelType).ToList();
+                }
+            }
+            return metadata.GetDisplayName();
         }
     }
 }

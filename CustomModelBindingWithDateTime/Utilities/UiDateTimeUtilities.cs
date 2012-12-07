@@ -9,7 +9,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
 {
     public static class UiDateTimeUtilities
     {
-        public const string DateNotInPastDefaultErrorMessage = "'{0}' must be in the future.'";
+        public const string DateNotInPastDefaultErrorMessage = "'{0}' must be in the future.";
 
         public static Object ChildObjectFromValidationContext(string propertyPath, ValidationContext validationContext)
         {

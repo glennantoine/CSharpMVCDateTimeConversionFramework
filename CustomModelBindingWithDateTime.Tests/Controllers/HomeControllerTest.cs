@@ -14,7 +14,7 @@ namespace CustomModelBindingWithDateTime.Tests.Controllers {
             ViewResult result = controller.Index() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Custom Model Binder MVC application.", result.ViewBag.Message);
+            Assert.AreEqual("Custom Model Binder for Date Time Conversion Test MVC Application.", result.ViewBag.Message);
         }
 
         [TestMethod]

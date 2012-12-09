@@ -52,7 +52,7 @@ namespace CustomModelBindingWithDateTime.Tests.Models.Binders
                                                 };
 
             var result = (UiDateTimeModel)b.BindModel(null, bindingContext);
-            Assert.AreEqual(DateTime.Parse("01/16/2012 01:00:00").ToUniversalTime(timeZoneId), result.DateTimeUtcValue);
+            Assert.AreEqual(DateTime.Parse("01/16/2012 1:00").ToUniversalTime(timeZoneId), result.DateTimeUtcValue);
         }
 
         [TestMethod]
@@ -73,8 +73,8 @@ namespace CustomModelBindingWithDateTime.Tests.Models.Binders
                                                 };
 
             var result = (UiDateTimeModel)b.BindModel(null, bindingContext);
-            Assert.AreEqual(DateTime.Parse("01/16/2012 00:00:00").ToUniversalTime(timeZoneId), result.DateTimeUtcValue);
-            Assert.AreEqual(DateTime.Parse("01/16/2012 00:00:00"), result.DateTimeLocalValue);
+            Assert.AreEqual(DateTime.Parse("01/16/2012 00:00").ToUniversalTime(timeZoneId), result.DateTimeUtcValue);
+            Assert.AreEqual(DateTime.Parse("01/16/2012 00:00"), result.DateTimeLocalValue);
         }
 
         [TestMethod]
@@ -95,8 +95,8 @@ namespace CustomModelBindingWithDateTime.Tests.Models.Binders
                                                 };
 
             var result = (UiDateTimeModel)b.BindModel(null, bindingContext);
-            Assert.AreEqual(DateTime.Parse("01/01/0001 01:00:00").ToUniversalTime(timeZoneId), result.DateTimeUtcValue);
-            Assert.AreEqual(DateTime.Parse("01/01/0001 01:00:00"), result.DateTimeLocalValue);
+            Assert.AreEqual(DateTime.Parse("01/01/0001 1:00").ToUniversalTime(timeZoneId), result.DateTimeUtcValue);
+            Assert.AreEqual(DateTime.Parse("01/01/0001 1:00"), result.DateTimeLocalValue);
         }
 
 
@@ -121,8 +121,8 @@ namespace CustomModelBindingWithDateTime.Tests.Models.Binders
             var b = new UiDateTimeModelBinder() { MonthFieldName = "month", DayFieldName = "day", YearFieldName = "year" };
 
             var result = (UiDateTimeModel)b.BindModel(null, bindingContext);
-            Assert.AreEqual(DateTime.Parse("1964-02-12 12:00:00 am"), result.DateTimeLocalValue);
-            Assert.AreEqual(DateTime.Parse("1964-02-12 12:00:00 am").ToUniversalTime(timeZoneId), result.DateTimeUtcValue);
+            Assert.AreEqual(DateTime.Parse("1964-02-12 12:00 am"), result.DateTimeLocalValue);
+            Assert.AreEqual(DateTime.Parse("1964-02-12 12:00 am").ToUniversalTime(timeZoneId), result.DateTimeUtcValue);
         }
 
         [TestMethod]
@@ -145,7 +145,7 @@ namespace CustomModelBindingWithDateTime.Tests.Models.Binders
             var b = new UiDateTimeModelBinder() { MonthFieldName = "month", DayFieldName = "day", YearFieldName = "year", HourFieldName = "hour", MinuteFieldName = "minute", SecondFieldName = "second" };
 
             var result = (UiDateTimeModel)b.BindModel(null, bindingContext);
-            Assert.AreEqual(DateTime.Parse("1964-02-12 13:44:00"), result.DateTimeLocalValue);            
+            Assert.AreEqual(DateTime.Parse("1964-02-12 13:44"), result.DateTimeLocalValue);            
         }
 
     }

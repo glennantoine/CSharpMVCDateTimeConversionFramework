@@ -291,9 +291,6 @@
     <Content Include="Views\Shared\EditorTemplates\UiDateTimeModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\EditorTemplates\UiDateAndTimeNoTimeOption.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\DisplayTemplates\UiDateAndTimeDisplay.cshtml" />
   </ItemGroup>
   <ItemGroup>

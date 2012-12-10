@@ -9,7 +9,7 @@
     @Html.ValidationSummary()
     <div>
         <h3>RangeDateToDate</h3>
-        @Html.EditorFor(m => m.RangeDateToDate, "RangeDateToDate")
+        @Html.EditorFor(m => m.RangeDateToDate, "RangeDateToDate", new{ StartDateTime_LocalDate = new {@class = "w65"} })
     </div>
     <div>
         <h3>RangeTimeToTime</h3>

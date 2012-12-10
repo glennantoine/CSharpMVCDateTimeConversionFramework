@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.UI;
 using CustomModelBindingWithDateTime.Models;
 
@@ -41,6 +42,27 @@ namespace CustomModelBindingWithDateTime.Utilities
             }
 
             return associatedValidationAttributes;
+        }
+
+        public static RouteValueDictionary AddViewDataHtmlAttributes(HtmlHelper htmlHelper, string basePropertyName, RouteValueDictionary attributes)
+        {
+            var objectNotationPropertyPath = basePropertyName.Replace(".", "_");
+            var viewDataAttributes = htmlHelper.ViewData[objectNotationPropertyPath];
+            if (viewDataAttributes != null)
+            {
+                foreach (System.ComponentModel.PropertyDescriptor property in System.ComponentModel.TypeDescriptor.GetProperties(viewDataAttributes))
+                {
+                    if (attributes[property.Name] != null)
+                    {
+                        attributes[property.Name] = (String)attributes[property.Name] + " " + (String)property.GetValue(viewDataAttributes);
+                    }
+                    else
+                    {
+                        attributes.Add(property.Name, property.GetValue(viewDataAttributes));
+                    }
+                }
+            }
+            return attributes;
         }
 
         public static Object ChildObjectFromValidationContext(string propertyPath, ValidationContext validationContext)

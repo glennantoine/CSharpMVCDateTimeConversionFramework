@@ -27,11 +27,11 @@ namespace CustomModelBindingWithDateTime.Helpers
 
         public static MvcHtmlString UiDateBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, object htmlAttributes)
         {
-            var attributes = new RouteValueDictionary(htmlAttributes);
-
             var propertyPath = ExpressionHelper.GetExpressionText(expression);
             var attributeKeyPropertyPath = propertyPath.ToLower().Replace(".", "");
             var meta = htmlHelper.ViewData.ModelMetadata;
+
+            var attributes = UiDateTimeUtilities.AddViewDataHtmlAttributes(htmlHelper, propertyPath, new RouteValueDictionary(htmlAttributes));
 
             var validationAttributes = UiDateTimeUtilities.ChildValidationAttributes(htmlHelper, meta.PropertyName, propertyPath, meta);
 

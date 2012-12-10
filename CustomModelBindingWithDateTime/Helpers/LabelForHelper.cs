@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
 using CustomModelBindingWithDateTime.Models;
@@ -35,7 +36,24 @@ namespace CustomModelBindingWithDateTime.Helpers
                 .Select(q => q.value).ToList();
             if (displayAttributes.Any(s => s.PropertyPath == propertyPath))
             {
-                labelText = displayAttributes.First(q => q.PropertyPath == propertyPath).DisplayName;
+                var displayAttribute = displayAttributes.First(q => q.PropertyPath == propertyPath);
+                if (!String.IsNullOrEmpty(displayAttribute.DisplayName))
+                {
+                    labelText = displayAttribute.DisplayName;
+                }
+                //else
+                //{
+                //    PropertyInfo property = displayAttribute.DisplayResourceType.GetProperty(displayAttribute.DisplayResource);
+                //    if (property == null)
+                //    {
+                //        throw new InvalidOperationException(string.Format("Resource Type Does Not Have Property"));
+                //    }
+                //    if (property.PropertyType != typeof(string))
+                //    {
+                //        throw new InvalidOperationException(string.Format("Resource Property is Not String Type"));
+                //    }
+                //    labelText = (string) property.GetValue(null, null);
+                //}
             }
 
             TagBuilder tag = new TagBuilder("label");

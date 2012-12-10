@@ -7,48 +7,48 @@ namespace CustomModelBindingWithDateTime.Models
 {
     public class UiDateTimeEditorTemplatesTestModel 
     {
-        [UiDateTimeDisplayAttribute(DisplayName = "Date From", PropertyPath = "StartDateTime.LocalDate")]
-        [UiDateTimeDisplayAttribute(DisplayName = "Date To", PropertyPath = "EndDateTime.LocalDate")]
+        [UiDateTimeDisplayAttribute("StartDateTime.LocalDate", "DateFrom", typeof(Resources.UiDateTimeResouce))]
+        [UiDateTimeDisplayAttribute("EndDateTime.LocalDate", "DateTo", typeof(Resources.UiDateTimeResouce))]
         public UiDateTimeRangeModel RangeDateToDate { get; set; }
 
-        [UiDateTimeDisplayAttribute(DisplayName = "Time From", PropertyPath = "StartDateTime.LocalTime")]
-        [UiDateTimeDisplayAttribute(DisplayName = "Time To", PropertyPath = "EndDateTime.LocalTime")]
+        [UiDateTimeDisplayAttribute("StartDateTime.LocalTime", "TimeFrom", typeof(Resources.UiDateTimeResouce))]
+        [UiDateTimeDisplayAttribute("EndDateTime.LocalTime", "TimeTo", typeof(Resources.UiDateTimeResouce))]
         public UiDateTimeRangeModel RangeTimeToTime { get; set; }
 
-        [UiDateTimeDisplayAttribute(DisplayName = "Date From", PropertyPath = "StartDateTime.LocalDate")]
-        [UiDateTimeDisplayAttribute(DisplayName = "Time From", PropertyPath = "StartDateTime.LocalTime")]
-        [UiDateTimeDisplayAttribute(DisplayName = "Time To", PropertyPath = "EndDateTime.LocalTime")]
+        [UiDateTimeDisplayAttribute("StartDateTime.LocalDate", "DateFrom", typeof(Resources.UiDateTimeResouce))]
+        [UiDateTimeDisplayAttribute("StartDateTime.LocalTime", "TimeFrom", typeof(Resources.UiDateTimeResouce))]
+        [UiDateTimeDisplayAttribute("EndDateTime.LocalTime", "TimeTo", typeof(Resources.UiDateTimeResouce))]
         [UiDateTimeNotInPastValidation("StartDateTime.LocalDate", ErrorMessageResourceName = "DateNotInPast", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [UiDateTimeRequiredIfAttributeValueNotEqualsValidation("EndDateTime.LocalDate", "StartDateTime.LocalDate", "12/04/2012", ErrorMessageResourceName = "IsRequiredValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [UiDateTimeNotInPastValidation("EndDateTime.LocalDate", ErrorMessageResourceName = "DateNotInPast", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public UiDateTimeRangeModel RangeDateTimeToTime { get; set; }
 
-        [UiDateTimeDisplayAttribute(DisplayName = "DateTime From", PropertyPath = "StartDateTime.LocalDate")]
-        [UiDateTimeDisplayAttribute(DisplayName = "Time From", PropertyPath = "StartDateTime.LocalTime")]
-        [UiDateTimeDisplayAttribute(DisplayName = "Date To", PropertyPath = "EndDateTime.LocalDate")]
-        [UiDateTimeDisplayAttribute(DisplayName = "Time To", PropertyPath = "EndDateTime.LocalTime")]
+        [UiDateTimeDisplayAttribute("StartDateTime.LocalDate", "DateFrom", typeof(Resources.UiDateTimeResouce))]
+        [UiDateTimeDisplayAttribute("EndDateTime.LocalDate", "DateTo", typeof(Resources.UiDateTimeResouce))]
+        [UiDateTimeDisplayAttribute("StartDateTime.LocalTime", "TimeFrom", typeof(Resources.UiDateTimeResouce))]
+        [UiDateTimeDisplayAttribute("EndDateTime.LocalTime", "TimeTo", typeof(Resources.UiDateTimeResouce))]
         [UiDateTimeRequiredValidation("StartDateTime.LocalDate", ErrorMessageResourceName = "IsRequiredValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [UiDateTimeRequiredValidation("StartDateTime.LocalTime", ErrorMessageResourceName = "IsRequiredValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [UiDateTimeGreaterThanDateAttributeOrNullValidation("EndDateTime.LocalDate", "StartDateTime.LocalDate", ErrorMessageResourceName = "DateMustBeGreaterThanEqualTo", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public UiDateTimeRangeModel RangeDateTimeToDateTime { get; set; }
 
 
-        [UiDateTimeDisplayAttribute(DisplayName = "Date", PropertyPath = "LocalDate")]
+        [UiDateTimeDisplayAttribute("LocalDate", "Date", typeof(Resources.UiDateTimeResouce))]
         [UiDateTimeRequiredValidation("LocalDate", ErrorMessageResourceName = "IsRequiredValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public UiDateTimeModel Date { get; set; }
 
-        [UiDateTimeDisplayAttribute(DisplayName = "Time", PropertyPath = "LocalTime")]
+        [UiDateTimeDisplayAttribute("LocalTime", "Time", typeof(Resources.UiDateTimeResouce))]
         [UiDateTimeRequiredValidation("LocalTime", ErrorMessageResourceName = "IsRequiredValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public UiDateTimeModel Time { get; set; }
 
-        [UiDateTimeDisplayAttribute(DisplayName = "Date", PropertyPath = "LocalDate")]
-        [UiDateTimeDisplayAttribute(DisplayName = "Time", PropertyPath = "LocalTime")]
+        [UiDateTimeDisplayAttribute("LocalDate", "Date", typeof(Resources.UiDateTimeResouce))]
+        [UiDateTimeDisplayAttribute("LocalTime", "Time", typeof(Resources.UiDateTimeResouce))]
         [UiDateTimeNotInFutureValidation("LocalDate", ErrorMessageResourceName = "DateNotInFuture", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public UiDateTimeModel DateTime { get; set; }
 
-        [UiDateTimeDisplayAttribute(DisplayName = "Date", PropertyPath = "LocalDate")]
-        [UiDateTimeDisplayAttribute(DisplayName = "Time", PropertyPath = "LocalTime")]
-        [UiDateTimeDisplayAttribute(DisplayName = "No Set Time", PropertyPath = "NoSetTime")]
+        [UiDateTimeDisplayAttribute("LocalDate", "Date", typeof(Resources.UiDateTimeResouce))]
+        [UiDateTimeDisplayAttribute("LocalTime", "Time", typeof(Resources.UiDateTimeResouce))]
+        [UiDateTimeDisplayAttribute("NoSetTime", "NoSetTime", typeof(Resources.UiDateTimeResouce))]
         [UiDateTimeRequiredIfAttributeValueNotEqualsValidation("LocalTime", "NoSetTime", "True", ErrorMessageResourceName = "IsRequiredValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public UiDateTimeModel DateTimeNoSetTime { get; set; }
 

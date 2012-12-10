@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Web;
 using System.Web.Mvc;
 
@@ -24,12 +27,35 @@ namespace CustomModelBindingWithDateTime.Models
 
 
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
-    public class UiDateTimeDisplayAttribute : Attribute
+    public class UiDateTimeDisplayAttribute : DisplayNameAttribute
     {
-        public string DisplayName { get; set; }
+        private readonly ResourceManager _resourceManager;
+        private readonly object _typeId = new object();
+
+        public UiDateTimeDisplayAttribute(string propertyPath, string displayNameKey, Type resourceType)
+            : base(displayNameKey)
+        {
+            PropertyPath = propertyPath;
+            if (resourceType != null)
+            {
+                _resourceManager = new ResourceManager(resourceType);
+            }
+        }
+
+        public override string DisplayName
+        {
+            get
+            {
+                if (_resourceManager == null)
+                {
+                    return base.DisplayName;
+                }
+                return _resourceManager.GetString(base.DisplayName);
+            }
+        }
+
         public string PropertyPath { get; set; }
 
-        private readonly object _typeId = new object();
         public override object TypeId
         {
             get

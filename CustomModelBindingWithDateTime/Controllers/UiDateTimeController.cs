@@ -54,8 +54,7 @@ namespace CustomModelBindingWithDateTime.Controllers
                 var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName;
                 model= new UiDateTimeRangeTestModel 
                                                     {
-                                                        UiDateTimeRange = new UiDateTimeRangeModel(timeZone) { },
-                                                        BasicDateRange = new UiDateTimeRangeModel(timeZone) { }
+                                                        UiDateTimeRange = new UiDateTimeRangeModel(timeZone) { }
                                                     };
             }
             catch (Exception e)

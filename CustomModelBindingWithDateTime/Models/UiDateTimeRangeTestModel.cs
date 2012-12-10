@@ -23,13 +23,6 @@ namespace CustomModelBindingWithDateTime.Models
         [Display(Name = "Email address")]
         public string Email { get; set; }
 
-        //[UiDateTimeDisplayAttribute(DisplayName = "Special Start Date", PropertyPath = "StartDateTime.LocalDate")]
-        //[UiDateTimeDisplayAttribute(DisplayName = "Start Time", PropertyPath = "StartDateTime.LocalTime")]
-        //[UiDateTimeDisplayAttribute(DisplayName = "End Time", PropertyPath = "EndDateTime.LocalTime")]
-        //[UiDateTimeRequiredValidation("StartDateTime.LocalDate", ErrorMessageResourceName = "IsRequiredValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        //[UiDateTimeRequiredValidation("StartDateTime.LocalTime", ErrorMessageResourceName = "IsRequiredValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        //public UiDateTimeRangeModel UiDateTimeRange { get; set; }
-
         [UiDateTimeDisplayAttribute(DisplayName = "From", PropertyPath = "StartDateTime.LocalDate")]
         [UiDateTimeDisplayAttribute(DisplayName = "To", PropertyPath = "EndDateTime.LocalDate")]
         [UiDateTimeNotInPastValidation("StartDateTime.LocalDate", ErrorMessageResourceName = "DateNotInPast", ErrorMessageResourceType = typeof(Resources.ValidationResource))]

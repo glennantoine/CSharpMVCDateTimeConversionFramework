@@ -66,8 +66,12 @@ namespace CustomModelBindingWithDateTime.Models.Binders
             }
             DateTime? timeAttempt = GetA<DateTime>(bindingContext, this.TimeFieldName);
 
-            dateAttempt = dateAttempt ?? DateTime.MinValue;
-            timeAttempt = timeAttempt ?? DateTime.MinValue;
+            if(dateAttempt.HasValue || timeAttempt.HasValue)
+            {
+                dateAttempt = dateAttempt ?? DateTime.MinValue;
+                timeAttempt = timeAttempt ?? DateTime.MinValue;
+            }
+
 
             //Time in parts
             if (this.HourMinuteSecondFieldNameSet && !this.MonthDayYearFieldNameSet) 
@@ -109,20 +113,28 @@ namespace CustomModelBindingWithDateTime.Models.Binders
                                             GetA<int>(bindingContext, this.SecondFieldName).Value);
             }
 
-
-            var dateTime = new DateTime(dateAttempt.Value.Year,
+            DateTime? dateTime;
+            if(dateAttempt.HasValue && timeAttempt.HasValue)
+            {
+               dateTime = new DateTime(dateAttempt.Value.Year,
                                         dateAttempt.Value.Month,
                                         dateAttempt.Value.Day,
                                         timeAttempt.Value.Hour,
                                         timeAttempt.Value.Minute,
-                                        timeAttempt.Value.Second);
+                                        timeAttempt.Value.Second); 
+            }else
+            {
+                dateTime = null;
+            }
+
 
             if (!string.IsNullOrWhiteSpace(timeZoneAttempt))
             {
-                return new UiDateTimeModel(timeZoneAttempt)
+                var model = new UiDateTimeModel(timeZoneAttempt)
                             {
                                 DateTimeLocalValue = dateTime
                             };
+                return model;
             }
 
             return null;

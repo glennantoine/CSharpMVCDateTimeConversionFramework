@@ -69,8 +69,12 @@ namespace CustomModelBindingWithDateTime.Utilities
         {
             var properties = propertyPath.Split('.');
 
+            var memberName = validationContext.ObjectType.GetProperties()
+                                                .Where(p => p.GetCustomAttributes(false)
+                                                .OfType<UiDateTimeDisplayAttribute>().Any(a => a.DisplayName == validationContext.DisplayName)).Select(p => p.Name).FirstOrDefault();
+
             //Get PropertyInfo Object  
-            var basePropertyInfo = validationContext.ObjectType.GetProperty(validationContext.DisplayName);
+            var basePropertyInfo = validationContext.ObjectType.GetProperty(memberName);
 
             //Get Value of the property
             var propValue = basePropertyInfo.GetValue(validationContext.ObjectInstance, null);

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using CustomModelBindingWithDateTime.Models.ValidationAttributes;
-using sCRM.Presentation.Web.Areas.Crm.Models.ValidationAttributes;
 
 namespace CustomModelBindingWithDateTime.Models 
 {

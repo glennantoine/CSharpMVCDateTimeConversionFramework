@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using CustomModelBindingWithDateTime.Utilities;
 
-namespace sCRM.Presentation.Web.Areas.Crm.Models.ValidationAttributes
+namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
     public class UiDateTimeRequiredValidation : ValidationAttribute, IClientValidatable

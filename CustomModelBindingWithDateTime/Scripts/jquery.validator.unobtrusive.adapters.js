@@ -1,7 +1,8 @@
 ﻿/*global jQuery:false*/
 (function () {
     /*
-    * Client-side validation methods for validation attributes defined in sCRM.Presentation.Web.Areas.Crm.Models.ValidationAttributes
+    * Client-side validation methods for validation attributes defined 
+    * in CustomModelBindingWithDateTime.Models.ValidationAttributes
     */
 
     //Date Format

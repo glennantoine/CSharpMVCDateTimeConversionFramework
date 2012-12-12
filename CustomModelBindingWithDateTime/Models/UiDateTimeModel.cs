@@ -59,6 +59,11 @@ namespace CustomModelBindingWithDateTime.Models
             }
         }
 
+        /// <summary>
+        /// DateTimeLocalValue is optionally available to be used in 
+        /// Forms/Throughout the view layer in the event a complete
+        /// DateTime object is required
+        /// </summary>
         [Display(Name = "Date Time")]
         public DateTime? DateTimeLocalValue 
         {
@@ -89,6 +94,10 @@ namespace CustomModelBindingWithDateTime.Models
             }
         }
 
+        /// <summary>
+        /// The following 4 fields are available to be used in 
+        /// Forms/Throughout the view layer
+        /// </summary>
         [Display(Name = "Date")]
         public string LocalDate { get; set; }
 
@@ -101,7 +110,14 @@ namespace CustomModelBindingWithDateTime.Models
         [Display(Name = "No Set Time")]
         public bool NoSetTime { get; set; }
 
-        public string LocalDateTime
+        /// <summary>
+        /// ******DO NOT USE THESE PROPERTIES IN FORMS******
+        /// The following properties are for use in the Views only as 
+        /// they provide DateTime formats in the most commonly used formats
+        /// throughout the application. 
+        /// LocalDateTime: 6/15/2009 1:09 AM 
+        /// </summary>
+        public string LocalDateTime 
         {
             get
             {
@@ -109,6 +125,9 @@ namespace CustomModelBindingWithDateTime.Models
             }
         }
 
+        /// <summary>
+        /// Abbreviated Month Name: Jun, Jul, etc
+        /// </summary>
         public string LocalDateTimeAbreviatedMonthName 
         {
             get
@@ -117,11 +136,18 @@ namespace CustomModelBindingWithDateTime.Models
             }
         }
 
+        /// <summary>
+        /// Numeric Day of the Month
+        /// </summary>
         public string LocalDateTimeDayOfMonth 
         {
             get { return SetDateTimeFormat("%d"); }
         }
 
+        /// <summary>
+        /// Day Month Numeric Day, Year
+        /// Thursday January 15, 2012
+        /// </summary>
         public string LocalDateTimeDayWithFullDate
         {
             get
@@ -130,7 +156,10 @@ namespace CustomModelBindingWithDateTime.Models
             }
         }		
 		
-        //For Model Use Only
+        /// <summary>
+        /// For Model Use Only
+        /// Used to keep all fields in sync
+        /// </summary>
         private string ModelLocalDateValue { get; set; }
         private string ModelLocalTimeValue { get; set; }
 

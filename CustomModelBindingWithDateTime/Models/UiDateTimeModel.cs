@@ -32,7 +32,7 @@ namespace CustomModelBindingWithDateTime.Models
                     return null;
                 }
 
-                if (DateTime.TryParse(LocalDateValue + " " + LocalTimeValue, out dateResult)) 
+                if (DateTime.TryParse(ModelLocalDateValue + " " + ModelLocalTimeValue, out dateResult)) 
                 {
                     dateResult = dateResult.ToUniversalTime(TimeZoneName);
                 }else
@@ -71,7 +71,7 @@ namespace CustomModelBindingWithDateTime.Models
                 } 
                 else if (string.IsNullOrWhiteSpace(LocalDate) ^ string.IsNullOrWhiteSpace(LocalTime))
                 {
-                    if(!DateTime.TryParse(LocalDateValue + " " + LocalTimeValue, out dateResult))
+                    if(!DateTime.TryParse(ModelLocalDateValue + " " + ModelLocalTimeValue, out dateResult))
                     {
                         return null;
                     }
@@ -101,10 +101,49 @@ namespace CustomModelBindingWithDateTime.Models
         [Display(Name = "No Set Time")]
         public bool NoSetTime { get; set; }
 
-        //For Model Use Only
-        private string LocalDateValue { get; set; }
-        private string LocalTimeValue { get; set; }
+        public string LocalDateTime
+        {
+            get
+            {
+                return SetDateTimeFormat("g");
+            }
+        }
 
+        public string LocalDateTimeAbreviatedMonthName 
+        {
+            get
+            {
+                return SetDateTimeFormat("MMM");
+            }
+        }
+
+        public string LocalDateTimeDayOfMonth 
+        {
+            get { return SetDateTimeFormat("%d"); }
+        }
+
+        public string LocalDateTimeDayWithFullDate
+        {
+            get
+            {
+                return SetDateTimeFormat("dddd, MMMM d, yyyy");
+            }
+        }		
+		
+        //For Model Use Only
+        private string ModelLocalDateValue { get; set; }
+        private string ModelLocalTimeValue { get; set; }
+
+        private string SetDateTimeFormat(string format)
+        {
+            if(!string.IsNullOrWhiteSpace(LocalDate) && !string.IsNullOrWhiteSpace(LocalTime))
+            {
+               return DateTime.Parse(LocalDate + " " + LocalTime).ToString(format);
+            }
+            return string.IsNullOrWhiteSpace(LocalDate) ? String.Empty : DateTime.Parse(LocalDate).ToString(format);
+        }		
+		
+		
         private void SetLocalDateTimeFields(DateTime? localDateTime)
         {
                 DateTime temp;
@@ -112,8 +151,8 @@ namespace CustomModelBindingWithDateTime.Models
                 {
                     if (temp.Date == DateTime.MinValue.Date || temp.TimeOfDay == DateTime.MinValue.TimeOfDay) 
                     {
-                        LocalDateValue = temp.ToShortDateString();
-                        LocalTimeValue = temp.ToShortTimeString();
+                        ModelLocalDateValue = temp.ToShortDateString();
+                        ModelLocalTimeValue = temp.ToShortTimeString();
                         LocalDate = temp.Date == DateTime.MinValue.Date ? String.Empty : temp.ToShortDateString();
 
                         //DateTime.MinValue.TimeOfDay cannot be assumed to equal no time set so for now this is commented out
@@ -121,9 +160,9 @@ namespace CustomModelBindingWithDateTime.Models
                         LocalTime = temp.ToShortTimeString();
                     }else
                     {
-                        LocalDateValue = temp.ToShortDateString();
+                        ModelLocalDateValue = temp.ToShortDateString();
                         LocalDate = temp.ToShortDateString();
-                        LocalTimeValue = temp.ToShortTimeString();
+                        ModelLocalTimeValue = temp.ToShortTimeString();
                         LocalTime = temp.ToShortTimeString();                     
                     }
                 }else

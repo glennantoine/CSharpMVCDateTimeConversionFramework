@@ -32,8 +32,10 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
             var displayName = UiDateTimeUtilities.GetPropertyDisplayNameFromValidationContext(_basePropertyPath, validationContext);
             try
             {
-                DateTime temp;
-                DateTime.TryParse(propValue.ToString(), out temp);
+                if (!String.IsNullOrWhiteSpace(propValue.ToString())) 
+                {
+                    var temp = DateTime.Parse(propValue.ToString());
+                }
             }
             catch (FormatException)
             {

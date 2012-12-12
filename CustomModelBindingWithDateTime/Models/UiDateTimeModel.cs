@@ -7,8 +7,8 @@ using CustomModelBindingWithDateTime.Utilities;
 namespace CustomModelBindingWithDateTime.Models 
 {
     [UiDateTimeFormatDateValidation("LocalDate", ErrorMessageResourceName = "DateFormat", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-    //[UiDateTimeFormatTimeValidation("LocalTime", ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-    //[UiDateTimeMaxLimitDateValidation("LocalDate", 50, ErrorMessageResourceName = "DateMustBeLessThanYearsInFuture", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+    [UiDateTimeFormatTimeValidation("LocalTime", ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+    [UiDateTimeMaxLimitDateValidation("LocalDate", 50, ErrorMessageResourceName = "DateMustBeLessThanYearsInFuture", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
     public class UiDateTimeModel
     {
 

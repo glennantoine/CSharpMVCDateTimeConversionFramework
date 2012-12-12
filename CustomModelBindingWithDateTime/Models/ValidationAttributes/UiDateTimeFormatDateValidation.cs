@@ -29,11 +29,11 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)  
         {
             var propValue = UiDateTimeUtilities.ChildObjectFromValidationContext(_basePropertyPath, validationContext);
-
             var displayName = UiDateTimeUtilities.GetPropertyDisplayNameFromValidationContext(_basePropertyPath, validationContext);
             try
             {
-                var temp = DateTime.Parse(propValue.ToString());
+                DateTime temp;
+                DateTime.TryParse(propValue.ToString(), out temp);
             }
             catch (FormatException)
             {

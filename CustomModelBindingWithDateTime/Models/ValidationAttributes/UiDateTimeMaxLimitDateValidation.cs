@@ -36,9 +36,8 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
 
             var futureDate = DateTime.UtcNow.AddYears(_maximumYearsInFuture);
 
-            var propDate = DateTime.Parse(propValue.ToString());
-
-            if(propDate > futureDate)
+            DateTime propDate;
+            if(DateTime.TryParse(propValue.ToString(), out propDate) && propDate > futureDate)
             {
                 var message = FormatErrorMessage(displayName);
                 return new ValidationResult(message);

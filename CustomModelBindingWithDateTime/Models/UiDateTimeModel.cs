@@ -27,20 +27,22 @@ namespace CustomModelBindingWithDateTime.Models
             get
             {
                 DateTime dateResult;
-                if (string.IsNullOrWhiteSpace(LocalDate) && string.IsNullOrWhiteSpace(LocalTime))
+                if (!string.IsNullOrWhiteSpace(LocalDate) && !string.IsNullOrWhiteSpace(LocalTime)) 
+                {
+                    DateTime.TryParse(LocalDate + " " + LocalTime, out dateResult);
+                } 
+                else if (string.IsNullOrWhiteSpace(LocalDate) ^ string.IsNullOrWhiteSpace(LocalTime)) 
+                {
+                    if (!DateTime.TryParse(ModelLocalDateValue + " " + ModelLocalTimeValue, out dateResult)) 
+                    {
+                        return null;
+                    }
+                } 
+                else 
                 {
                     return null;
-                }
-
-                if (DateTime.TryParse(ModelLocalDateValue + " " + ModelLocalTimeValue, out dateResult)) 
-                {
-                    dateResult = dateResult.ToUniversalTime(TimeZoneName);
-                }else
-                {
-                    return null;
-                }
-
-                return dateResult;
+                } 
+                return dateResult.ToUniversalTime(TimeZoneName);
             }
             set
             {
@@ -76,6 +78,8 @@ namespace CustomModelBindingWithDateTime.Models
                 } 
                 else if (string.IsNullOrWhiteSpace(LocalDate) ^ string.IsNullOrWhiteSpace(LocalTime))
                 {
+                    ModelLocalDateValue = string.IsNullOrWhiteSpace(LocalDate) ? DateTime.MinValue.ToShortDateString() : LocalDate;
+                    ModelLocalTimeValue = string.IsNullOrWhiteSpace(LocalTime) ? DateTime.MinValue.ToShortTimeString() : LocalTime;
                     if(!DateTime.TryParse(ModelLocalDateValue + " " + ModelLocalTimeValue, out dateResult))
                     {
                         return null;

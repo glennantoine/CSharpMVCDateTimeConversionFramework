@@ -41,8 +41,8 @@ namespace CustomModelBindingWithDateTime.Tests.Models
                                                                           LocalDate = "02/28/2013",
                                                                           LocalTime = "11:00:00 PM"
                                                                       };
-            Assert.AreEqual(DateTime.Parse("02/28/2013 11:00:00 PM"), testUiDateTimeModel.DateTimeLocalValue);
-            Assert.AreEqual(DateTime.Parse("02/28/2013 11:00:00 PM").ToUniversalTime(timeZoneId), testUiDateTimeModel.DateTimeUtcValue);
+            Assert.AreEqual(DateTime.Parse("2/28/2013 11:00:00 PM"), testUiDateTimeModel.DateTimeLocalValue);
+            Assert.AreEqual(DateTime.Parse("2/28/2013 11:00:00 PM").ToUniversalTime(timeZoneId), testUiDateTimeModel.DateTimeUtcValue);
         }
 
         /// <summary>

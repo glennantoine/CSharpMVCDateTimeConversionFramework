@@ -35,13 +35,14 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
             var displayName = UiDateTimeUtilities.GetPropertyDisplayNameFromValidationContext(_basePropertyPath, validationContext);
 
             var futureDate = DateTime.UtcNow.AddYears(_maximumYearsInFuture);
-
-            var propDate = DateTime.Parse(propValue.ToString());
-
-            if(propDate > futureDate)
+            if(!String.IsNullOrWhiteSpace(propValue.ToString()))
             {
-                var message = FormatErrorMessage(displayName);
-                return new ValidationResult(message);
+                var propDate = DateTime.Parse(propValue.ToString());
+                if(propDate > futureDate)
+                {
+                    var message = FormatErrorMessage(displayName);
+                    return new ValidationResult(message);
+                }
             }
 
             //Default return - This means there were no validation error  

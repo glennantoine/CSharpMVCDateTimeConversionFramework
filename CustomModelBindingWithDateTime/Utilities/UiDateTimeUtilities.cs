@@ -69,17 +69,24 @@ namespace CustomModelBindingWithDateTime.Utilities
         public static Object ChildObjectFromValidationContext(string propertyPath, ValidationContext validationContext)
         {
             var properties = propertyPath.Split('.');
-			
-			//Original implementation not working with UiDateTimeModel base validators
-            var memberName = validationContext.ObjectType.GetProperties()
-                                                .Where(p => p.GetCustomAttributes(false)
-                                                .OfType<UiDateTimeDisplayAttribute>().Any(a => a.DisplayName == validationContext.DisplayName)).Select(p => p.Name);
-            Debug.Assert(memberName.Count() == 1, "UiDateTimeUtilities.ChildObjectFromValidationContext: UiDateTimeModel properties must have unique names.");
-			
-            //Get PropertyInfo Object  
-			//Original implementation not working with UiDateTimeModel base validators
-            //var basePropertyInfo = validationContext.ObjectType.GetProperty(validationContext.DisplayName);
-			var basePropertyInfo = validationContext.ObjectType.GetProperty(memberName.FirstOrDefault());
+
+            //Original implementation not working with UiDateTimeModel base validators
+            //the additional check for null is a temporary work around
+            //Get PropertyInfo Object
+            var basePropertyInfo = validationContext.ObjectType.GetProperty(validationContext.DisplayName);
+
+            //Check for null - base validators on UiDateTimeModel will result in null
+            if(basePropertyInfo == null)
+            {
+                //Original implementation not working with UiDateTimeModel base validators
+                var memberName = validationContext.ObjectType.GetProperties()
+                                                    .Where(p => p.GetCustomAttributes(false)
+                                                    .OfType<UiDateTimeDisplayAttribute>().Any(a => a.DisplayName == validationContext.DisplayName)).Select(p => p.Name);
+                Debug.Assert(memberName.Count() == 1, "UiDateTimeUtilities.ChildObjectFromValidationContext: UiDateTimeModel properties must have unique names.");
+
+                //Get PropertyInfo Object  
+                basePropertyInfo = validationContext.ObjectType.GetProperty(memberName.FirstOrDefault());                
+            }
 
             //Get Value of the property
             var propValue = basePropertyInfo.GetValue(validationContext.ObjectInstance, null);
@@ -90,17 +97,23 @@ namespace CustomModelBindingWithDateTime.Utilities
         public static string GetPropertyDisplayNameFromValidationContext(string propertyPath, ValidationContext validationContext)
         {
             var properties = propertyPath.Split('.');
-			
-			//Original implementation not working with UiDateTimeModel base validators
-            var memberName = validationContext.ObjectType.GetProperties()
-                                                .Where(p => p.GetCustomAttributes(false)
-                                                .OfType<UiDateTimeDisplayAttribute>().Any(a => a.DisplayName == validationContext.DisplayName)).Select(p => p.Name);
-            Debug.Assert(memberName.Count() == 1, "UiDateTimeUtilities.GetPropertyDisplayNameFromValidationContext: UiDateTimeModel properties must have unique names.");
-			
-			
-			//Original implementation not working with UiDateTimeModel base validators
-            //var metadata = ModelMetadataProviders.Current.GetMetadataForProperty(null, validationContext.ObjectType, validationContext.DisplayName);
-			var metadata = ModelMetadataProviders.Current.GetMetadataForProperty(null, validationContext.ObjectType, memberName.FirstOrDefault());
+
+            //Original implementation not working with UiDateTimeModel base validators
+            //the additional check for null is a temporary work around
+            var metadata = ModelMetadataProviders.Current.GetMetadataForProperty(null, validationContext.ObjectType, validationContext.DisplayName);
+
+            //Check for null - base validators on UiDateTimeModel will result in null
+            if(metadata == null)
+            {
+                //Original implementation not working with UiDateTimeModel base validators
+                var memberName = validationContext.ObjectType.GetProperties()
+                                                    .Where(p => p.GetCustomAttributes(false)
+                                                    .OfType<UiDateTimeDisplayAttribute>().Any(a => a.DisplayName == validationContext.DisplayName)).Select(p => p.Name);
+                Debug.Assert(memberName.Count() == 1, "UiDateTimeUtilities.GetPropertyDisplayNameFromValidationContext: UiDateTimeModel properties must have unique names.");
+
+                metadata = ModelMetadataProviders.Current.GetMetadataForProperty(null, validationContext.ObjectType, memberName.FirstOrDefault());                
+            }
+
 
             //Attempt to query the UIDateTimeDisplayAttribute
             if (metadata != null && metadata.AdditionalValues.Any(q => q.Key == UiDateTimeDisplayAttributeProvider.UiDateTimeDisplayAttributeKey && ((IList<UiDateTimeDisplayAttribute>)q.Value).Any(s => s.PropertyPath == propertyPath)))

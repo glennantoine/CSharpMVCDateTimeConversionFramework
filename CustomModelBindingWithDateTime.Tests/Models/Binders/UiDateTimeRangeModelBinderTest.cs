@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CustomModelBindingWithDateTime.Models;
 using CustomModelBindingWithDateTime.Models.Binders;
 using CustomModelBindingWithDateTime.Utilities;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CustomModelBindingWithDateTime.Tests.Models.Binders 
 {

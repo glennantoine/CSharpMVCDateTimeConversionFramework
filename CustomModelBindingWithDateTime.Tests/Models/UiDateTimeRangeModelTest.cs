@@ -1,7 +1,8 @@
 ﻿using System;
 using CustomModelBindingWithDateTime.Models;
-using CustomModelBindingWithDateTime.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using CustomModelBindingWithDateTime.Utilities;
+
 
 namespace CustomModelBindingWithDateTime.Tests.Models {
     [TestClass]

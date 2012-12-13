@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
-using CustomModelBindingWithDateTime.Utilities;
 using CustomModelBindingWithDateTime.Resources;
+using CustomModelBindingWithDateTime.Utilities;
 
 namespace CustomModelBindingWithDateTime.Models.Binders 
 {

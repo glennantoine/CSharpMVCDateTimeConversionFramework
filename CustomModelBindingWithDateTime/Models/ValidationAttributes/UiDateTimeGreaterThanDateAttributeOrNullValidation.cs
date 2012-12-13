@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using CustomModelBindingWithDateTime.Utilities;
+using sCRM.Presentation.Web.Models.Utilities;
 
-
-namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
+namespace sCRM.Presentation.Web.Models.ValidationAttributes
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
-    public class UiDateTimeGreaterThanTimeAttributeOrNullValidation : ValidationAttribute, IClientValidatable
+    public class UiDateTimeGreaterThanDateAttributeOrNullValidation : ValidationAttribute, IClientValidatable
     {
         private const string DefaultErrorMessage = "'{0}' must be greater than '{1}'";
         private readonly object _typeId = new object();
@@ -17,7 +16,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         private readonly bool _allowEqual;
         private string _comparisonPropertyDisplayName;
 
-        public UiDateTimeGreaterThanTimeAttributeOrNullValidation(string basePropertyPath, string comparisonPropertyPath, bool allowEqual = true)
+        public UiDateTimeGreaterThanDateAttributeOrNullValidation(string basePropertyPath, string comparisonPropertyPath, bool allowEqual = true)
             : base(DefaultErrorMessage)
         {
             _basePropertyPath = basePropertyPath;
@@ -74,7 +73,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
             var rule = new ModelClientValidationRule
                            {
                                ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath,metadata)),
-                               ValidationType = "uidatetimegreaterthantimeattributeornull" + _basePropertyPath.ToLower().Replace(".", "")
+                               ValidationType = "uidatetimegreaterthandateattributeornull" + _basePropertyPath.ToLower().Replace(".", "")
                            };
             rule.ValidationParameters.Add("other", _comparisonPropertyPath);
             rule.ValidationParameters.Add("allowequal", _allowEqual);

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CustomModelBindingWithDateTime.Utilities
+namespace CustomModelBindingWithDateTime.Tests.Utilities
 {
     public static class ExtendedAssert
     {

@@ -6,7 +6,7 @@ using CustomModelBindingWithDateTime.Utilities;
 
 namespace CustomModelBindingWithDateTime.Models 
 {
-    [UiDateTimeFormatDateValidation("LocalDate", ErrorMessageResourceName = "DateFormat", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+    [UiDateTimeFormatDateValidation("LocalDate", ErrorMessageResourceName = "DateFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
     [UiDateTimeFormatTimeValidation("LocalTime", ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
     [UiDateTimeMaxLimitDateValidation("LocalDate", 50, ErrorMessageResourceName = "DateMustBeLessThanYearsInFuture", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
     public class UiDateTimeModel
@@ -108,6 +108,10 @@ namespace CustomModelBindingWithDateTime.Models
         [Display(Name = "Time")]
         public string LocalTime { get; set; }
 
+        /// <summary>
+        /// This property MUST be used in forms in order
+        /// to convert from local to utc on post
+        /// </summary>
         [Display(Name = "TimeZone")]
         public string TimeZoneName { get; set; }
 

@@ -323,6 +323,8 @@
     <Content Include="Views\Shared\EditorTemplates\DateTimeNoSetTime.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TimeNoSetTime.cshtml.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\RangeDateTimeNoSetTime.cshtml.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\UiDateTimeResouce.resx">

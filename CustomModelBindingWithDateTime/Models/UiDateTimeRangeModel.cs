@@ -1,11 +1,10 @@
-﻿
-
+﻿using System;
 using CustomModelBindingWithDateTime.Models.ValidationAttributes;
 
 namespace CustomModelBindingWithDateTime.Models 
 {
-    [UiDateTimeFormatDateValidation("StartDateTime.LocalDate", ErrorMessageResourceName = "DateFormat", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-    [UiDateTimeFormatDateValidation("EndDateTime.LocalDate", ErrorMessageResourceName = "DateFormat", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+    [UiDateTimeFormatDateValidation("StartDateTime.LocalDate", ErrorMessageResourceName = "DateFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+    [UiDateTimeFormatDateValidation("EndDateTime.LocalDate", ErrorMessageResourceName = "DateFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
     [UiDateTimeFormatTimeValidation("StartDateTime.LocalTime", ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
     [UiDateTimeFormatTimeValidation("EndDateTime.LocalTime", ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
     [UiDateTimeMaxLimitDateValidation("StartDateTime.LocalDate", 50, ErrorMessageResourceName = "DateMustBeLessThanYearsInFuture", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
@@ -38,6 +37,20 @@ namespace CustomModelBindingWithDateTime.Models
         {
             StartDateTime = new UiDateTimeModel(timeZoneName);
             EndDateTime = new UiDateTimeModel(timeZoneName);
+            TimeZoneName = timeZoneName;
+        }
+
+        public UiDateTimeRangeModel(string timeZoneName, DateTime? startDateUtc, DateTime? endDateUtc)
+        {
+            StartDateTime = new UiDateTimeModel(timeZoneName) { DateTimeUtcValue = startDateUtc };
+            EndDateTime = new UiDateTimeModel(timeZoneName) { DateTimeUtcValue = endDateUtc};
+            TimeZoneName = timeZoneName;
+        }
+
+        public UiDateTimeRangeModel(string timeZoneName, DateTime? startDateUtc, DateTime? endDateUtc, bool isAllDay = false)
+        {
+            StartDateTime = new UiDateTimeModel(timeZoneName) { DateTimeUtcValue = startDateUtc };
+            EndDateTime = new UiDateTimeModel(timeZoneName) { DateTimeUtcValue = endDateUtc, NoSetTime = isAllDay };
             TimeZoneName = timeZoneName;
         }
 

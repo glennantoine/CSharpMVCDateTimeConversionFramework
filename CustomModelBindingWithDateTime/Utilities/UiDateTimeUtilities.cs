@@ -98,9 +98,18 @@ namespace CustomModelBindingWithDateTime.Utilities
         {
             var properties = propertyPath.Split('.');
 
-            //Original implementation not working with UiDateTimeModel base validators
-            //the additional check for null is a temporary work around
-            var metadata = ModelMetadataProviders.Current.GetMetadataForProperty(null, validationContext.ObjectType, validationContext.DisplayName);
+            //cannot access display name here
+            ModelMetadata metadata = null;
+            try
+            {
+                //Original implementation not working with UiDateTimeModel base validators
+                //the additional check for null is a temporary work around
+                metadata = ModelMetadataProviders.Current.GetMetadataForProperty(null, validationContext.ObjectType, validationContext.DisplayName);
+            }
+            catch(Exception ex)
+            {
+                metadata = null;
+            }
 
             //Check for null - base validators on UiDateTimeModel will result in null
             if(metadata == null)

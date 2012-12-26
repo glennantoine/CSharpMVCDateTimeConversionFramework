@@ -1,4 +1,5 @@
-﻿@model CustomModelBindingWithDateTime.Models.UiDateTimeModel
+﻿@using CustomModelBindingWithDateTime.Helpers;
+@model CustomModelBindingWithDateTime.Models.UiDateTimeModel
 <div class="formitem">
     @Html.MyLabelFor(m => m.LocalTime, new { @class = "top" })
     @Html.UiDateBoxFor(m => m.LocalTime, new { @class = "timepicker" })

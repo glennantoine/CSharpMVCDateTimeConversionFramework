@@ -9,7 +9,7 @@ using CustomModelBindingWithDateTime.Utilities;
 
 namespace CustomModelBindingWithDateTime.Helpers 
 {
-    public static class UiDateHelper
+    public static class UiDateHelper 
     {
         public static MvcHtmlString UiDateBox(this HtmlHelper htmlHelper, string name, string value) 
         {
@@ -20,23 +20,27 @@ namespace CustomModelBindingWithDateTime.Helpers
             return MvcHtmlString.Create(builder.ToString(TagRenderMode.SelfClosing));
         }
 
-        public static MvcHtmlString UiDateBoxFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
+        public static MvcHtmlString UiDateBoxFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression) 
         {
-            return UiDateBoxFor(htmlHelper, expression, new {});
+            return UiDateBoxFor(htmlHelper, expression, new { });
         }
 
-        public static MvcHtmlString UiDateBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, object htmlAttributes)
+        public static MvcHtmlString UiDateBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, object htmlAttributes) 
+        {
+            return UiDateBoxFor(htmlHelper, expression, new RouteValueDictionary(htmlAttributes));
+        }
+
+        public static MvcHtmlString UiDateBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, RouteValueDictionary htmlAttributes) 
         {
             var propertyPath = ExpressionHelper.GetExpressionText(expression);
             var attributeKeyPropertyPath = propertyPath.ToLower().Replace(".", "");
             var meta = htmlHelper.ViewData.ModelMetadata;
 
-            var attributes = UiDateTimeUtilities.AddViewDataHtmlAttributes(htmlHelper, propertyPath, new RouteValueDictionary(htmlAttributes));
+            var attributes = UiDateTimeUtilities.AddViewDataHtmlAttributes(htmlHelper, propertyPath, htmlAttributes);
 
             var validationAttributes = UiDateTimeUtilities.ChildValidationAttributes(htmlHelper, meta.PropertyName, propertyPath, meta);
 
-            foreach (var attr in validationAttributes)
-            {
+            foreach (var attr in validationAttributes) {
                 attributes.Add(attr.Key.Replace(attributeKeyPropertyPath, ""), attr.Value);
             }
 

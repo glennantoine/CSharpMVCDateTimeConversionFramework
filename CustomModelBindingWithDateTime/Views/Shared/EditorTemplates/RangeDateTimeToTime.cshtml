@@ -1,4 +1,5 @@
-﻿@model CustomModelBindingWithDateTime.Models.UiDateTimeRangeModel
+﻿@using CustomModelBindingWithDateTime.Helpers;
+@model CustomModelBindingWithDateTime.Models.UiDateTimeRangeModel
 <div class="formitem">
     @Html.HiddenFor(m => m.TimeZoneName)
     @Html.MyLabelFor(m => m.StartDateTime.LocalDate, new { @class = "top" })

@@ -1,5 +1,4 @@
-﻿
-
+﻿using System;
 using CustomModelBindingWithDateTime.Models.ValidationAttributes;
 
 namespace CustomModelBindingWithDateTime.Models 
@@ -29,20 +28,33 @@ namespace CustomModelBindingWithDateTime.Models
                 }
             }
         }
-        
+
         /// <summary>
-        /// Constructor for UiDateTimeModel that takes in the local time zone name to base the DateTime off of.
+        /// Constructor(s) for UiDateTimeModel that takes in the local time zone name to base the DateTime off of.
         /// </summary>
         /// <param name="timeZoneName">TimeZoneInfo name of the local time being represented.</param>
-        public UiDateTimeRangeModel(string timeZoneName)
+        public UiDateTimeRangeModel(string timeZoneName) 
         {
             StartDateTime = new UiDateTimeModel(timeZoneName);
             EndDateTime = new UiDateTimeModel(timeZoneName);
             TimeZoneName = timeZoneName;
         }
 
+        public UiDateTimeRangeModel(string timeZoneName, DateTime? startDateUtc, DateTime? endDateUtc) 
+        {
+            StartDateTime = new UiDateTimeModel(timeZoneName) { DateTimeUtcValue = startDateUtc };
+            EndDateTime = new UiDateTimeModel(timeZoneName) { DateTimeUtcValue = endDateUtc };
+            TimeZoneName = timeZoneName;
+        }
+
+        public UiDateTimeRangeModel(string timeZoneName, DateTime? startDateUtc, DateTime? endDateUtc, bool isAllDay = false) 
+        {
+            StartDateTime = new UiDateTimeModel(timeZoneName) { DateTimeUtcValue = startDateUtc };
+            EndDateTime = new UiDateTimeModel(timeZoneName) { DateTimeUtcValue = endDateUtc, NoSetTime = isAllDay };
+            TimeZoneName = timeZoneName;
+        }
+
         public UiDateTimeModel StartDateTime { get; set; }
         public UiDateTimeModel EndDateTime { get; set; }
-
     }
 }

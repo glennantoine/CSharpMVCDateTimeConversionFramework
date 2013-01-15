@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
 using CustomModelBindingWithDateTime.Utilities;
 
-namespace CustomModelBindingWithDateTime.Helpers 
+namespace CustomModelBindingWithDateTime.Helpers
 {
     public static class UiTimeHelper
     {
-        public static MvcHtmlString UiTimeBox(this HtmlHelper htmlHelper, string name, string value) 
+        public static MvcHtmlString UiTimeBox(this HtmlHelper htmlHelper, string name, string value)
         {
             var builder = new TagBuilder("input");
             builder.Attributes["type"] = "text";
@@ -24,7 +22,7 @@ namespace CustomModelBindingWithDateTime.Helpers
             return UiTimeBoxFor(htmlHelper, expression, new {});
         }
 
-        public static MvcHtmlString UiTimeBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, object htmlAttributes) 
+        public static MvcHtmlString UiTimeBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, object htmlAttributes)
         {
             var propertyPath = ExpressionHelper.GetExpressionText(expression);
             var attributeKeyPropertyPath = propertyPath.ToLower().Replace(".", "");

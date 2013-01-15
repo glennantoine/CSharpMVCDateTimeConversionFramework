@@ -135,6 +135,7 @@
     <Compile Include="Helpers\UiTimeHelper.cs" />
     <Compile Include="Models\UiDateTimeEditorTemplatesTestModel.cs" />
     <Compile Include="Models\UiDateTimeDisplayAttributeProvider.cs" />
+    <Compile Include="Models\ValidationAttributes\AtLeastNRequiredValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeMaxLimitDateValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeFormatTimeValidation.cs" />
     <Compile Include="Models\ValidationAttributes\UiDateTimeFormatDateValidation.cs" />
@@ -325,6 +326,8 @@
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TimeNoSetTime.cshtml.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\RangeDateTimeNoSetTime.cshtml.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\RangeDateTimeNoSetTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date_TopUnit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\UiDateTimeResouce.resx">

@@ -14,26 +14,26 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         private readonly string _basePropertyPath;
 
         public UiDateTimeFormatTimeValidation(string basePropertyPath)
-            : base(DefaultErrorMessage)  
+            : base(DefaultErrorMessage)
         {
             _basePropertyPath = basePropertyPath;
-        }  
-   
+        }
+
         //Override default FormatErrorMessage Method  
-        public override string FormatErrorMessage(string name)  
+        public override string FormatErrorMessage(string name)
         {
-            return string.Format(ErrorMessageString, name);  
-        }  
-   
+            return string.Format(ErrorMessageString, name);
+        }
+
         //Override IsValid  
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)  
-        {  
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
             var propValue = UiDateTimeUtilities.ChildObjectFromValidationContext(_basePropertyPath, validationContext);
 
             var displayName = UiDateTimeUtilities.GetPropertyDisplayNameFromValidationContext(_basePropertyPath, validationContext);
             try
             {
-                if (!String.IsNullOrWhiteSpace(propValue.ToString())) 
+                if (propValue != null && !String.IsNullOrWhiteSpace(propValue.ToString()))
                 {
                     var temp = DateTime.Parse(propValue.ToString());
                 }
@@ -51,19 +51,16 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
         {
             var rule = new ModelClientValidationRule
-            {
-                ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath, metadata)),
-                ValidationType = "uidatetimeformattime" + _basePropertyPath.ToLower().Replace(".", "")
-            };
+                           {
+                               ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath, metadata)),
+                               ValidationType = "uidatetimeformattime" + _basePropertyPath.ToLower().Replace(".", "")
+                           };
             yield return rule;
         }
-        
+
         public override object TypeId
         {
-            get
-            {
-                return _typeId;
-            }
+            get { return _typeId; }
         }
     }
 }

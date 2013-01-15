@@ -1,5 +1,6 @@
 ﻿@using CustomModelBindingWithDateTime.Helpers;
 @model CustomModelBindingWithDateTime.Models.UiDateTimeRangeModel
+@*Special case partial view, does not implement end date/time*@
 <div class="formitem">
     @Html.HiddenFor(m => m.TimeZoneName)
     @Html.MyLabelFor(m => m.StartDateTime.LocalDate, new { @class = "top" })
@@ -7,9 +8,10 @@
 </div>
 <div class="formitem">
     @Html.MyLabelFor(m => m.StartDateTime.LocalTime, new { @class = "top" })
-    @Html.UiTimeBoxFor(m => m.StartDateTime.LocalTime, new { @class = "timepicker" })
+    @Html.UiDateBoxFor(m => m.StartDateTime.LocalTime, new { @class = "timepicker" })
+    @Html.HiddenFor(m => m.EndDateTime.LocalTime)
 </div>
-<div class="formitem">
-    @Html.MyLabelFor(m => m.EndDateTime.LocalTime, new { @class = "top" })
-    @Html.UiTimeBoxFor(m => m.EndDateTime.LocalTime, new { @class = "timepicker" })
+<div class="formitem nolabel">
+    @Html.CheckBoxFor(m => m.StartDateTime.NoSetTime)
+    @Html.MyLabelFor(m => m.StartDateTime.NoSetTime, new {})
 </div>

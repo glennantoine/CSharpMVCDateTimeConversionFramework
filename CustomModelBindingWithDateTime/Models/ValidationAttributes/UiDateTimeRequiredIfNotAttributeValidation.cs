@@ -16,20 +16,20 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         private string _comparisonPropertyDisplayName;
 
         public UiDateTimeRequiredIfNotAttributeValidation(string basePropertyPath, string comparisonPropertyPath)
-            : base(DefaultErrorMessage)  
+            : base(DefaultErrorMessage)
         {
             _basePropertyPath = basePropertyPath;
             _comparisonPropertyPath = comparisonPropertyPath;
-        }  
-   
+        }
+
         //Override default FormatErrorMessage Method  
-        public override string FormatErrorMessage(string name)  
+        public override string FormatErrorMessage(string name)
         {
-            return string.Format(ErrorMessageString, name, _comparisonPropertyDisplayName);  
-        }  
-   
+            return string.Format(ErrorMessageString, name, _comparisonPropertyDisplayName);
+        }
+
         //Override IsValid  
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)  
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
 
             var propValue = UiDateTimeUtilities.ChildObjectFromValidationContext(_basePropertyPath, validationContext);
@@ -52,10 +52,10 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
         {
             var rule = new ModelClientValidationRule
-            {
-                ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath, metadata)),
-                ValidationType = "uidatetimerequiredifnotattribute" + _basePropertyPath.ToLower().Replace(".", "")
-            };
+                           {
+                               ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath, metadata)),
+                               ValidationType = "uidatetimerequiredifnotattribute" + _basePropertyPath.ToLower().Replace(".", "")
+                           };
             rule.ValidationParameters.Add("other", _comparisonPropertyPath);
             rule.ValidationParameters.Add("basepropertyname", metadata.PropertyName);
 
@@ -64,10 +64,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
 
         public override object TypeId
         {
-            get
-            {
-                return _typeId;
-            }
+            get { return _typeId; }
         }
     }
 }

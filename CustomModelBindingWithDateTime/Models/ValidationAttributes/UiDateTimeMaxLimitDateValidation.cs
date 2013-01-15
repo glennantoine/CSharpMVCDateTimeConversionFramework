@@ -16,29 +16,29 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         private readonly int _maximumYearsInFuture;
 
         public UiDateTimeMaxLimitDateValidation(string basePropertyPath, int maximumYearsInFuture)
-            : base(DefaultErrorMessage)  
+            : base(DefaultErrorMessage)
         {
             _basePropertyPath = basePropertyPath;
             _maximumYearsInFuture = maximumYearsInFuture;
-        }  
-   
+        }
+
         //Override default FormatErrorMessage Method  
-        public override string FormatErrorMessage(string name)  
+        public override string FormatErrorMessage(string name)
         {
-            return string.Format(ErrorMessageString, name, _maximumYearsInFuture.ToString(CultureInfo.InvariantCulture));  
-        }  
-   
+            return string.Format(ErrorMessageString, name, _maximumYearsInFuture.ToString(CultureInfo.InvariantCulture));
+        }
+
         //Override IsValid  
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)  
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var propValue = UiDateTimeUtilities.ChildObjectFromValidationContext(_basePropertyPath, validationContext);
             var displayName = UiDateTimeUtilities.GetPropertyDisplayNameFromValidationContext(_basePropertyPath, validationContext);
 
             var futureDate = DateTime.UtcNow.AddYears(_maximumYearsInFuture);
-            if(!String.IsNullOrWhiteSpace(propValue.ToString()))
+            if (propValue != null && !String.IsNullOrWhiteSpace(propValue.ToString()))
             {
                 var propDate = DateTime.Parse(propValue.ToString());
-                if(propDate > futureDate)
+                if (propDate > futureDate)
                 {
                     var message = FormatErrorMessage(displayName);
                     return new ValidationResult(message);
@@ -52,20 +52,17 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
         {
             var rule = new ModelClientValidationRule
-            {
-                ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath, metadata)),
-                ValidationType = "uidatetimemaxlimitdate" + _basePropertyPath.ToLower().Replace(".", "")
-            };
+                           {
+                               ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath, metadata)),
+                               ValidationType = "uidatetimemaxlimitdate" + _basePropertyPath.ToLower().Replace(".", "")
+                           };
             rule.ValidationParameters.Add("maxyears", _maximumYearsInFuture);
             yield return rule;
         }
 
         public override object TypeId
         {
-            get
-            {
-                return _typeId;
-            }
+            get { return _typeId; }
         }
     }
 }

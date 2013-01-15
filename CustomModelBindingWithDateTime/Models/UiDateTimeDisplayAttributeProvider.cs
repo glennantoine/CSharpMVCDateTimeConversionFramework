@@ -4,20 +4,19 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
-using System.Web;
 using System.Web.Mvc;
 
-namespace CustomModelBindingWithDateTime.Models 
+namespace CustomModelBindingWithDateTime.Models
 {
-    public class UiDateTimeDisplayAttributeProvider : DataAnnotationsModelMetadataProvider 
+    public class UiDateTimeDisplayAttributeProvider : DataAnnotationsModelMetadataProvider
     {
         public const string UiDateTimeDisplayAttributeKey = "UiDateTimeDisplayAttribute";
 
-        protected override ModelMetadata CreateMetadata(IEnumerable<Attribute> attributes, Type containerType, Func<object> modelAccessor, Type modelType, string propertyName) 
+        protected override ModelMetadata CreateMetadata(IEnumerable<Attribute> attributes, Type containerType, Func<object> modelAccessor, Type modelType, string propertyName)
         {
             var metadata = base.CreateMetadata(attributes, containerType, modelAccessor, modelType, propertyName);
             var additionalValues = attributes.OfType<UiDateTimeDisplayAttribute>().ToList();
-            if (additionalValues.Any()) 
+            if (additionalValues.Any())
             {
                 metadata.AdditionalValues.Add(UiDateTimeDisplayAttributeKey, additionalValues);
             }
@@ -27,24 +26,26 @@ namespace CustomModelBindingWithDateTime.Models
 
 
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
-    public class UiDateTimeDisplayAttribute : DisplayNameAttribute 
+    public class UiDateTimeDisplayAttribute : DisplayNameAttribute
     {
         private readonly ResourceManager _resourceManager;
         private readonly object _typeId = new object();
 
         public UiDateTimeDisplayAttribute(string propertyPath, string displayNameKey, Type resourceType)
-            : base(displayNameKey) {
+            : base(displayNameKey)
+        {
             PropertyPath = propertyPath;
-            if (resourceType != null) 
+            if (resourceType != null)
             {
                 _resourceManager = new ResourceManager(resourceType);
             }
         }
 
-        public override string DisplayName 
+        public override string DisplayName
         {
-            get {
-                if (_resourceManager == null) 
+            get
+            {
+                if (_resourceManager == null)
                 {
                     return base.DisplayName;
                 }
@@ -54,13 +55,9 @@ namespace CustomModelBindingWithDateTime.Models
 
         public string PropertyPath { get; set; }
 
-        public override object TypeId 
+        public override object TypeId
         {
-            get 
-            {
-                return _typeId;
-            }
+            get { return _typeId; }
         }
     }
-
 }

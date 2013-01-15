@@ -14,25 +14,25 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         private readonly string _basePropertyPath;
 
         public UiDateTimeRequiredValidation(string basePropertyPath)
-            : base(DefaultErrorMessage)  
+            : base(DefaultErrorMessage)
         {
             _basePropertyPath = basePropertyPath;
-        }  
-   
+        }
+
         //Override default FormatErrorMessage Method  
-        public override string FormatErrorMessage(string name)  
+        public override string FormatErrorMessage(string name)
         {
-            return string.Format(ErrorMessageString, name);  
-        }  
-   
+            return string.Format(ErrorMessageString, name);
+        }
+
         //Override IsValid  
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)  
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var propValue = UiDateTimeUtilities.ChildObjectFromValidationContext(_basePropertyPath,
-                                                                                    validationContext);
+                                                                                 validationContext);
 
             var displayName = UiDateTimeUtilities.GetPropertyDisplayNameFromValidationContext(_basePropertyPath,
-                                                                                                validationContext);
+                                                                                              validationContext);
             if (propValue == null || propValue.ToString().Length == 0)
             {
                 var message = FormatErrorMessage(displayName);
@@ -46,19 +46,16 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
         {
             var rule = new ModelClientValidationRule
-            {
-                ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath, metadata)),
-                ValidationType = "uidatetimerequired" + _basePropertyPath.ToLower().Replace(".", "")
-            };
+                           {
+                               ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath, metadata)),
+                               ValidationType = "uidatetimerequired" + _basePropertyPath.ToLower().Replace(".", "")
+                           };
             yield return rule;
         }
 
         public override object TypeId
         {
-            get
-            {
-                return _typeId;
-            }
+            get { return _typeId; }
         }
     }
 }

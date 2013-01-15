@@ -5,56 +5,64 @@ using System.Globalization;
 using CustomModelBindingWithDateTime.Models.ValidationAttributes;
 using CustomModelBindingWithDateTime.Utilities;
 
-namespace CustomModelBindingWithDateTime.Models 
+namespace CustomModelBindingWithDateTime.Models
 {
-    [UiDateTimeFormatDateValidation("LocalDate", ErrorMessageResourceName = "DateFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+    [UiDateTimeFormatDateValidation("LocalDate", ErrorMessageResourceName = "DateFormatValid", ErrorMessageResourceType = typeof (Resources.ValidationResource))]
     [UiDateTimeFormatTimeValidation("LocalTime", ErrorMessageResourceName = "TimeFormatValid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
     [UiDateTimeMaxLimitDateValidation("LocalDate", 50, ErrorMessageResourceName = "DateMustBeLessThanYearsInFuture", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-    public class UiDateTimeModel : IComparable 
+    public class UiDateTimeModel : IComparable
     {
 
         /// <summary>
         /// Constructor for UiDateTimeModel that takes in the local time zone name to base the DateTime off of.
         /// </summary>
         /// <param name="timeZoneName">TimeZoneInfo name of the local time being represented.</param>
-        public UiDateTimeModel(string timeZoneName) 
+        public UiDateTimeModel(string timeZoneName)
         {
             TimeZoneName = timeZoneName;
         }
 
         [Display(Name = "UTC Date Time")]
-        public DateTime? DateTimeUtcValue 
+        public DateTime? DateTimeUtcValue
         {
-            get {
+            get
+            {
                 DateTime dateResult;
-                if (!string.IsNullOrWhiteSpace(LocalDate) && !string.IsNullOrWhiteSpace(LocalTime)) 
+                if (!string.IsNullOrWhiteSpace(LocalDate) && !string.IsNullOrWhiteSpace(LocalTime))
                 {
                     DateTime.TryParse(LocalDate + " " + LocalTime, out dateResult);
-                } else if (string.IsNullOrWhiteSpace(LocalDate) ^ string.IsNullOrWhiteSpace(LocalTime)) 
+                }
+                else if (string.IsNullOrWhiteSpace(LocalDate) ^ string.IsNullOrWhiteSpace(LocalTime))
                 {
-                    if (!DateTime.TryParse(ModelLocalDateValue + " " + ModelLocalTimeValue, out dateResult)) 
+                    if (!DateTime.TryParse(ModelLocalDateValue + " " + ModelLocalTimeValue, out dateResult))
                     {
                         return null;
                     }
-                } else 
+                }
+                else
                 {
                     return null;
                 }
                 return dateResult.ToUniversalTime(TimeZoneName);
             }
-            set {
+            set
+            {
                 var date = value;
-                if (date.HasValue) {
+                if (date.HasValue)
+                {
                     DateTime temp;
-                    if (DateTime.TryParse(date.Value.ToString(CultureInfo.InvariantCulture), out temp)) 
+                    if (DateTime.TryParse(date.Value.ToString(CultureInfo.InvariantCulture), out temp))
                     {
                         DateTimeLocalValue = temp.ToLocalTime(TimeZoneName);
-                    } else 
+                    }
+                    else
                     {
                         DateTimeLocalValue = null;
                     }
 
-                } else {
+                }
+                else
+                {
                     DateTimeLocalValue = null;
                 }
 
@@ -67,28 +75,32 @@ namespace CustomModelBindingWithDateTime.Models
         /// DateTime object is required
         /// </summary>
         [Display(Name = "Date Time")]
-        public DateTime? DateTimeLocalValue 
+        public DateTime? DateTimeLocalValue
         {
-            get {
+            get
+            {
                 DateTime dateResult;
-                if (!string.IsNullOrWhiteSpace(LocalDate) && !string.IsNullOrWhiteSpace(LocalTime)) 
+                if (!string.IsNullOrWhiteSpace(LocalDate) && !string.IsNullOrWhiteSpace(LocalTime))
                 {
                     DateTime.TryParse(LocalDate + " " + LocalTime, out dateResult);
-                } else if (string.IsNullOrWhiteSpace(LocalDate) ^ string.IsNullOrWhiteSpace(LocalTime)) 
+                }
+                else if (string.IsNullOrWhiteSpace(LocalDate) ^ string.IsNullOrWhiteSpace(LocalTime))
                 {
                     ModelLocalDateValue = string.IsNullOrWhiteSpace(LocalDate) ? SqlDateTime.MinValue.Value.ToShortDateString() : LocalDate;
                     ModelLocalTimeValue = string.IsNullOrWhiteSpace(LocalTime) ? SqlDateTime.MinValue.Value.ToShortTimeString() : LocalTime;
-                    if (!DateTime.TryParse(ModelLocalDateValue + " " + ModelLocalTimeValue, out dateResult)) 
+                    if (!DateTime.TryParse(ModelLocalDateValue + " " + ModelLocalTimeValue, out dateResult))
                     {
                         return null;
                     }
-                } else 
+                }
+                else
                 {
                     return null;
                 }
                 return dateResult;
             }
-            set {
+            set
+            {
                 var date = value;
                 SetLocalDateTimeFields(date);
             }
@@ -121,27 +133,23 @@ namespace CustomModelBindingWithDateTime.Models
         /// throughout the application. 
         /// LocalDateTime: 6/15/2009 1:09 AM 
         /// </summary>
-        public string LocalDateTime 
+        public string LocalDateTime
         {
-            get {
-                return SetDateTimeFormat("g");
-            }
+            get { return SetDateTimeFormat("g"); }
         }
 
         /// <summary>
         /// Abbreviated Month Name: Jun, Jul, etc
         /// </summary>
-        public string LocalDateTimeAbreviatedMonthName 
+        public string LocalDateTimeAbreviatedMonthName
         {
-            get {
-                return SetDateTimeFormat("MMM");
-            }
+            get { return SetDateTimeFormat("MMM"); }
         }
 
         /// <summary>
         /// Numeric Day of the Month
         /// </summary>
-        public string LocalDateTimeDayOfMonth 
+        public string LocalDateTimeDayOfMonth
         {
             get { return SetDateTimeFormat("%d"); }
         }
@@ -150,11 +158,9 @@ namespace CustomModelBindingWithDateTime.Models
         /// Day Month Numeric Day, Year
         /// Thursday January 15, 2012
         /// </summary>
-        public string LocalDateTimeDayWithFullDate 
+        public string LocalDateTimeDayWithFullDate
         {
-            get {
-                return SetDateTimeFormat("dddd, MMMM d, yyyy");
-            }
+            get { return SetDateTimeFormat("dddd, MMMM d, yyyy"); }
         }
 
         /// <summary>
@@ -162,6 +168,7 @@ namespace CustomModelBindingWithDateTime.Models
         /// Used to keep all fields in sync
         /// </summary>
         private string ModelLocalDateValue { get; set; }
+
         private string ModelLocalTimeValue { get; set; }
 
         /// <summary>
@@ -170,16 +177,16 @@ namespace CustomModelBindingWithDateTime.Models
         /// the datetime value was set through model binding 
         /// and not directly by the user
         /// </summary>
-        public bool ImplicitylySet { get; set; }
+        public bool ImplicitlySet { get; set; }
 
         /// <summary>
         /// Used to set specially formated datetime values for the UI
         /// </summary>
         /// <param name="format"></param>
         /// <returns></returns>
-        private string SetDateTimeFormat(string format) 
+        private string SetDateTimeFormat(string format)
         {
-            if (!string.IsNullOrWhiteSpace(LocalDate) && !string.IsNullOrWhiteSpace(LocalTime)) 
+            if (!string.IsNullOrWhiteSpace(LocalDate) && !string.IsNullOrWhiteSpace(LocalTime))
             {
                 return DateTime.Parse(LocalDate + " " + LocalTime).ToString(format);
             }
@@ -191,25 +198,27 @@ namespace CustomModelBindingWithDateTime.Models
         /// Used to keep string value properties in sync with the setting of the DateTimeLocalValue DateTime property
         /// </summary>
         /// <param name="localDateTime"></param>
-        private void SetLocalDateTimeFields(DateTime? localDateTime) 
+        private void SetLocalDateTimeFields(DateTime? localDateTime)
         {
             DateTime temp;
-            if (localDateTime.HasValue && DateTime.TryParse(localDateTime.Value.ToString(CultureInfo.InvariantCulture), out temp)) 
+            if (localDateTime.HasValue && DateTime.TryParse(localDateTime.Value.ToString(CultureInfo.InvariantCulture), out temp))
             {
-                if (temp.Date == SqlDateTime.MinValue.Value.Date || temp.TimeOfDay == SqlDateTime.MinValue.Value.TimeOfDay) 
+                if (temp.Date == SqlDateTime.MinValue.Value.Date || temp.TimeOfDay == SqlDateTime.MinValue.Value.TimeOfDay)
                 {
                     ModelLocalDateValue = temp.ToShortDateString();
                     ModelLocalTimeValue = temp.ToShortTimeString();
                     LocalDate = temp.Date == SqlDateTime.MinValue.Value.Date ? String.Empty : temp.ToShortDateString();
                     LocalTime = temp.ToShortTimeString();
-                } else 
+                }
+                else
                 {
                     ModelLocalDateValue = temp.ToShortDateString();
                     LocalDate = temp.ToShortDateString();
                     ModelLocalTimeValue = temp.ToShortTimeString();
                     LocalTime = temp.ToShortTimeString();
                 }
-            } else 
+            }
+            else
             {
                 LocalDate = string.Empty;
                 LocalTime = string.Empty;
@@ -228,15 +237,17 @@ namespace CustomModelBindingWithDateTime.Models
         /// This instance is equal to <paramref name="obj"/>. Greater than zero This instance is greater than <paramref name="obj"/>. 
         /// </returns>
         /// <param name="obj">An object to compare with this instance. </param><exception cref="T:System.ArgumentException"><paramref name="obj"/> is not the same type as this instance. </exception><filterpriority>2</filterpriority>
-        public int CompareTo(object obj) 
+        public int CompareTo(object obj)
         {
             var other = obj as UiDateTimeModel;
-            if (other != null) 
+            if (other != null)
             {
-                if (this.DateTimeUtcValue == other.DateTimeUtcValue) 
+                if (this.DateTimeUtcValue == other.DateTimeUtcValue)
                 {
                     return 0;
-                } else if (this.DateTimeUtcValue < other.DateTimeUtcValue) {
+                }
+                else if (this.DateTimeUtcValue < other.DateTimeUtcValue)
+                {
                     return -1;
                 }
             }

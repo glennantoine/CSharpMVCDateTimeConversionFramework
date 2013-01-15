@@ -17,21 +17,21 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         private string _comparisonPropertyDisplayName;
 
         public UiDateTimeRequiredIfAttributeValueEqualsValidation(string basePropertyPath, string comparisonPropertyPath, string attributeValue)
-            : base(DefaultErrorMessage)  
+            : base(DefaultErrorMessage)
         {
             _basePropertyPath = basePropertyPath;
             _comparisonPropertyPath = comparisonPropertyPath;
             _attributeValue = attributeValue;
-        }  
-   
+        }
+
         //Override default FormatErrorMessage Method  
-        public override string FormatErrorMessage(string name)  
+        public override string FormatErrorMessage(string name)
         {
-            return string.Format(ErrorMessageString, name);  
-        }  
-   
+            return string.Format(ErrorMessageString, name);
+        }
+
         //Override IsValid  
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)  
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var propValue = UiDateTimeUtilities.ChildObjectFromValidationContext(_basePropertyPath, validationContext);
             var comparisonValue = UiDateTimeUtilities.ChildObjectFromValidationContext(_comparisonPropertyPath, validationContext);
@@ -40,7 +40,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
             _comparisonPropertyDisplayName = UiDateTimeUtilities.GetPropertyDisplayNameFromValidationContext(_comparisonPropertyPath, validationContext);
 
 
-            if(comparisonValue.ToString() == _attributeValue && (propValue == null || propValue.ToString().Length == 0))
+            if (comparisonValue.ToString() == _attributeValue && (propValue == null || propValue.ToString().Length == 0))
             {
                 var message = FormatErrorMessage(displayName);
                 return new ValidationResult(message);
@@ -55,10 +55,10 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
             _comparisonPropertyDisplayName = UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_comparisonPropertyPath, metadata);
 
             var rule = new ModelClientValidationRule
-            {
-                ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath, metadata)),
-                ValidationType = "uidatetimerequiredifattributevalueequals" + _basePropertyPath.ToLower().Replace(".", "")
-            };
+                           {
+                               ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath, metadata)),
+                               ValidationType = "uidatetimerequiredifattributevalueequals" + _basePropertyPath.ToLower().Replace(".", "")
+                           };
             rule.ValidationParameters.Add("other", _comparisonPropertyPath);
             rule.ValidationParameters.Add("othervalue", _attributeValue);
             rule.ValidationParameters.Add("basepropertyname", metadata.PropertyName);
@@ -68,10 +68,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
 
         public override object TypeId
         {
-            get
-            {
-                return _typeId;
-            }
+            get { return _typeId; }
         }
     }
 }

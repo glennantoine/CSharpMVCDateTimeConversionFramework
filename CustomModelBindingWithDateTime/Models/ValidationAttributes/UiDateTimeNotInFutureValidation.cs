@@ -14,31 +14,36 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
         private readonly string _basePropertyPath;
 
         public UiDateTimeNotInFutureValidation(string basePropertyPath)
-            : base(DefaultErrorMessage)  
+            : base(DefaultErrorMessage)
         {
             _basePropertyPath = basePropertyPath;
-        }  
-   
+        }
+
         //Override default FormatErrorMessage Method  
-        public override string FormatErrorMessage(string name)  
+        public override string FormatErrorMessage(string name)
         {
-            return string.Format(ErrorMessageString, name);  
-        }  
-   
+            return string.Format(ErrorMessageString, name);
+        }
+
         //Override IsValid  
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)  
-        {  
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
             if (value != null)
             {
                 var propValue = UiDateTimeUtilities.ChildObjectFromValidationContext(_basePropertyPath, validationContext);
-                var thisDate = DateTime.Parse(propValue.ToString());
 
-                //Actual comparision  
-                if (DateTime.UtcNow.Date < thisDate)
+                if (propValue != null && !String.IsNullOrEmpty(propValue.ToString()))
                 {
-                    var displayName = UiDateTimeUtilities.GetPropertyDisplayNameFromValidationContext(_basePropertyPath, validationContext);
-                    var message = FormatErrorMessage(displayName);
-                    return new ValidationResult(message);
+
+                    var thisDate = DateTime.Parse(propValue.ToString());
+
+                    //Actual comparision  
+                    if (DateTime.UtcNow.Date < thisDate)
+                    {
+                        var displayName = UiDateTimeUtilities.GetPropertyDisplayNameFromValidationContext(_basePropertyPath, validationContext);
+                        var message = FormatErrorMessage(displayName);
+                        return new ValidationResult(message);
+                    }
                 }
             }
 
@@ -56,7 +61,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
 
             //This string identifies which Javascript function to be executed to validate this   
             yield return rule;
-        }  
+        }
 
     }
 }

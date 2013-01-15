@@ -4,10 +4,14 @@
     @Html.HiddenFor(m => m.TimeZoneName)
     @Html.MyLabelFor(m => m.StartDateTime.LocalDate, new { @class = "top" })
     @Html.UiDateBoxFor(m => m.StartDateTime.LocalDate, new { @class = "datepicker" })
+</div>
+<div class="formitem nolabel">
     @Html.UiTimeBoxFor(m => m.StartDateTime.LocalTime, new { @class = "timepicker" })
 </div>
 <div class="formitem plm">
     @Html.MyLabelFor(m => m.EndDateTime.LocalDate, new { @class = "top" })
     @Html.UiDateBoxFor(m => m.EndDateTime.LocalDate, new { @class = "datepicker" })
+</div>
+<div class="formitem nolabel">
     @Html.UiTimeBoxFor(m => m.EndDateTime.LocalTime, new { @class = "timepicker" })
 </div>

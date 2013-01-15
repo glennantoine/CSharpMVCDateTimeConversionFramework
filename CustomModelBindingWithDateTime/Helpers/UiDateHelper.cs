@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
 using CustomModelBindingWithDateTime.Utilities;
 
-namespace CustomModelBindingWithDateTime.Helpers 
+namespace CustomModelBindingWithDateTime.Helpers
 {
-    public static class UiDateHelper 
+    public static class UiDateHelper
     {
-        public static MvcHtmlString UiDateBox(this HtmlHelper htmlHelper, string name, string value) 
+        public static MvcHtmlString UiDateBox(this HtmlHelper htmlHelper, string name, string value)
         {
             var builder = new TagBuilder("input");
             builder.Attributes["type"] = "text";
@@ -20,17 +17,17 @@ namespace CustomModelBindingWithDateTime.Helpers
             return MvcHtmlString.Create(builder.ToString(TagRenderMode.SelfClosing));
         }
 
-        public static MvcHtmlString UiDateBoxFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression) 
+        public static MvcHtmlString UiDateBoxFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
         {
-            return UiDateBoxFor(htmlHelper, expression, new { });
+            return UiDateBoxFor(htmlHelper, expression, new {});
         }
 
-        public static MvcHtmlString UiDateBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, object htmlAttributes) 
+        public static MvcHtmlString UiDateBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, object htmlAttributes)
         {
             return UiDateBoxFor(htmlHelper, expression, new RouteValueDictionary(htmlAttributes));
         }
 
-        public static MvcHtmlString UiDateBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, RouteValueDictionary htmlAttributes) 
+        public static MvcHtmlString UiDateBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, RouteValueDictionary htmlAttributes)
         {
             var propertyPath = ExpressionHelper.GetExpressionText(expression);
             var attributeKeyPropertyPath = propertyPath.ToLower().Replace(".", "");
@@ -40,7 +37,8 @@ namespace CustomModelBindingWithDateTime.Helpers
 
             var validationAttributes = UiDateTimeUtilities.ChildValidationAttributes(htmlHelper, meta.PropertyName, propertyPath, meta);
 
-            foreach (var attr in validationAttributes) {
+            foreach (var attr in validationAttributes)
+            {
                 attributes.Add(attr.Key.Replace(attributeKeyPropertyPath, ""), attr.Value);
             }
 

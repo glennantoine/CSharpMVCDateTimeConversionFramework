@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using CustomModelBindingWithDateTime.Utilities;
 
-
 namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
@@ -23,17 +22,17 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
             _basePropertyPath = basePropertyPath;
             _comparisonPropertyPath = comparisonPropertyPath;
             _allowEqual = allowEqual;
-        }  
-   
+        }
+
         //Override default FormatErrorMessage Method  
-        public override string FormatErrorMessage(string name)  
+        public override string FormatErrorMessage(string name)
         {
-            return string.Format(ErrorMessageString, name, _comparisonPropertyDisplayName);  
-        }  
-   
+            return string.Format(ErrorMessageString, name, _comparisonPropertyDisplayName);
+        }
+
         //Override IsValid  
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)  
-        {  
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
             if (value != null)
             {
                 var propValue = UiDateTimeUtilities.ChildObjectFromValidationContext(_basePropertyPath, validationContext);
@@ -73,7 +72,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
 
             var rule = new ModelClientValidationRule
                            {
-                               ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath,metadata)),
+                               ErrorMessage = FormatErrorMessage(UiDateTimeUtilities.GetPropertyDisplayNameFromModelMetadata(_basePropertyPath, metadata)),
                                ValidationType = "uidatetimegreaterthantimeattributeornull" + _basePropertyPath.ToLower().Replace(".", "")
                            };
             rule.ValidationParameters.Add("other", _comparisonPropertyPath);
@@ -84,10 +83,7 @@ namespace CustomModelBindingWithDateTime.Models.ValidationAttributes
 
         public override object TypeId
         {
-            get
-            {
-                return _typeId;
-            }
+            get { return _typeId; }
         }
 
     }

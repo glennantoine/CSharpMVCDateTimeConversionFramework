@@ -70,6 +70,33 @@ namespace CustomModelBindingWithDateTime.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date added is required..
+        /// </summary>
+        internal static string DateAddedRequired {
+            get {
+                return ResourceManager.GetString("DateAddedRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} cannot be in the future..
+        /// </summary>
+        internal static string DateCannotBeInTheFutureValid {
+            get {
+                return ResourceManager.GetString("DateCannotBeInTheFutureValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Date Range Entered.
+        /// </summary>
+        internal static string DateComparison {
+            get {
+                return ResourceManager.GetString("DateComparison", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is improperly formated: MM/DD/YYYY..
         /// </summary>
         internal static string DateFormat {
@@ -79,11 +106,56 @@ namespace CustomModelBindingWithDateTime.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is improperly formated: MM/DD/YYYY..
+        /// </summary>
+        internal static string DateFormatValid {
+            get {
+                return ResourceManager.GetString("DateFormatValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date is invalid..
+        /// </summary>
+        internal static string DateInvalid {
+            get {
+                return ResourceManager.GetString("DateInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} must be after {1}..
+        /// </summary>
+        internal static string DateMustBeAfterDateValid {
+            get {
+                return ResourceManager.GetString("DateMustBeAfterDateValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} must be before {1}..
+        /// </summary>
+        internal static string DateMustBeBeforeDateValid {
+            get {
+                return ResourceManager.GetString("DateMustBeBeforeDateValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} must be greater than or equal to {1}.
         /// </summary>
         internal static string DateMustBeGreaterThanEqualTo {
             get {
                 return ResourceManager.GetString("DateMustBeGreaterThanEqualTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} must be in the past..
+        /// </summary>
+        internal static string DateMustBeInThePastValid {
+            get {
+                return ResourceManager.GetString("DateMustBeInThePastValid", resourceCulture);
             }
         }
         

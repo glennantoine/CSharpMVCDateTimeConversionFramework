@@ -18,6 +18,7 @@ namespace CustomModelBindingWithDateTime.Controllers
         [HttpGet]
         public ActionResult UiDateTimeTest() 
         {
+            ViewBag.PageTitle = "C# MVC DateTime Conversion | UiDateTimeModel Test Form";
             UiDateTimeTestModel model = null;
             try {
                 var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName;
@@ -48,6 +49,7 @@ namespace CustomModelBindingWithDateTime.Controllers
         [HttpGet]
         public ActionResult UiDateTimeRangeTest()
         {
+            ViewBag.PageTitle = "C# MVC DateTime Conversion | UiDateTimeRangeModel Test Form";
             UiDateTimeRangeTestModel model = null;
             try
             {
@@ -79,6 +81,7 @@ namespace CustomModelBindingWithDateTime.Controllers
         [HttpGet]
         public ActionResult UiDateTimeEditorTemplatesTest()
         {
+            ViewBag.PageTitle = "C# MVC DateTime Conversion | UiDateTimeModel Editor Templates";
             UiDateTimeEditorTemplatesTestModel model = null;
             try
             {

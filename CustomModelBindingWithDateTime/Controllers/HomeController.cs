@@ -13,16 +13,25 @@ namespace CustomModelBindingWithDateTime.Controllers
 
         public ActionResult UiDateTimeModel() 
         {
+            ViewBag.PageTitle = "C# MVC DateTime Conversions | Custom Model Binding w/ UiDateTimeModel";
             return View();
         }
 
         public ActionResult DateAndTimeModelBinder() 
         {
+            ViewBag.PageTitle = "C# MVC DateTime Conversions | Custom Model Binder w/ UiDateTimeModel";
+            return View();
+        }
+
+        public ActionResult SourceCode()
+        {
+            ViewBag.PageTitle = "C# MVC DateTime Conversions | Custom Model Binding";
             return View();
         }
 
         public ActionResult Usage() 
         {
+            ViewBag.PageTitle = "C# MVC DateTime Conversions | Examples";
             return View();
         }
     }

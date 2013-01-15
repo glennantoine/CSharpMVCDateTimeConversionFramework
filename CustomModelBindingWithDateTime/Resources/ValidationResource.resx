@@ -120,11 +120,35 @@
   <data name="BindingContext" xml:space="preserve">
     <value>Invalid Binding Context</value>
   </data>
+  <data name="DateAddedRequired" xml:space="preserve">
+    <value>Date added is required.</value>
+  </data>
+  <data name="DateCannotBeInTheFutureValid" xml:space="preserve">
+    <value>{0} cannot be in the future.</value>
+  </data>
+  <data name="DateComparison" xml:space="preserve">
+    <value>Invalid Date Range Entered</value>
+  </data>
   <data name="DateFormat" xml:space="preserve">
     <value>{0} is improperly formated: MM/DD/YYYY.</value>
   </data>
+  <data name="DateFormatValid" xml:space="preserve">
+    <value>{0} is improperly formated: MM/DD/YYYY.</value>
+  </data>
+  <data name="DateInvalid" xml:space="preserve">
+    <value>Date is invalid.</value>
+  </data>
+  <data name="DateMustBeAfterDateValid" xml:space="preserve">
+    <value>{0} must be after {1}.</value>
+  </data>
+  <data name="DateMustBeBeforeDateValid" xml:space="preserve">
+    <value>{0} must be before {1}.</value>
+  </data>
   <data name="DateMustBeGreaterThanEqualTo" xml:space="preserve">
     <value>{0} must be greater than or equal to {1}</value>
+  </data>
+  <data name="DateMustBeInThePastValid" xml:space="preserve">
+    <value>{0} must be in the past.</value>
   </data>
   <data name="DateMustBeLessThanYearsInFuture" xml:space="preserve">
     <value>{0} must be less than {1} years in the future</value>

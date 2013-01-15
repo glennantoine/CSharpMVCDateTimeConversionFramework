@@ -12,10 +12,10 @@ namespace CustomModelBindingWithDateTime.Models.Binders
         public UiDateTimeModelAttribute(string date, string time) 
         {
             _binder = new UiDateTimeModelBinder 
-                                            {
-                                                DateFieldName = date,
-                                                TimeFieldName = time
-                                            };
+            {
+                DateFieldName = date,
+                TimeFieldName = time
+            };
         }
 
         // The user wants to capture the date and time (or only one)
@@ -24,14 +24,14 @@ namespace CustomModelBindingWithDateTime.Models.Binders
                                     string hour, string minute, string second) 
         {
             _binder = new UiDateTimeModelBinder 
-                                            {
-                                                DayFieldName = day,
-                                                MonthFieldName = month,
-                                                YearFieldName = year,
-                                                HourFieldName = hour,
-                                                MinuteFieldName = minute,
-                                                SecondFieldName = second
-                                            };
+            {
+                DayFieldName = day,
+                MonthFieldName = month,
+                YearFieldName = year,
+                HourFieldName = hour,
+                MinuteFieldName = minute,
+                SecondFieldName = second
+            };
         }
 
         // The user wants to capture the date and time (or only one)
@@ -40,16 +40,16 @@ namespace CustomModelBindingWithDateTime.Models.Binders
                                     string hour, string minute, string second) 
         {
             _binder = new UiDateTimeModelBinder 
-                                            {
-                                                DayFieldName = day,
-                                                MonthFieldName = month,
-                                                YearFieldName = year,
-                                                HourFieldName = hour,
-                                                MinuteFieldName = minute,
-                                                SecondFieldName = second,
-                                                DateFieldName = date,
-                                                TimeFieldName = time
-                                            };
+            {
+                DayFieldName = day,
+                MonthFieldName = month,
+                YearFieldName = year,
+                HourFieldName = hour,
+                MinuteFieldName = minute,
+                SecondFieldName = second,
+                DateFieldName = date,
+                TimeFieldName = time
+            };
         }
 
         public override IModelBinder GetBinder() { return _binder; }

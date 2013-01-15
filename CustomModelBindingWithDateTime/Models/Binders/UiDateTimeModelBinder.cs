@@ -11,31 +11,24 @@ namespace CustomModelBindingWithDateTime.Models.Binders
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext) 
         {
-            if (bindingContext == null) 
-            {
-                throw new ArgumentNullException(ValidationResource.BindingContext);
-            }
+            if (bindingContext == null)
+                throw new ArgumentNullException(Validation.BindingContext);
 
-            //Maybe we're lucky and they just want a DateTime the regular way.
+            //If they just want a full DateTime the handle that here and return model
             DateTime? dateTimeAttempt = GetA<DateTime>(bindingContext, StaticReflection.GetMemberName<UiDateTimeModel>(x => x.DateTimeLocalValue));
-            
-            string timeZoneAttempt = string.Empty;
+
             var tzAttempt = bindingContext.ValueProvider.GetValue(bindingContext.ModelName + "." + this.TimeZoneFieldName);
             if (tzAttempt == null) {
-                throw new ApplicationException(this.TimeZoneFieldName + ValidationResource.UiDateTimeModelTimeZoneRequired);
+                throw new ApplicationException(this.TimeZoneFieldName + Validation.UiDateTimeModelTimeZoneRequired);
             }
-            timeZoneAttempt = (string)tzAttempt.ConvertTo(typeof(string));
+            var timeZoneAttempt = (string)tzAttempt.ConvertTo(typeof(string));
 
-            if (dateTimeAttempt != null) {
-                         return new UiDateTimeModel(timeZoneAttempt) {
-                                                                        DateTimeLocalValue = DateTime.Parse(dateTimeAttempt.Value.ToString())
-                                                                    };
-            }
+            if (dateTimeAttempt != null)
+                return new UiDateTimeModel(timeZoneAttempt) { DateTimeLocalValue = DateTime.Parse(dateTimeAttempt.Value.ToString(CultureInfo.InvariantCulture)) };
 
 
             //If they haven't set Month,Day,Year OR Date, set "date" and get ready for an attempt
-            if (!this.MonthDayYearFieldNameSet && !this.DateFieldNameSet) 
-            {
+            if (!this.MonthDayYearFieldNameSet && !this.DateFieldNameSet) {
                 this.DateFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.LocalDate);
             }
 
@@ -45,7 +38,7 @@ namespace CustomModelBindingWithDateTime.Models.Binders
                 this.TimeFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.LocalTime);
             }
 
-            if (!this.TimeZoneFieldNameSet)
+            if (!this.TimeZoneFieldNameSet) 
             {
                 this.TimeZoneFieldName = StaticReflection.GetMemberName<UiDateTimeModel>(x => x.TimeZoneName);
             }
@@ -60,25 +53,29 @@ namespace CustomModelBindingWithDateTime.Models.Binders
             }
 
             //Did they want the Date *and* Time?
-            if (dateAttempt == null)
+            if (dateAttempt == null) 
             {
                 dateAttempt = GetA<DateTime>(bindingContext, this.DateFieldName);
             }
             DateTime? timeAttempt = GetA<DateTime>(bindingContext, this.TimeFieldName);
 
-            if(dateAttempt.HasValue || timeAttempt.HasValue)
+            if (dateAttempt.HasValue || timeAttempt.HasValue) 
             {
-                dateAttempt = dateAttempt ?? DateTime.MinValue;
-                timeAttempt = timeAttempt ?? DateTime.MinValue;
+                dateAttempt = dateAttempt ?? SqlDateTime.MinValue.Value.Date;
+                timeAttempt = timeAttempt ?? SqlDateTime.MinValue.Value;
             }
 
+            //*****************************************************************************
+            // The following three sections are added for a more rounded/complete solution.
+            // However, this sections are not currently being used in the application.
+            //*****************************************************************************
 
             //Time in parts
             if (this.HourMinuteSecondFieldNameSet && !this.MonthDayYearFieldNameSet) 
             {
-                timeAttempt = new DateTime( DateTime.MinValue.Year, 
-                                            DateTime.MinValue.Month, 
-                                            DateTime.MinValue.Day,
+                timeAttempt = new DateTime(SqlDateTime.MinValue.Value.Year,
+                                            SqlDateTime.MinValue.Value.Month,
+                                            SqlDateTime.MinValue.Value.Day,
                                             GetA<int>(bindingContext, this.HourFieldName).Value,
                                             GetA<int>(bindingContext, this.MinuteFieldName).Value,
                                             GetA<int>(bindingContext, this.SecondFieldName).Value);
@@ -90,9 +87,9 @@ namespace CustomModelBindingWithDateTime.Models.Binders
                 dateAttempt = new DateTime(GetA<int>(bindingContext, this.YearFieldName).Value,
                                             GetA<int>(bindingContext, this.MonthFieldName).Value,
                                             GetA<int>(bindingContext, this.DayFieldName).Value,
-                                            DateTime.MinValue.Hour, 
-                                            DateTime.MinValue.Minute, 
-                                            DateTime.MinValue.Second);
+                                            SqlDateTime.MinValue.Value.Hour,
+                                            SqlDateTime.MinValue.Value.Minute,
+                                            SqlDateTime.MinValue.Value.Second);
             }
 
             //Date and Time in parts
@@ -101,46 +98,42 @@ namespace CustomModelBindingWithDateTime.Models.Binders
                 dateAttempt = new DateTime(GetA<int>(bindingContext, this.YearFieldName).Value,
                                             GetA<int>(bindingContext, this.MonthFieldName).Value,
                                             GetA<int>(bindingContext, this.DayFieldName).Value,
-                                            DateTime.MinValue.Hour,
-                                            DateTime.MinValue.Minute,
-                                            DateTime.MinValue.Second);
+                                            SqlDateTime.MinValue.Value.Hour,
+                                            SqlDateTime.MinValue.Value.Minute,
+                                            SqlDateTime.MinValue.Value.Second);
 
-                timeAttempt = new DateTime(DateTime.MinValue.Year,
-                                            DateTime.MinValue.Month,
-                                            DateTime.MinValue.Day,
+                timeAttempt = new DateTime(SqlDateTime.MinValue.Value.Year,
+                                            SqlDateTime.MinValue.Value.Month,
+                                            SqlDateTime.MinValue.Value.Day,
                                             GetA<int>(bindingContext, this.HourFieldName).Value,
                                             GetA<int>(bindingContext, this.MinuteFieldName).Value,
                                             GetA<int>(bindingContext, this.SecondFieldName).Value);
             }
 
             DateTime? dateTime;
-            if(dateAttempt.HasValue && timeAttempt.HasValue)
+            if (dateAttempt.HasValue && timeAttempt.HasValue) 
             {
-               dateTime = new DateTime(dateAttempt.Value.Year,
-                                        dateAttempt.Value.Month,
-                                        dateAttempt.Value.Day,
-                                        timeAttempt.Value.Hour,
-                                        timeAttempt.Value.Minute,
-                                        timeAttempt.Value.Second); 
-            }else
+                dateTime = new DateTime(dateAttempt.Value.Year,
+                                         dateAttempt.Value.Month,
+                                         dateAttempt.Value.Day,
+                                         timeAttempt.Value.Hour,
+                                         timeAttempt.Value.Minute,
+                                         timeAttempt.Value.Second);
+            } else 
             {
                 dateTime = null;
             }
 
 
-            if (!string.IsNullOrWhiteSpace(timeZoneAttempt))
+            if (!string.IsNullOrWhiteSpace(timeZoneAttempt)) 
             {
-                var model = new UiDateTimeModel(timeZoneAttempt)
-                            {
-                                DateTimeLocalValue = dateTime
-                            };
-                return model;
+                return new UiDateTimeModel(timeZoneAttempt) { DateTimeLocalValue = dateTime };
             }
 
             return null;
         }
 
-        private Nullable<T> GetA<T>(ModelBindingContext bindingContext, string key) where T : struct
+        private Nullable<T> GetA<T>(ModelBindingContext bindingContext, string key) where T : struct 
         {
             if (String.IsNullOrEmpty(key))
                 return null;
@@ -148,22 +141,22 @@ namespace CustomModelBindingWithDateTime.Models.Binders
             ValueProviderResult valueResult;
 
             //Try it with the prefix...
-            if (bindingContext.ValueProvider.ContainsPrefix(bindingContext.ModelName))
+            if (bindingContext.ValueProvider.ContainsPrefix(bindingContext.ModelName)) 
             {
                 valueResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName + "." + key);
             }
                 //Didn't work? Try without the prefix if needed...
-            else
+            else 
             {
                 valueResult = bindingContext.ValueProvider.GetValue(key);
             }
 
-            if (valueResult == null)
+            if (valueResult == null) 
             {
                 return null;
             }
 
-            return (Nullable<T>) valueResult.ConvertTo(typeof (T));
+            return (Nullable<T>)valueResult.ConvertTo(typeof(T));
         }
 
         public string DateFieldName { get; set; }

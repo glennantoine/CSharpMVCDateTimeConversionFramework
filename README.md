@@ -1,4 +1,15 @@
-CustomModelBindingWithDateTime
+C# .Net MVC DateTime Conversions
 ==============================
 
-Test C# MVC Project for CustomModelBinding for Dates and Times 
+C# .NET MVC Project for the handling of Dates Times, DateTime Conversions based on TimeZone and the storage of DateTime in UTC format. In order to provide end users with the ability to view Dates/Times in their local timezone this project was conceived to provide for the viewing of dates/times in local format while storing all dates/times in UTC format. 
+The basic concept was pretty straight-forward in that the view is the only place in the application that we care about dates/times being in displayed correctly based on timezone. On the other hand the server side code should always be working with and storing dates/times in UTC format. 
+
+With the implementation in this project it makes it possible that all date/time conversions are handled in the same place throughout the application thereby minimizing the chance for error and making it much easier to identify potential problems with date/time conversions. Basically, if there is a date/time that is being converted somewhere outside of the model binding or the custom view models this should raise questions. While there are other parts of the application that may have a need for converting the dates/times this implementation should minimize those cases.
+
+This project came about as a result of the fact that we were not handling dates and times in a very consistent or maintainable fashion. A quick Google search revealed that this seem to be a topic of much debate with very few practical solutions that would work for a large enterprise application or provide the scalability that I was expecting. After much research and not finding an acceptable solution, I turned to looking at C# .NET and the MVC framework for extensibility points that would allow for an easy almost automatic handling of DateTime Conversions based on TimeZones. 
+
+A Custom Model Binder combined with a Custom View Model that could be used throughout all views seemed to be the best solution. Thanks to Scott Hanselman and his article "Splitting DateTime - Unit Testing ASP.NET MVC Custom Model Binders", I felt confident that I was on the right track. While Scott's article was a huge help, it only provided assistance better understanding a part of the solution that I had envisioned. With a lot more reading and research this project began to come together. 
+
+While I put more time into this than I really expected in the beginning this project would not have been possible with the help from a lot of other developers with articles on the various components that were affected/extended in the process. Additionally, I would like to thank Ryan who spent a LOT of time with me scratching our heads trying to solve various bugs, logic errors or just plain old flaws in the original concept. Last, but not least a huge thanks to Josh who was a life saver when it came to implementation of the validation attributes for the server side and client side validation. 
+
+Over the next few weeks my plans are to complete a series of articles detailing the concept behind this implementation, why it works the way it does, and hopefully more than enough information for anyone to be able to pick this project up and put it to use in their own application. Read more at: http://glennantoine.com/2012/12/09/c-date-time-and-timezone-conversions/

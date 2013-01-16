@@ -62,16 +62,6 @@ namespace CustomModelBindingWithDateTime.Models
     <fieldset>
         <legend>Registration Form</legend>
         <ul>
-@*            <li>
-                @Html.LabelFor(m => m.Name)
-                @Html.TextBoxFor(m => m.Name)
-                @Html.ValidationMessageFor(m => m.Name)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Message)
-                @Html.TextBoxFor(m => m.Message)
-                @Html.ValidationMessageFor(m => m.Message)
-            </li>*@
             <li>
                 @Html.LabelFor(m => m.UiDateTime)
                 @Html.TextBoxFor(m => m.UiDateTime.LocalDate, new { @class = "datepicker" })

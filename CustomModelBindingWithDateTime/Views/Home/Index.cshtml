@@ -4,8 +4,10 @@
             <hgroup class="title">
                 <h2>@ViewBag.Message</h2>
             </hgroup>
-            <p>This application was created for the sole purpose of testing the Custom Model Binder and the associated UiDateAndTimeModel 
-               for the handling of Time Zone Conversation between the Views and their associated Controller Actions. 
+            <p>This application was created for the sole purpose of testing the Custom Model Binders, DateTime Conversions based on the end users 
+               TimeZone, whereby all DatTime data is saved in the UTC format while being displayed in the end users local time when displayed in the view.
+               All of this has been made possible via custom model binders and two specific models (UiDateTimeMode, UiDateTimeRangeModel), editor templates, 
+               and custom validators designed to ensure that all DateTime conversions are handled via the models and custom model binders.  
             </p>
         </div>
     </section>
@@ -14,14 +16,15 @@
 <ol class="round">
     <li class="one">
         <h5>Getting Started</h5>
-        Model binding in the ASP.NET MVC framework is simple. Your action methods need data, and the incoming HTTP request carries the data you need. 
-        The catch is that the data is embedded into POST-ed form values, and possibly the URL itself. Enter the DefaultModelBinder, which can magically 
-        convert form values and route data into objects. Model binders allow your controller code to remain cleanly separated from the dirtiness of 
-        interrogating the request and its associated environment.<br />
+        Model binding in the ASP.NET MVC framework is simple, yet very important part of the MVC framework. Controller actions need data, and the incoming 
+        HTTP request carries the data you need. The catch is that the data is embedded into POST-ed form values, and possibly the URL itself. Enter the 
+        DefaultModelBinder, which can magically convert form values and route data into objects. Model binders allow your controller code to remain 
+        cleanly separated from the dirtiness of interrogating the request and its associated environment.<br />
         Model binding is also one of the extensibility points in the MVC framework. If you can’t use the default binding behavior you can provide your 
         own model binders, and mix and match binders. To implement a custom model binder you need to implement the IModelBinder interface.<br />
-        Scott Hanselman had a post on the creation of a custom model binder <a href="http://www.hanselman.com/blog/SplittingDateTimeUnitTestingASPNETMVCCustomModelBinders.aspx" target="_blank">
-        “Splitting DateTime – Unit Testing ASP.NET MVC Custom Model Binders”</a> which turned out to be a great starting point for this venture.
+        As a great starting point to this project Scott Hanselman had a post on the creation of a custom model binders and managing DateTime data from a 
+        form post: <a href="http://www.hanselman.com/blog/SplittingDateTimeUnitTestingASPNETMVCCustomModelBinders.aspx" target="_blank">
+        “Splitting DateTime – Unit Testing ASP.NET MVC Custom Model Binders”</a>.
     </li>
     <li class="two">
         <h5>UiDateTimeModel</h5>

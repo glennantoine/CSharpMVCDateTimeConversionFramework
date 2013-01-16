@@ -1,10 +1,10 @@
 ﻿<hgroup class="title">
-    <h1>DateAndTimeModelBinder: </h1>
-    <h3>This page is here simply to point out the fact that during a post back to the server the DateAndTimeModelBinder will handle all date conversions required on the UiDateTimeModel.</h3>
-    <h3>You will notice that the Global.asx.cs file Application_Start() contains an entry setting the DateAndTimeModelBinder as the default binder for properties of type UiDateTimeModel.</h3>
+    <h1>UiDateTimeModelBinder: </h1>
+    <h3>This page is here simply to point out the fact that during a post back to the server the UiDateTimeModelBinder will handle all date conversions required on the UiDateTimeModel.</h3>
+    <h3>You will notice that the Global.asx.cs file Application_Start() contains an entry setting the UiDateTimeModelBinder as the default binder for properties of type UiDateTimeModel.</h3>
     <pre class='brush: csharp'>
             //Setup Default Model Binder for UiDateTimeModel 
-            ModelBinders.Binders[typeof(UiDateTimeModel)] = new DateAndTimeModelBinder() {
+            ModelBinders.Binders[typeof(UiDateTimeModel)] = new UiDateTimeModelBinder() {
                                                                                             DateFieldName = "LocalDate",
                                                                                             TimeFieldName = "LocalTime",
                                                                                             TimeZoneFieldName = "TimeZoneName"

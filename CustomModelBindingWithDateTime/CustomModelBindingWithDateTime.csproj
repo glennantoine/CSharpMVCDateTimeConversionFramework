@@ -313,7 +313,7 @@
     <Content Include="Images\windowsLive.png" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\UiDateTimeModel.cshtml" />
-    <Content Include="Views\Home\DateAndTimeModelBinder.cshtml" />
+    <Content Include="Views\Home\UiDateTimeModelBinder.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -372,6 +372,8 @@
     <Content Include="Views\Shared\EditorTemplates\Date_TopUnit.cshtml" />
     <Content Include="Views\Home\SourceCode.cshtml" />
     <None Include="Scripts\jquery-1.9.0.min.map" />
+    <Content Include="Views\Home\UiDateTimeRangeModel.cshtml" />
+    <Content Include="Views\Home\UiDateTimeRangeModelBinder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\UiDateTimeResouce.resx">

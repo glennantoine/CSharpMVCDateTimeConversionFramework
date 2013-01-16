@@ -87,12 +87,12 @@ namespace CustomModelBindingWithDateTime.Controllers
             {
                 var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName;
                 model = new UiDateTimeEditorTemplatesTestModel
-                {
-                    RangeDateToDate = new UiDateTimeRangeModel(timeZone) { },
-                    RangeTimeToTime = new UiDateTimeRangeModel(timeZone) { },
-                    RangeDateTimeToTime = new UiDateTimeRangeModel(timeZone) { },
-                    RangeDateTimeToDateTime = new UiDateTimeRangeModel(timeZone) { }
-                };
+                                                        {
+                                                            RangeDateToDate = new UiDateTimeRangeModel(timeZone) { },
+                                                            RangeTimeToTime = new UiDateTimeRangeModel(timeZone) { },
+                                                            RangeDateTimeToTime = new UiDateTimeRangeModel(timeZone) { },
+                                                            RangeDateTimeToDateTime = new UiDateTimeRangeModel(timeZone) { }
+                                                        };
             }
             catch (Exception e)
             {

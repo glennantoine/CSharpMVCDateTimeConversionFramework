@@ -3,15 +3,10 @@
     <h3>One of the most important aspects of the UiDateTimeModel is that the default constructor requires a TimeZone. Without it the code will not compile.</h3>
     <h3>Looking at the RegisterModel below with a RegistrationDate property of type UiDateTimeModel. The constructor takes a string of "Eastern Standard Time" for the TimeZone.</h3>
     <pre class='brush: csharp'>
-            var model = new RegisterModel 
-                                    {
-                                        UserName = "myUserName",
-                                        Email = "myEmail@email.com",
-                                        Password = "MyP@ssw0rd",
-                                        RegistrationDate = new UiDateTimeModel("Eastern Standard Time") {
-                                                                                        DateTimeUtcValue = DateTime.SpecifyKind(DateTime.Parse("11/01/2010" + " " + "04:31"), DateTimeKind.Utc)
-                                                                                    }
-                                    };                   
+                var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time").StandardName;
+                var model = new UiDateTimeTestModel {
+                                                        UiDateTime = new UiDateTimeModel(timeZone) { }
+                                                    };                 
     </pre>
 </hgroup>
 

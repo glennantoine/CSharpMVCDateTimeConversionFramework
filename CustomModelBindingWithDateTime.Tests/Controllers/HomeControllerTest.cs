@@ -35,7 +35,7 @@ namespace CustomModelBindingWithDateTime.Tests.Controllers {
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.DateAndTimeModelBinder() as ViewResult;
+            ViewResult result = controller.UiDateTimeModelBinder() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);

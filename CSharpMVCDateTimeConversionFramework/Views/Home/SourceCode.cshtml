@@ -1,0 +1,48 @@
+﻿<hgroup class="title">
+    <h1>Source Code & Descriptions: </h1>
+    <h4>Below are brief introductions to the key components of handling C# MVC Application DateTime Conversions using the UiDateTime model framework combined with 
+    links to the associated sections dedicated to the source code for those components.</h4>
+</hgroup>
+<ol class="round">
+    <li class="one">
+        <h5>Quick Links</h5>
+            <div>@Html.ActionLink("UiDateTimeModel", "UiDateTimeModel", "Home")</div>
+            <div>@Html.ActionLink("UiDateTimeModelBinder", "UiDateTimeModelBinder", "Home")</div>
+            <div>@Html.ActionLink("UiDateTimeRangeModel", "UiDateTimeRangeModel", "Home")</div>
+            <div>@Html.ActionLink("DateAndTimeRangeModelBinder", "UiDateTimeRangeModelBinder", "Home")</div>
+            <div>@Html.ActionLink("UiDateTimeModel Test Form", "UiDateTimeTest", "UiDateTime")</div>
+            <div>@Html.ActionLink("UiDateTimeRangeModel Test Form", "UiDateTimeRangeTest", "UiDateTime")</div>
+            <div>@Html.ActionLink("Example Usage", "Usage", "Home")</div>
+        
+            <div><h5>Other Resources:</h5></div>
+            <div>Scott Hanselman post on custom model binding: <a href="http://www.hanselman.com/blog/SplittingDateTimeUnitTestingASPNETMVCCustomModelBinders.aspx" target="_blank">
+                    “Splitting DateTime – Unit Testing ASP.NET MVC Custom Model Binders”</a></div>
+    </li>    
+
+    <li class="two">
+        <h5>Overview</h5>
+        TBD
+    </li>
+    <li class="three">
+        <h5>UiDateTimeModel</h5>
+        <p>
+            In order to leverage the custom UiDateTimeModel the UiDateTimeModelBinder will handle the conversions of Dates/Times to UTC during post.
+            For more information see: <a href="~/Home/UiDateTimeModel">UiDateTimeModel</a>
+        </p>
+        @Html.ActionLink("UiDateTimeModel Test Form", "UiDateTimeTest", "UiDateTime")
+    </li>
+    <li class="four">
+        <h5>UiDateTimeModelBinder</h5>
+        While the UiDateTimeModel is the piece of this puzzle that you will work with most often, the DateAndTimeModelBinder sits quietly in the back ground making all of the magic happen.
+        In order to cover all of the details of what is happening with the custom model binder I would need to provide considerably more information than what will fit here. However as a starting point
+        and some more information see: <a href="~/Home/DateAndTimeModelBinder">DateAndTimeModelBinder</a>
+    </li>
+    <li class="five">        
+        <h5>UiDateTimeRangeModel</h5>
+        <p>
+            In order to leverage the custom DateAndTimeRangeModel the UiDateTimeRangeModelBinder will handle the conversions of Dates/Times to UTC during post.
+            For more information see: <a href="~/Home/UiDateTimeRangeModel">UiDateTimeRangeModel</a>
+        </p>
+        @Html.ActionLink("UiDateTimeRangeModel Test Form", "UiDateTimeRangeTest", "UiDateTime")
+    </li>
+</ol>

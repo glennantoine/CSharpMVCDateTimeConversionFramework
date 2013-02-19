@@ -113,5 +113,38 @@ namespace CustomModelBindingWithDateTime.Controllers
             return View(model);
         }
 
+        public struct TestModel {
+            public UiDateTimeModel Model { get; set; }
+            public UiDateTimeModel Model2 { get; set; }
+        }
+
+        [HttpGet]
+        public ActionResult TestUiDateTimeModelAsParameter() {
+            var model = new TestModel {
+                Model = new UiDateTimeModel("US Eastern Standard Time"),
+                Model2 = new UiDateTimeModel("Pacific Standard Time")
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult TestUiDateTimeModelAsParameter(UiDateTimeModel model, UiDateTimeModel model2) {
+            return Json(new {
+                Date1 = model.DateTimeUtcValue.GetValueOrDefault().ToString("s"),
+                Date2 = model2.DateTimeUtcValue.GetValueOrDefault().ToString("s")
+            });
+        }
+
+        [HttpGet]
+        public ActionResult TestUiDateTimeModelAsParameterWithGet(UiDateTimeModel model, UiDateTimeModel model2, string anotherProperty) {
+            return Json(new {
+                Date1 = model.DateTimeUtcValue.GetValueOrDefault().ToString("s"),
+                Date2 = model2.DateTimeUtcValue.GetValueOrDefault().ToString("s"),
+                Other = anotherProperty
+            },
+            JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

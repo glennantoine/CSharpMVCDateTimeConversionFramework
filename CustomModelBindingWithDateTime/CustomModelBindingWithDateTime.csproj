@@ -374,6 +374,7 @@
     <None Include="Scripts\jquery-1.9.0.min.map" />
     <Content Include="Views\Home\UiDateTimeRangeModel.cshtml" />
     <Content Include="Views\Home\UiDateTimeRangeModelBinder.cshtml" />
+    <Content Include="Views\UiDateTime\TestUiDateTimeModelAsParameter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\UiDateTimeResouce.resx">

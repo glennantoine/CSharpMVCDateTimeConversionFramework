@@ -1,0 +1,120 @@
+﻿@model CSharpMVCDateTimeConversionFramework.Controllers.UiDateTimeController.TestModel
+
+    @using (Html.BeginForm("TestUiDateTimeModelAsParameter", "UiDateTimeController", FormMethod.Post, new { id = "theForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="themod" class="mod default w200">
+            <div class="inner" style="">
+                <div class="bd">
+                    <div class="formrow">
+                        @Html.EditorFor(m => m.Model, "Date")
+                        @Html.EditorFor(m => m.Model2, "Date")
+                    </div>
+                    <div class="formrow">Check console for result </div>
+                    <div class="ft ftTopBorder last-child pts">
+                        <div class="buttonBar left">
+                            <button type="button" class="button secondary line" id="doAjaxPost">Ajax Post</button>
+                            <button type="button" class="button line" id="doAjaxGet">Ajax Get</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+    <script type="text/javascript">
+        (function () {
+            $('document').ready(function () {
+
+                $('.datepicker').datepicker({
+                    buttonImage: '/Content/themes/base/images/calendar.png',
+                    buttonImageOnly: true,
+                    buttonText: 'choose a date...',
+                    showOn: 'both',
+                    changeMonth: true,
+                    changeYear: true,
+                    constrainInput: true,
+                    minDate: new Date(),
+                    dateFormat: 'mm/dd/yy'
+                });
+
+
+                $('#doAjaxPost').on('click', function () {
+
+                    var data = [{ name: "model.TimeZoneName", value: $('#Model_TimeZoneName').val() },
+                                { name: "model.DateTimeLocalValue", value: $('#Model_LocalDate').val() },
+                                { name: "model2.TimeZoneName", value: $('#Model2_TimeZoneName').val() },
+                                { name: "model2.DateTimeLocalValue", value: $('#Model2_LocalDate').val() },
+                                { name: 'anotherProperty', value: 'some string' }
+                            ];
+
+//                    var data = {
+//                        model: { TimeZoneName: $('#Model_TimeZoneName').val(), DateTimeLocalValue: $('#Model_LocalDate').val() },
+//                        model2: { TimeZoneName: $('#Model2_TimeZoneName').val(), DateTimeLocalValue: $('#Model2_LocalDate').val() },
+//                        anotherProperty: 'some string'
+//                    };
+
+//                    var options = {
+//                        action: $('form').attr('action'),
+//                        data: AB.util.objectToArray(data),
+//                        success: function (response) {
+//                            console.dir(response);
+//                        }
+//                    };
+//                    AB.ajax.post(options);
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: $('form').attr('action'),
+                        data: data
+                    }).done(function (response) {
+                        console.dir(response);
+                    });
+
+                });
+
+                $('#doAjaxGet').on('click', function () {
+
+                    var data = [{ name: "model.TimeZoneName", value: $('#Model_TimeZoneName').val() },
+                                { name: "model.DateTimeLocalValue", value: $('#Model_LocalDate').val() },
+                                { name: "model2.TimeZoneName", value: $('#Model2_TimeZoneName').val() },
+                                { name: "model2.DateTimeLocalValue", value: $('#Model2_LocalDate').val() },
+                                { name: 'anotherProperty', value: 'some string' }
+                            ];
+
+//                    var data = {
+//                                model: { TimeZoneName: $('#Model_TimeZoneName').val(), DateTimeLocalValue: $('#Model_LocalDate').val() },
+//                                model2: { TimeZoneName: $('#Model2_TimeZoneName').val(), DateTimeLocalValue: $('#Model2_LocalDate').val() },
+//                                anotherProperty: 'some string'
+//                            };
+
+//                    var options = {
+//                        action: $('form').attr('action').replace('TestUiDateTimeModelAsParameter', 'TestUiDateTimeModelAsParameterWithGet'),
+//                        data: AB.util.objectToArray(data),
+//                        success: function (response) {
+//                            console.dir(response);
+//                        }
+//                    };
+//                    AB.ajax.get(options);
+
+                    $.ajax({
+                        type: "POST",
+                        url: $('form').attr('action').replace('TestUiDateTimeModelAsParameter', 'TestUiDateTimeModelAsParameterWithGet'),
+                        data: data
+                    }).done(function (response) {
+                        console.dir(response);
+                    });
+
+                });
+
+
+            });
+        } ());
+    </script>
+
+
+
+

@@ -1,0 +1,40 @@
+﻿@model CSharpMVCDateTimeConversionFramework.Models.UiDateTimeRangeTestModel
+
+<hgroup class="title">
+    <h1>Ui Date Time Range Test</h1><br />
+    <h2>Use this form to test the UiDateTimeRangeModel</h2>
+</hgroup>
+
+@using (Html.BeginForm((string)ViewBag.FormAction, "UiDateTime")) {
+    @Html.ValidationSummary()
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ul>
+            <li>
+                @Html.LabelFor(m => m.FirstName)
+                @Html.TextBoxFor(m => m.FirstName)
+                @Html.ValidationMessageFor(m => m.FirstName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.LastName)
+                @Html.TextBoxFor(m => m.LastName)
+                @Html.ValidationMessageFor(m => m.LastName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Phone)
+                @Html.TextBoxFor(m => m.Phone)
+                @Html.ValidationMessageFor(m => m.Phone)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email)
+                @Html.ValidationMessageFor(m => m.Email)
+            </li>
+            @Html.EditorFor(m => m.UiDateTimeRange)
+        </ul>
+        <input type="submit" value="Submit" />
+    </fieldset>
+}
+@section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }

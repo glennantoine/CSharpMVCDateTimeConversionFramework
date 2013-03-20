@@ -1,0 +1,46 @@
+﻿@model CSharpMVCDateTimeConversionFramework.Models.UiDateTimeTestModel
+
+<hgroup class="title">
+    <h1>Ui Date Time Test</h1><br />
+    <h2>This page displays the results of the UiDateTimeTest Post</h2>
+    <h3>@Html.ActionLink("Back to UiDateTimeModel Test Form", "UiDateTimeTest", "UiDateTime")</h3>
+</hgroup>
+<ul>
+    <li>
+        <label>First Name: </label>
+        @Html.LabelFor(m => m.FirstName)
+    </li>
+    <li>
+        <label>Last Name:</label>
+        @Html.LabelFor(m => m.LastName)
+    </li>
+    <li>
+        <label>Phone:</label>
+        @Html.LabelFor(m => m.Phone)
+    </li>
+    <li>
+        <label>Email:</label>
+        @Html.LabelFor(m => m.Email)
+    </li>
+    <li>
+        <label>UiDateTimeTestModel Local Date: </label>
+        @Model.UiDateTime.LocalDate
+    </li>
+    <li>
+        <label>UiDateTimeTestModel Local Time: </label>
+        @Model.UiDateTime.LocalTime
+    </li>
+    <li>
+        <label>UiDateTimeTestModel TimeZone: </label>
+        @Model.UiDateTime.TimeZoneName
+    </li>
+    <li>
+        <label>UiDateTimeTestModel Local DateTime Value: </label>
+        @Model.UiDateTime.DateTimeLocalValue
+    </li>
+    <li>
+        <label>UiDateTimeTestModel UTC DateTime Value: </label>
+        @Model.UiDateTime.DateTimeUtcValue
+    </li>
+</ul>
+

@@ -1,0 +1,17 @@
+﻿@using CSharpDateTimeConversionFramework.Helpers;
+@model CSharpDateTimeConversionFramework.Models.UiDateTimeRangeModel
+@*Special case partial view, does not implement end date/time*@
+<div class="formitem">
+    @Html.HiddenFor(m => m.TimeZoneName)
+    @Html.MyLabelFor(m => m.StartDateTime.LocalDate, new { @class = "top" })
+    @Html.UiDateBoxFor(m => m.StartDateTime.LocalDate, new { @class = "datepicker" })
+</div>
+<div class="formitem">
+    @Html.MyLabelFor(m => m.StartDateTime.LocalTime, new { @class = "top" })
+    @Html.UiDateBoxFor(m => m.StartDateTime.LocalTime, new { @class = "timepicker" })
+    @Html.HiddenFor(m => m.EndDateTime.LocalTime)
+</div>
+<div class="formitem nolabel">
+    @Html.CheckBoxFor(m => m.StartDateTime.NoSetTime)
+    @Html.MyLabelFor(m => m.StartDateTime.NoSetTime, new {})
+</div>

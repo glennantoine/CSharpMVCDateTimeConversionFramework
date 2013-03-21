@@ -1,0 +1,15 @@
+﻿@using CSharpDateTimeConversionFramework.Helpers
+@model CSharpDateTimeConversionFramework.Models.UiDateTimeModel
+
+<li>
+    @Html.MyLabelFor(m => m.LocalDate, new { @class = "top" })
+    @Html.UiDateBoxFor(m => m.LocalDate, new { @class = "datepicker" })
+</li>
+<li>
+    @Html.MyLabelFor(m => m.LocalTime, new{@class="top"})
+    @Html.UiTimeBoxFor(m => m.LocalTime, new { @class = "timepicker" })
+</li>
+@Html.HiddenFor(model => model.TimeZoneName)
+
+
+

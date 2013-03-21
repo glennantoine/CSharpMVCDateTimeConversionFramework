@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{32C125
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDateTimeConversionFramework", "CSharpDateTimeConversionFramework\CSharpDateTimeConversionFramework.csproj", "{65A2E5BB-9DFC-4472-B567-46B476456A98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CF15159E-267E-497E-AF00-880778CEB921}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF15159E-267E-497E-AF00-880778CEB921}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF15159E-267E-497E-AF00-880778CEB921}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65A2E5BB-9DFC-4472-B567-46B476456A98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65A2E5BB-9DFC-4472-B567-46B476456A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65A2E5BB-9DFC-4472-B567-46B476456A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65A2E5BB-9DFC-4472-B567-46B476456A98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

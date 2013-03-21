@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CSharpMVCDateTimeConversionFramework.Controllers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CSharpMVCDateTimeConversionFramework.Tests.Controllers {
     [TestClass]

@@ -113,5 +113,38 @@ namespace CSharpMVCDateTimeConversionFramework.Controllers
             return View(model);
         }
 
+        public struct TestModel {
+            public UiDateTimeModel ModelOne { get; set; }
+            public UiDateTimeModel ModelTwo { get; set; }
+        }
+
+        [HttpGet]
+        public ActionResult TestUiDateTimeModelAsParameter() {
+            var model = new TestModel {
+                ModelOne = new UiDateTimeModel("US Eastern Standard Time"),
+                ModelTwo = new UiDateTimeModel("Pacific Standard Time")
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult TestUiDateTimeModelAsParameter(UiDateTimeModel modelOne, UiDateTimeModel modelTwo) {
+            return Json(new {
+                modelOneUtcDate = modelOne.DateTimeUtcValue.GetValueOrDefault().ToString("s"),
+                modelTwoUtcDate = modelTwo.DateTimeUtcValue.GetValueOrDefault().ToString("s")
+            });
+        }
+
+        [HttpGet]
+        public ActionResult TestUiDateTimeModelAsParameterWithGet(UiDateTimeModel modelOne, UiDateTimeModel modelTwo, string anotherProperty) {
+            return Json(new {
+                modelOneUtcDate = modelOne.DateTimeUtcValue.GetValueOrDefault().ToString("s"),
+                modelTwoUtcDate = modelTwo.DateTimeUtcValue.GetValueOrDefault().ToString("s"),
+                Other = anotherProperty
+            },
+            JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

@@ -7,7 +7,7 @@ namespace CSharpMVCDateTimeConversionFramework
         public static void RegisterBundles(BundleCollection bundles) 
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-1.*"));
+                        "~/Scripts/jquery-1.9.0.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui*"));
@@ -18,6 +18,10 @@ namespace CSharpMVCDateTimeConversionFramework
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
+
+            //Bundle for testing of UiDateTimeModel as a Parameter
+            bundles.Add(new ScriptBundle("~/bundles/testUiDateTimeModelAsParameter").Include(
+                        "~/Scripts/testUiDateTimeModelAsParameter*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 

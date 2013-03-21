@@ -9,8 +9,8 @@
     <ProjectGuid>{CF15159E-267E-497E-AF00-880778CEB921}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CustomModelBindingWithDateTime.Tests</RootNamespace>
-    <AssemblyName>CustomModelBindingWithDateTime.Tests</AssemblyName>
+    <RootNamespace>CSharpMVCDateTimeConversionFramework.Tests</RootNamespace>
+    <AssemblyName>CSharpMVCDateTimeConversionFramework.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -114,7 +114,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CSharpMVCDateTimeConversionFramework\CSharpMVCDateTimeConversionFramework.csproj">
       <Project>{D48E905E-BE92-424C-83C8-0A3A81D1105F}</Project>
-      <Name>CustomModelBindingWithDateTime</Name>
+      <Name>CSharpMVCDateTimeConversionFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

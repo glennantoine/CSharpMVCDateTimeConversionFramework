@@ -1,0 +1,33 @@
+﻿@model CSharpMVCDateTimeConversionFramework.Controllers.UiDateTimeController.TestModel
+
+    @using (Html.BeginForm("TestUiDateTimeModelAsParameter", "UiDateTime", FormMethod.Post, new { id = "theForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="themod" class="mod default w200">
+            <div class="inner" style="">
+                <div class="bd">
+                    <div style="margin: 10px; font-weight: bold" class="formrow">Check Console for Log Messages/Results </div>
+                    <div class="formrow">
+                        @Html.EditorFor(m => m.ModelOne, "Date")
+                        @Html.EditorFor(m => m.ModelTwo, "Date")
+                    </div>
+                    <div style="margin: 10px;" class="ft ftTopBorder last-child pts">
+                        <div class="buttonBar left">
+                            <button type="button" class="button secondary line" id="doAjaxPost">Ajax Post</button>
+                            <button type="button" class="button line" id="doAjaxGet">Ajax Get</button>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px" class="results">
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    }
+    
+    @Scripts.Render("~/bundles/testUiDateTimeModelAsParameter")
+    
+
+
+
+

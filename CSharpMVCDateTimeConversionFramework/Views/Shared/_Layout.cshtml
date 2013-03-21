@@ -6,6 +6,8 @@
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/themes/base/css", "~/Content/css")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
         @Scripts.Render("~/bundles/modernizr")
         
         <!--Javascript files for SyntaxHighlighter -->
@@ -56,8 +58,6 @@
             </div>
         </footer>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/jqueryui")
         @RenderSection("scripts", required: false)
         <script type="text/javascript">
             $(function () {

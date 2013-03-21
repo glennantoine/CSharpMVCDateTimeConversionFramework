@@ -21,8 +21,8 @@ namespace CSharpMVCDateTimeConversionFramework.Models
         [Display(Name = "Email address")]
         public string Email { get; set; }
 
-        [UiDateTimeDisplayAttribute("LocalDate", "BeginDate", typeof(Resources.UiDateTimeResouce))]
-        [UiDateTimeDisplayAttribute("LocalTime", "BeginTime", typeof(Resources.UiDateTimeResouce))]
+        [UiDateTimeDisplay("LocalDate", "BeginDate", typeof(Resources.UiDateTimeResouce))]
+        [UiDateTimeDisplay("LocalTime", "BeginTime", typeof(Resources.UiDateTimeResouce))]
         public UiDateTimeModel UiDateTime { get; set; }
     }
 }

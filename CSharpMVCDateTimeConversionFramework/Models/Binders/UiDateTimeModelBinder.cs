@@ -196,15 +196,18 @@ namespace CSharpMVCDateTimeConversionFramework.Models.Binders
                 return null;
 
             ValueProviderResult valueResult;
+            string modelName;
 
             //Try it with the prefix...
             if (bindingContext.ValueProvider.ContainsPrefix(bindingContext.ModelName))
             {
                 valueResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName + "." + key);
+                modelName = bindingContext.ModelName + "." + key;
             }
             else //Didn't work? Try without the prefix if needed...
             {
                 valueResult = bindingContext.ValueProvider.GetValue(key);
+                modelName = key;
             }
 
             if (valueResult == null)
@@ -212,7 +215,18 @@ namespace CSharpMVCDateTimeConversionFramework.Models.Binders
                 return null;
             }
 
-            return (Nullable<T>) valueResult.ConvertTo(typeof (T));
+            // Add the value to the model state 
+            // when redisplaying the form with a not convertible value
+            bindingContext.ModelState.SetModelValue(modelName, valueResult);
+            try 
+            {
+                return (T?)valueResult.ConvertTo(typeof(T));
+            } 
+            catch (Exception ex)
+            {
+                bindingContext.ModelState.AddModelError(modelName, ex);
+                return null;
+            }
         }
 
         public string DateFieldName { get; set; }

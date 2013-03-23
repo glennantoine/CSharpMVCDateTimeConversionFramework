@@ -17,7 +17,7 @@ namespace CSharpMVCDateTimeConversionFramework.Models.Binders
         {
             //Used to determine if values where intentionally set by the application
             //or as a result of model binding to keep values in sync
-            this.StartImplicitlySet = false;
+            StartImplicitlySet = false;
 
             //Use Reflection to get the associated property names from the UiDateTimeRangeModel
             var startDateTime = StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.StartDateTime);
@@ -32,106 +32,106 @@ namespace CSharpMVCDateTimeConversionFramework.Models.Binders
             var endDateTimeLocalDateTime = StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.StartDateTime.DateTimeLocalValue);
 
             //Get the model values for binding
-            this.TimeZoneName = getValues(bindingContext, StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.TimeZoneName));
+            TimeZoneName = getValues(bindingContext, StaticReflection.GetMemberName<UiDateTimeRangeModel>(x => x.TimeZoneName));
 
-            this.StartLocalDate = getValues(bindingContext, startDateTime + "." + startDateTimeLocalDate);
-            this.StartLocalTime = getValues(bindingContext, startDateTime + "." + startDateTimeLocalTime);
-            this.StartLocalDateTime = getValues(bindingContext, startDateTime + "." + startDateTimeLocalDateTime);
-            this.StartNoSetTime = getValues(bindingContext, startDateTime + "." + startDateTimeNoSetTime);
+            StartLocalDate = getValues(bindingContext, startDateTime + "." + startDateTimeLocalDate);
+            StartLocalTime = getValues(bindingContext, startDateTime + "." + startDateTimeLocalTime);
+            StartLocalDateTime = getValues(bindingContext, startDateTime + "." + startDateTimeLocalDateTime);
+            StartNoSetTime = getValues(bindingContext, startDateTime + "." + startDateTimeNoSetTime);
 
             var noSetTime = false;
-            if (!string.IsNullOrWhiteSpace(this.StartNoSetTime))
+            if (!string.IsNullOrWhiteSpace(StartNoSetTime))
             {
-                if (bool.TryParse(this.StartNoSetTime.Split(',')[0], out noSetTime) && noSetTime)
+                if (bool.TryParse(StartNoSetTime.Split(',')[0], out noSetTime) && noSetTime)
                 {
-                    this.StartLocalTime = SqlDateTime.MinValue.Value.Date.ToShortTimeString();
-                    this.StartImplicitlySet = true;
+                    StartLocalTime = SqlDateTime.MinValue.Value.Date.ToShortTimeString();
+                    StartImplicitlySet = true;
                 }
             }
 
             //*************************************************************
             //Setup the StartDateTime property of the UiDateTimeRangeModel
-            if (!String.IsNullOrEmpty(this.StartLocalDateTime))
+            if (!String.IsNullOrEmpty(StartLocalDateTime))
             {
-                this.StartDateTime = new UiDateTimeModel(this.TimeZoneName)
+                StartDateTime = new UiDateTimeModel(TimeZoneName)
                                          {
-                                             DateTimeLocalValue = DateTime.Parse(this.StartLocalDateTime),
+                                             DateTimeLocalValue = DateTime.Parse(StartLocalDateTime),
                                              NoSetTime = noSetTime,
-                                             ImplicitlySet = this.StartImplicitlySet
+                                             ImplicitlySet = StartImplicitlySet
                                          };
             }
             else
             {
                 //Both StartLocalDate and StartLocalTime so we will set the StartDateTime.DateTimeLocalValue to null
-                if (String.IsNullOrEmpty(this.StartLocalDate) && String.IsNullOrEmpty(this.StartLocalTime))
+                if (String.IsNullOrEmpty(StartLocalDate) && String.IsNullOrEmpty(StartLocalTime))
                 {
-                    this.StartDateTime = new UiDateTimeModel(this.TimeZoneName) {DateTimeLocalValue = null, NoSetTime = noSetTime, ImplicitlySet = this.StartImplicitlySet};
+                    StartDateTime = new UiDateTimeModel(TimeZoneName) {DateTimeLocalValue = null, NoSetTime = noSetTime, ImplicitlySet = StartImplicitlySet};
                 }
                 else
                 {
-                    if (String.IsNullOrEmpty(this.StartLocalDate))
+                    if (String.IsNullOrEmpty(StartLocalDate))
                     {
-                        this.StartImplicitlySet = true;
-                        this.StartLocalDate = SqlDateTime.MinValue.Value.Date.ToShortDateString();
+                        StartImplicitlySet = true;
+                        StartLocalDate = SqlDateTime.MinValue.Value.Date.ToShortDateString();
                     }
 
-                    if (!noSetTime && String.IsNullOrEmpty(this.StartLocalTime))
+                    if (!noSetTime && String.IsNullOrEmpty(StartLocalTime))
                     {
-                        this.StartImplicitlySet = true;
+                        StartImplicitlySet = true;
                     }
 
-                    this.StartDateTime = new UiDateTimeModel(this.TimeZoneName)
+                    StartDateTime = new UiDateTimeModel(TimeZoneName)
                                              {
-                                                 DateTimeLocalValue = DateTime.Parse(this.StartLocalDate + " " + this.StartLocalTime),
+                                                 DateTimeLocalValue = DateTime.Parse(StartLocalDate + " " + StartLocalTime),
                                                  NoSetTime = noSetTime,
-                                                 ImplicitlySet = this.StartImplicitlySet
+                                                 ImplicitlySet = StartImplicitlySet
                                              };
                 }
             }
 
 
-            this.EndLocalDate = getValues(bindingContext, endDateTime + "." + endDateTimeLocalDate);
-            this.EndLocalTime = getValues(bindingContext, endDateTime + "." + endDateTimeLocalTime);
-            this.EndLocalDateTime = getValues(bindingContext, endDateTime + "." + endDateTimeLocalDateTime);
+            EndLocalDate = getValues(bindingContext, endDateTime + "." + endDateTimeLocalDate);
+            EndLocalTime = getValues(bindingContext, endDateTime + "." + endDateTimeLocalTime);
+            EndLocalDateTime = getValues(bindingContext, endDateTime + "." + endDateTimeLocalDateTime);
 
             //*************************************************************
             //Setup the EndDateTime property of the UiDateTimeRangeModel
-            if (!String.IsNullOrEmpty(this.EndLocalDateTime))
+            if (!String.IsNullOrEmpty(EndLocalDateTime))
             {
-                this.EndDateTime = new UiDateTimeModel(this.TimeZoneName) {DateTimeLocalValue = DateTime.Parse(this.EndLocalDateTime), ImplicitlySet = this.EndImplicitlySet};
+                EndDateTime = new UiDateTimeModel(TimeZoneName) {DateTimeLocalValue = DateTime.Parse(EndLocalDateTime), ImplicitlySet = EndImplicitlySet};
             }
             else
             {
                 //Both EndLocalDate and EndLocalTime so we will set the EndDateTime.DateTimeLocalValue to null
-                if (String.IsNullOrEmpty(this.EndLocalDate) && String.IsNullOrEmpty(this.EndLocalTime))
+                if (String.IsNullOrEmpty(EndLocalDate) && String.IsNullOrEmpty(EndLocalTime))
                 {
-                    this.EndDateTime = new UiDateTimeModel(this.TimeZoneName) {DateTimeLocalValue = null, NoSetTime = false, ImplicitlySet = this.EndImplicitlySet};
+                    EndDateTime = new UiDateTimeModel(TimeZoneName) {DateTimeLocalValue = null, NoSetTime = false, ImplicitlySet = EndImplicitlySet};
                 }
                 else
                 {
-                    if (String.IsNullOrEmpty(this.EndLocalDate))
+                    if (String.IsNullOrEmpty(EndLocalDate))
                     {
-                        this.EndLocalDate = this.StartLocalDate;
-                        this.EndImplicitlySet = true;
+                        EndLocalDate = StartLocalDate;
+                        EndImplicitlySet = true;
                     }
 
-                    if (String.IsNullOrEmpty(this.EndLocalTime))
+                    if (String.IsNullOrEmpty(EndLocalTime))
                     {
-                        this.EndImplicitlySet = true;
+                        EndImplicitlySet = true;
                     }
-                    this.EndDateTime = new UiDateTimeModel(this.TimeZoneName)
+                    EndDateTime = new UiDateTimeModel(TimeZoneName)
                                            {
-                                               DateTimeLocalValue = DateTime.Parse(this.EndLocalDate + " " + this.EndLocalTime),
-                                               ImplicitlySet = this.EndImplicitlySet
+                                               DateTimeLocalValue = DateTime.Parse(EndLocalDate + " " + EndLocalTime),
+                                               ImplicitlySet = EndImplicitlySet
                                            };
                 }
 
             }
 
-            return new UiDateTimeRangeModel(this.TimeZoneName)
+            return new UiDateTimeRangeModel(TimeZoneName)
                        {
-                           StartDateTime = this.StartDateTime,
-                           EndDateTime = this.EndDateTime,
+                           StartDateTime = StartDateTime,
+                           EndDateTime = EndDateTime,
                        };
         }
 

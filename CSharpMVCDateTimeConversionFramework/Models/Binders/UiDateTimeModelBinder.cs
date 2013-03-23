@@ -190,7 +190,7 @@ namespace CSharpMVCDateTimeConversionFramework.Models.Binders
             return null;
         }
 
-        private Nullable<T> GetA<T>(ModelBindingContext bindingContext, string key) where T : struct
+        private T? GetA<T>(ModelBindingContext bindingContext, string key) where T : struct
         {
             if (String.IsNullOrEmpty(key))
                 return null;

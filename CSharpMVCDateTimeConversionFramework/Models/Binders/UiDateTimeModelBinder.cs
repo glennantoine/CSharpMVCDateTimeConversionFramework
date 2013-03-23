@@ -20,17 +20,20 @@ namespace CSharpMVCDateTimeConversionFramework.Models.Binders
                 throw new ArgumentNullException("bindingContext");
 
             //******************************************************
-            //If they just want a full DateTime the handle that here 
-            //and return model
+            //The TimeZone is required for our implementation 
             //******************************************************
-            DateTime? dateTimeAttempt = GetA<DateTime>(bindingContext, StaticReflection.GetMemberName<UiDateTimeModel>(x => x.DateTimeLocalValue));
-
             var tzAttempt = bindingContext.ValueProvider.GetValue(bindingContext.ModelName + "." + TimeZoneFieldName);
             if (tzAttempt == null)
             {
                 throw new NullReferenceException("tzAttempt");
             }
             var timeZoneAttempt = (string) tzAttempt.ConvertTo(typeof (string));
+
+            //******************************************************
+            //If they just want a full DateTime the handle that here 
+            //and return model
+            //******************************************************
+            DateTime? dateTimeAttempt = GetA<DateTime>(bindingContext, StaticReflection.GetMemberName<UiDateTimeModel>(x => x.DateTimeLocalValue));
 
             if (dateTimeAttempt != null)
                 return new UiDateTimeModel(timeZoneAttempt) {DateTimeLocalValue = DateTime.Parse(dateTimeAttempt.Value.ToString(CultureInfo.InvariantCulture))};

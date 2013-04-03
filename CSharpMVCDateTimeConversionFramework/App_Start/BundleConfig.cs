@@ -19,6 +19,11 @@ namespace CSharpMVCDateTimeConversionFramework
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/syntaxHighlighter").Include(
+                                         "~/Scripts/SyntaxHighlighter/XRegExp.js",
+                                         "~/Scripts/SyntaxHighlighter/shCore.js",
+                                         "~/Scripts/SyntaxHighlighter/shBrushCSharp.js"));
+
             //Bundle for testing of UiDateTimeModel as a Parameter
             bundles.Add(new ScriptBundle("~/bundles/testUiDateTimeModelAsParameter").Include(
                         "~/Scripts/testUiDateTimeModelAsParameter*"));

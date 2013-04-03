@@ -6,20 +6,11 @@
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/themes/base/css", "~/Content/css")
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/jqueryui")
-        @Scripts.Render("~/bundles/modernizr")
         
-        <!--Javascript files for SyntaxHighlighter -->
-<script type="text/javascript" src="~/Scripts/SyntaxHighlighter/XRegExp.js"></script>
-<script type="text/javascript" src="~/Scripts/SyntaxHighlighter/shCore.js"></script>
-<script type="text/javascript" src="~/Scripts/SyntaxHighlighter/shBrushCSharp.js"></script>
-
         <!--Default Core CSS for SyntaxHighlighter -->
-<link type="text/css" rel="stylesheet" href="~/Content/SyntaxHighlighter/shCore.css"/>
-<!--MidNight Theme CSS for SyntaxHighlighter -->
-<link type="text/css" rel="Stylesheet" href="~/Content/SyntaxHighlighter/shCoreMidnight.css" />
-        
+        <link type="text/css" rel="stylesheet" href="~/Content/SyntaxHighlighter/shCore.css"/>
+        <!--MidNight Theme CSS for SyntaxHighlighter -->
+        <link type="text/css" rel="Stylesheet" href="~/Content/SyntaxHighlighter/shCoreMidnight.css" />
     </head>
     <body>
         <header>
@@ -57,15 +48,18 @@
                 </div>
             </div>
         </footer>
-
-        @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/modernizr")
+        
         <script type="text/javascript">
             $(function () {
                 $(".datepicker").datepicker();
                 $('.timepicker').timepicker({
-                                                timeFormat: "hh:mm tt"
-                                            });
+                    timeFormat: "hh:mm tt"
+                });
             });
         </script>
+        @RenderSection("scripts", required: false)
     </body>
 </html>

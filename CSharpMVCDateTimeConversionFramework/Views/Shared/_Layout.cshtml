@@ -1,65 +1,114 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.PageTitle</title>
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js" lang="en">
+<!--[if lt IE 7]> 
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> 
+<![endif]-->
+<!--[if IE 7]>    
+<html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--><!--<![endif]-->
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>>@ViewBag.PageTitle</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/themes/base/css", "~/Content/css")
+        <link rel="apple-touch-icon-precomposed" href="~/Images/apple-touch-icon-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="~/Images/apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="~/Images/apple-touch-icon-114x114-precomposed.png">
+        @Styles.Render("~/Content/bootstrap")
         
         <!--Default Core CSS for SyntaxHighlighter -->
         <link type="text/css" rel="stylesheet" href="~/Content/SyntaxHighlighter/shCore.css"/>
         <!--MidNight Theme CSS for SyntaxHighlighter -->
         <link type="text/css" rel="Stylesheet" href="~/Content/SyntaxHighlighter/shCoreMidnight.css" />
-    </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("Custom Model Binder", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Source Code", "SourceCode", "Home")</li>
-                            <li>@Html.ActionLink("Example Usage", "Usage", "Home")</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
+	
+	<!--[if lt IE 9]>
+	<script src="~/Scripts/html5-3.4-respond-1.1.0.min.js"></script>
+	<![endif]-->
+	<!--[if gte IE 9]>
+	  <style type="text/css">
+	    .gradient {
+	       filter: none;
+	    }
+	  </style>
+	<![endif]-->
+</head>
+<body>
+    <!-- start navigation -->
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="sitebrand btn btn-primary" href="/Home/Index">C# MVC</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+			    <li class="active"><a href="/Home/Index"><i class="icon-home"></i> Home</a></li>
+                <li><a href="/Home/SourceCode"><i class="icon-home"></i>Source Code</a></li>
+                <li><a href="/Home/Usage"><i class="icon-home"></i>Example Usage</a></li>
+				<ul class="nav">
+				    <li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i> Resources <b class="caret"></b></a>
+					    <ul class="dropdown-menu">
+						<li class="">
+							<a href="#"><i class="icon-share"></i>Resource One</a></li>
+						<li class="">
+							<a href="#"><i class="icon-tasks"></i>Resource Two</a></li>
+					    </ul>
+					</li>
+				</ul>
+            </ul>
+            <form class="navbar-form form-search pull-right" method="POST" action="/search" accept-charset="UTF-8">
+              <div class="input-append">
+                <input type="text" name="q" class="span2 search-query" placeholder="Search">
+                <button type="submit" class="btn">Search</button>
+              </div>
+            </form>
+          </div><!--/.nav-collapse -->
         </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - Custom Model Binder MVC Application</p>
-                </div>
-                <div class="float-right">
-@*                    <ul id="social">
-                        <li><a href="http://facebook.com" class="facebook">Facebook</a></li>
-                        <li><a href="http://twitter.com" class="twitter">Twitter</a></li>
-                    </ul>*@
-                </div>
-            </div>
-        </footer>
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/jqueryui")
-        @Scripts.Render("~/bundles/modernizr")
-        
-        <script type="text/javascript">
-            $(function () {
-                $(".datepicker").datepicker();
-                $('.timepicker').timepicker({
-                    timeFormat: "hh:mm tt"
-                });
+      </div>
+    </div>
+    <!-- end navigation -->
+
+    <!-- start masthead -->
+    <div class="jumbotron masthead gradient">
+	    <div class="container">
+	        <h2> @ViewBag.Message</h2>
+	        <p> A base setup for use of CanJS projects</p>
+	    </div>
+    </div>
+    <!-- end masthead -->
+    <hr>
+	
+	<div class="container">
+		<div class="span12">
+		     @RenderBody()
+		</div>
+	<hr>
+
+	<footer>
+	<p>C# ASP.NET MVC DateTime Conversions | Twitter Bootstrap |  </p>	</footer>
+	</div> <!-- /container -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/prettify")       
+         
+    <script type="text/javascript">
+        $(function () {
+            $(".datepicker").datepicker();
+            $('.timepicker').timepicker({
+                timeFormat: "hh:mm tt"
             });
-        </script>
-        @RenderSection("scripts", required: false)
-    </body>
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+
+</body>
 </html>

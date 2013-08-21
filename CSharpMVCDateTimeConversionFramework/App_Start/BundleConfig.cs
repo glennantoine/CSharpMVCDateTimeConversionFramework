@@ -46,7 +46,7 @@ namespace CSharpMVCDateTimeConversionFramework
                                         "~/Content/bootstrap/bootstrap.css",
                                         "~/Content/bootstrap/bootstrap-responsive.css",
                                         "~/Content/bootstrap/nav-fix.css",
-                                        "~/Content/canjsPrototype.css"));
+                                        "~/Content/bootstrap-local.css"));
             
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 

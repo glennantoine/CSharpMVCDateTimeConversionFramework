@@ -203,10 +203,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\EventStore.license.txt" />
+    <Content Include="Content\bootstrap-local.css" />
     <Content Include="Content\bootstrap\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />
     <Content Include="Content\bootstrap\nav-fix.css" />
-    <Content Include="Content\canjsPrototype.css" />
     <Content Include="Content\jquery-ui-timepicker-addon.css" />
     <Content Include="Content\prettify.css" />
     <Content Include="Content\SyntaxHighlighter\shCore.css" />

@@ -6,8 +6,8 @@ namespace CSharpMVCDateTimeConversionFramework.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.PageTitle = "Custom Model Binder w/ Date Time Conversion";
-            ViewBag.Message = "Custom Model Binder for Date Time Conversion Test MVC Application.";
+            ViewBag.PageTitle = " Date Time Conversion w/ Custom Model Binder";
+            ViewBag.Message = "Date Time Conversions & Custom Model Binding";
             return View();
         }
 
